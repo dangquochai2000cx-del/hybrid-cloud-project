@@ -1,35 +1,35 @@
 
 ---
-title: "Worklog Tuần 10"
+title: "Worklog Week 10"
 date: 2026-10-17
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
 
-### Mục tiêu tuần 10:
+### Week 10 Objectives:
 
-- Kiểm thử tổng thể mô hình Hybrid Cloud kết nối mạng doanh nghiệp với AWS thông qua Site-to-Site VPN.
-- Kiểm tra khả năng định tuyến và trao đổi dữ liệu giữa mạng nội bộ và VPC trên AWS.
-- Đánh giá hoạt động của máy chủ web và hệ thống giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana.
-- Kiểm tra các cấu hình bảo mật liên quan đến Security Group, VPN và quyền truy cập tài nguyên AWS.
-- Đánh giá chi phí sử dụng dịch vụ AWS và đề xuất các biện pháp tối ưu tài nguyên.
+- Perform overall testing of the Hybrid Cloud model connecting the enterprise network to AWS through Site-to-Site VPN.
+- Verify routing and data exchange between the internal network and the VPC on AWS.
+- Evaluate the operation of the web server and the centralized monitoring system using Prometheus, Node Exporter, and Grafana.
+- Review security configurations related to Security Groups, VPN, and AWS resource access permissions.
+- Evaluate AWS service costs and propose measures to optimize resource usage.
 
-### Các công việc cần triển khai trong tuần này:
+### Tasks to Be Implemented This Week:
 
-| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
 | --- | --- | --- | --- | --- |
-| 2 | - Kiểm tra lại kiến trúc tổng thể của hệ thống Hybrid Cloud đã triển khai.<br>- Kiểm tra trạng thái VPC, Subnet, Route Table, Virtual Private Gateway và kết nối Site-to-Site VPN.<br>- Kiểm tra cấu hình định tuyến giữa mạng doanh nghiệp và mạng AWS.<br>- Xác định các thành phần cần kiểm thử trong toàn bộ hệ thống. | 17/10/2026 | 17/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Thực hiện kiểm tra kết nối giữa mạng nội bộ và các tài nguyên trong VPC trên AWS.<br>- Sử dụng lệnh ping và các công cụ kiểm tra mạng để xác minh khả năng truyền dữ liệu.<br>- Kiểm tra trạng thái đường hầm VPN và cấu hình định tuyến khi xảy ra sự cố.<br>- Ghi nhận kết quả kiểm thử và các vấn đề phát sinh. | 18/10/2026 | 19/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Kiểm tra khả năng truy cập máy chủ web Nginx trên EC2.<br>- Kiểm tra hoạt động của Prometheus, Node Exporter và Grafana.<br>- Đánh giá khả năng thu thập, truy vấn và trực quan hóa các chỉ số CPU, RAM và dung lượng ổ đĩa.<br>- Rà soát Security Group, cổng dịch vụ và các quy tắc truy cập để hạn chế lưu lượng không cần thiết. | 20/10/2026 | 21/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Kiểm tra thông tin sử dụng và chi phí các dịch vụ AWS trong quá trình triển khai.<br>- Xác định các tài nguyên có thể phát sinh chi phí khi không sử dụng, chẳng hạn như EC2, EBS và các thành phần mạng liên quan.<br>- Đề xuất biện pháp tối ưu chi phí bằng cách dừng hoặc giải phóng tài nguyên không cần thiết sau khi hoàn thành kiểm thử.<br>- Tổng hợp kết quả, đánh giá ưu điểm và hạn chế của mô hình Hybrid Cloud, đồng thời đề xuất hướng cải tiến. | 22/10/2026 | 23/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Review the overall architecture of the deployed Hybrid Cloud system.<br>- Check the status of the VPC, Subnet, Route Table, Virtual Private Gateway, and Site-to-Site VPN connection.<br>- Check routing configurations between the enterprise network and the AWS network.<br>- Identify the components that need to be tested across the entire system. | 17/10/2026 | 17/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Test connectivity between the internal network and resources in the AWS VPC.<br>- Use ping and network diagnostic tools to verify data transmission.<br>- Check VPN tunnel status and routing configurations when connectivity issues occur.<br>- Record test results and any issues encountered. | 18/10/2026 | 19/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Check access to the Nginx web server on EC2.<br>- Verify the operation of Prometheus, Node Exporter, and Grafana.<br>- Evaluate the collection, querying, and visualization of CPU, RAM, and disk capacity metrics.<br>- Review Security Groups, service ports, and access rules to restrict unnecessary traffic. | 20/10/2026 | 21/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Review usage information and costs for AWS services during deployment.<br>- Identify resources that may incur charges when not in use, such as EC2, EBS, and related networking components.<br>- Propose cost optimization measures by stopping or releasing unnecessary resources after testing is complete.<br>- Summarize the results, evaluate the strengths and limitations of the Hybrid Cloud model, and propose improvements. | 22/10/2026 | 23/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Kết quả đạt được trong tuần 10:
+### Week 10 Results:
 
-- Kiểm tra và đánh giá kiến trúc tổng thể của mô hình Hybrid Cloud kết nối mạng doanh nghiệp với AWS.
-- Thực hiện kiểm thử kết nối, định tuyến và trao đổi dữ liệu giữa mạng nội bộ và VPC trên AWS.
-- Kiểm tra trạng thái hoạt động của Site-to-Site VPN và đánh giá khả năng xử lý các vấn đề kết nối.
-- Kiểm tra hoạt động của máy chủ web Nginx và hệ thống giám sát sử dụng Prometheus, Node Exporter và Grafana.
-- Rà soát các cấu hình bảo mật cơ bản, bao gồm Security Group, cổng dịch vụ và quyền truy cập tài nguyên.
-- Tìm hiểu cách theo dõi chi phí AWS và xác định các tài nguyên có thể gây phát sinh chi phí ngoài dự kiến.
-- Đề xuất các biện pháp tối ưu tài nguyên, tổng hợp kết quả triển khai và đánh giá những ưu điểm, hạn chế của mô hình Hybrid Cloud.
+- Tested and evaluated the overall architecture of the Hybrid Cloud model connecting the enterprise network to AWS.
+- Tested connectivity, routing, and data exchange between the internal network and the AWS VPC.
+- Checked the operational status of Site-to-Site VPN and evaluated its ability to handle connectivity issues.
+- Verified the operation of the Nginx web server and the monitoring system using Prometheus, Node Exporter, and Grafana.
+- Reviewed basic security configurations, including Security Groups, service ports, and resource access permissions.
+- Learned how to monitor AWS costs and identify resources that may cause unexpected charges.
+- Proposed resource optimization measures, summarized the deployment results, and evaluated the strengths and limitations of the Hybrid Cloud model.
