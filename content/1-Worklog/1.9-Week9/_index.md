@@ -1,57 +1,35 @@
+
 ---
-title: "Week 9 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 9"
+date: 2026-10-10
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 9 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Learn about the architecture and operating principles of Grafana in a centralized monitoring system.
+- Install and configure Grafana on an EC2 instance running Ubuntu Server.
+- Integrate Prometheus as the data source for Grafana.
+- Build a dashboard to visualize CPU, RAM, disk capacity, and system status metrics.
+- Check data refresh capabilities and monitor server resources through the Grafana dashboard.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Implemented This Week:
 
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| 2 | - Learn about the architecture and role of Grafana in a centralized monitoring system.<br>- Learn how Grafana connects to data sources such as Prometheus.<br>- Check the operational status of Prometheus and Node Exporter deployed in Week 8.<br>- Prepare the environment for installing and configuring Grafana. | 10/10/2026 | 10/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Update the software package list on Ubuntu Server.<br>- Install Grafana on the EC2 instance.<br>- Start Grafana and configure the service to start automatically when the system boots.<br>- Check the service status and verify access to the Grafana web interface. | 11/10/2026 | 12/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Log in to the Grafana interface and configure Prometheus as the data source.<br>- Check the connection between Grafana and Prometheus.<br>- Create a new dashboard to monitor EC2 instance resources.<br>- Build charts displaying CPU, RAM, and disk capacity metrics from the collected data. | 13/10/2026 | 14/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Check the ability to refresh data on the Grafana dashboard.<br>- Test querying and displaying server resource metrics.<br>- Check Grafana access settings and related security rules.<br>- Summarize the deployment results and prepare for overall Hybrid Cloud system testing in Week 10. | 15/10/2026 | 16/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 9 Achievements:
+### Week 9 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Understood the architecture and role of Grafana in a centralized monitoring system.
+- Learned about and installed Grafana on an EC2 instance running Ubuntu Server.
+- Configured Grafana to use Prometheus as the monitoring data source.
+- Checked the connection between Grafana and Prometheus to ensure that monitoring data could be retrieved.
+- Built a dashboard displaying basic resource metrics, including CPU, RAM, and disk capacity.
+- Checked data refresh capabilities and monitored server status through the dashboard.
+- Prepared the monitoring system for testing and evaluating the Hybrid Cloud model in Week 10.

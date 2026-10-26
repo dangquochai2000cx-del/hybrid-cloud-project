@@ -1,59 +1,39 @@
 ---
 title: "Worklog Tuần 2"
-date: 2024-01-01
-weight: 1
+date: 2026-08-17
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tìm hiểu kiến trúc mạng doanh nghiệp đa chi nhánh hiện có và yêu cầu kết nối với AWS Cloud.
+- Xác định mô hình kiến trúc Hybrid Cloud phù hợp với đề tài thực tập.
+- Quy hoạch địa chỉ IP cho mạng AWS và các mạng nội bộ tại doanh nghiệp, bảo đảm các dải mạng không bị trùng lặp.
+- Xác định các thành phần mạng cần thiết để triển khai kết nối VPN Site-to-Site giữa doanh nghiệp và AWS.
+- Chuẩn bị sơ đồ kiến trúc và kế hoạch địa chỉ IP làm cơ sở triển khai trong các tuần tiếp theo.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Phân tích yêu cầu của đề tài Hybrid Cloud.<br>- Xác định các thành phần tham gia hệ thống: mạng doanh nghiệp tại các chi nhánh, thiết bị định tuyến, AWS Cloud và máy chủ dự kiến triển khai.<br>- Xác định nhu cầu trao đổi dữ liệu giữa mạng nội bộ và tài nguyên trên AWS.<br>- Phác thảo mô hình kết nối tổng thể giữa hệ thống on-premises và AWS. | 17/08/2026 | 17/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Tìm hiểu các thành phần mạng trong kiến trúc Hybrid Cloud.<br>- Phân tích vai trò của Amazon VPC, Subnet, Route Table, Internet Gateway và Virtual Private Gateway.<br>- Tìm hiểu nguyên lý kết nối mạng doanh nghiệp với AWS thông qua VPN Site-to-Site.<br>- Xác định luồng kết nối dự kiến giữa các mạng nội bộ và mạng AWS. | 18/08/2026 | 19/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Lập kế hoạch địa chỉ IP cho mạng AWS và các mạng nội bộ tại doanh nghiệp.<br>- Xác định dải CIDR cho VPC và các subnet dự kiến sử dụng.<br>- Phân chia địa chỉ IP cho các VLAN hoặc mạng LAN tại các chi nhánh theo sơ đồ mạng hiện có.<br>- Kiểm tra sự trùng lặp giữa các dải địa chỉ IP nội bộ và dải địa chỉ IP trên AWS. | 20/08/2026 | 20/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Hoàn thiện sơ đồ kiến trúc Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh với AWS.<br>- Tổng hợp bảng quy hoạch địa chỉ IP và xác định các thành phần cần triển khai trong tuần 3.<br>- Rà soát tính phù hợp của kiến trúc và kế hoạch địa chỉ IP trước khi triển khai thực tế. | 21/08/2026 | 21/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Xác định được mục tiêu và yêu cầu kết nối giữa mạng doanh nghiệp đa chi nhánh với AWS Cloud.
+- Xây dựng được phương án kiến trúc Hybrid Cloud ở mức thiết kế, làm cơ sở cho việc triển khai hệ thống.
+- Hiểu rõ hơn vai trò của các thành phần mạng AWS:
+  - **Amazon VPC:** Cung cấp mạng riêng trên AWS.
+  - **Subnet:** Phân chia VPC thành các mạng con phục vụ từng mục đích triển khai.
+  - **Route Table:** Xác định đường đi của lưu lượng mạng.
+  - **Internet Gateway:** Cho phép các tài nguyên phù hợp trong VPC giao tiếp với Internet.
+  - **Virtual Private Gateway:** Là đầu cuối VPN phía AWS để kết nối với mạng bên ngoài thông qua VPN Site-to-Site.
+- Xây dựng kế hoạch phân bổ địa chỉ IP cho VPC, subnet và các mạng nội bộ tại doanh nghiệp.
+- Xác định được sự cần thiết của việc tránh trùng lặp dải địa chỉ IP giữa AWS và mạng on-premises để bảo đảm khả năng định tuyến.
+- Phác thảo sơ đồ kết nối tổng thể giữa mạng doanh nghiệp, thiết bị định tuyến và AWS Cloud.
+- Chuẩn bị được các thông tin thiết kế cần thiết để triển khai Amazon VPC, subnet, Internet Gateway và Route Table trong tuần 3.

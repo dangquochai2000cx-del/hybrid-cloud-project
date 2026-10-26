@@ -1,57 +1,35 @@
+
 ---
-title: "Week 5 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 5"
+date: 2026-09-12
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 5 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Learn the concepts and operating principles of AWS Site-to-Site VPN.
+- Learn about Virtual Private Gateway (VGW), Customer Gateway (CGW), and VPN connections.
+- Understand the role of IPsec tunnels in establishing secure connections between the enterprise network and AWS.
+- Learn how routing works for VPN connections and distinguish between static routing and dynamic routing.
+- Prepare the AWS networking environment for connection to the enterprise network in the following week.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Implemented This Week:
 
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| 2 | - Learn about AWS Site-to-Site VPN and the role of this service in connecting the enterprise network to an AWS VPC.<br>- Learn about Virtual Private Gateway (VGW), Customer Gateway (CGW), and VPN connections.<br>- Study the basic architecture of an IPsec VPN connection between the enterprise's internal network and AWS. | 12/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Review the VPC and network configuration implemented in previous weeks.<br>- Check the Virtual Private Gateway and learn how to attach the VGW to the VPC.<br>- Identify the public IP address and network information required to configure the Customer Gateway.<br>- Learn about the prerequisites for creating a Site-to-Site VPN connection. | 13/09/2026 | 14/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Learn about the configuration parameters of an AWS Site-to-Site VPN connection.<br>- Study IPsec tunnel endpoint addresses, pre-shared keys, encryption algorithms, and tunnel inside IP addresses.<br>- Understand the purpose of the two VPN tunnels provided by AWS to improve connection redundancy.<br>- Compile the VPN configuration information required for the enterprise routers. | 15/09/2026 | 16/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Review static routing and dynamic routing for Site-to-Site VPN connections.<br>- Identify the CIDR ranges of the internal networks that need to communicate with the AWS VPC.<br>- Review Route Table requirements and traffic paths between the enterprise network and AWS.<br>- Summarize the VPN design and prepare for configuration and connectivity testing in Week 6. | 17/09/2026 | 18/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 5 Achievements:
+### Week 5 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Understood the basic concepts and operating principles of AWS Site-to-Site VPN.
+- Understood the roles of Virtual Private Gateway, Customer Gateway, and VPN connections in linking the enterprise network to an AWS VPC.
+- Understood how IPsec tunnels establish secure connections between the internal network and AWS.
+- Learned about VPN tunnel parameters, including endpoint addresses, pre-shared keys, encryption parameters, and tunnel inside IP addresses.
+- Understood the purpose of the two VPN tunnels provided by AWS to improve connection redundancy.
+- Reviewed static and dynamic routing and identified the network routes required for communication between the enterprise network and AWS.
+- Completed the VPN configuration information and routing plan in preparation for integration and connectivity testing in Week 6.

@@ -1,57 +1,37 @@
+
 ---
-title: "Week 4 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 4"
+date: 2026-09-05
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Learn about Amazon EC2 and its role in deploying servers for the Hybrid Cloud system.
+- Understand EC2 instance types, Amazon Machine Images (AMIs), and Amazon EBS storage.
+- Launch and configure an EC2 instance in the VPC created in Week 3.
+- Configure Security Groups to control inbound and outbound traffic and protect the EC2 instance.
+- Learn how to connect to an EC2 instance via SSH and perform basic system checks.
+- Understand basic EC2 instance management operations to help control AWS costs.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Implemented This Week:
 
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| 2 | - Study Amazon EC2, instance types, AMIs, and EBS.<br>- Learn how to select an appropriate instance type and Ubuntu Server AMI for the project.<br>- Review the basic configuration options required when launching an EC2 instance. | 05/09/2026 | 05/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Launch an EC2 instance in the VPC created in Week 3.<br>- Select the AMI, instance type, subnet, and storage capacity.<br>- Create and select a key pair for secure access.<br>- Check the instance status and assigned IP address. | 06/09/2026 | 07/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Create and configure a Security Group for the EC2 instance.<br>- Configure an inbound SSH rule using TCP port 22 and restrict access to the administrator's IP address.<br>- Configure an HTTP rule using TCP port 80 if the instance will host a web server.<br>- Review outbound rules and apply the principle of least privilege. | 08/09/2026 | 08/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Connect to the EC2 instance via SSH.<br>- Inspect the operating system, network configuration, and basic system resources.<br>- Verify connectivity and Security Group settings.<br>- Learn how to stop and start the EC2 instance to help manage AWS costs. | 09/09/2026 | 09/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 4 Achievements:
+### Week 4 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Understood the basic concepts of Amazon EC2, instance types, AMIs, and EBS storage.
+- Learned how to select an appropriate EC2 configuration for the Hybrid Cloud project.
+- Launched an EC2 instance in the VPC created in Week 3 and learned how to check its status and IP address.
+- Configured a Security Group with appropriate inbound and outbound rules to control network access.
+- Understood how to restrict SSH access to an authorized IP address and allow HTTP traffic when required.
+- Learned how to connect to an EC2 instance via SSH and perform basic system and network checks.
+- Understood basic EC2 instance management operations, including stopping and starting instances to help control AWS costs.
+- Prepared the EC2 environment for the next stage of the project: configuring a Site-to-Site VPN connection between the enterprise network and AWS.

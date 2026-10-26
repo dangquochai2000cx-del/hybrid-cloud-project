@@ -1,55 +1,40 @@
 ---
-title: "Week 1 Worklog"
-date: 2024-01-01
+title: "Worklog Week 1"
+date: 2026-08-10
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
-
-
 ### Week 1 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Get acquainted with the FCAJ (First Cloud AI Journey) community, its members, and the internship environment.
+- Learn about the internship orientation and the project overview: **Designing and Implementing a Hybrid Cloud System Connecting Multi-Branch Enterprise Networks Using Site-to-Site VPN Integrated with a Centralized Monitoring Solution**.
+- Learn the fundamental concepts of cloud computing and basic AWS service categories.
+- Become familiar with the AWS Management Console and learn how to manage AWS resources.
+- Acquire foundational knowledge of EC2, storage, and networking to prepare for implementation in the following weeks.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 10/08/2026 | 10/08/2026     |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 0/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Implemented This Week:
 
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| 2 | - Get acquainted with FCAJ members.<br>- Learn about the rules, regulations, and communication methods during the internship.<br>- Receive guidance and understand the objectives of the Hybrid Cloud project. | 10/08/2026 | 10/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Learn about cloud computing and AWS.<br>- Understand the basic cloud service models.<br>- Explore AWS service categories: Compute, Storage, Networking, Database, and Security. | 11/08/2026 | 11/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Become familiar with the AWS Management Console.<br>- Learn how to search for and access AWS services.<br>- Learn about Regions and Availability Zones.<br>- Explore the services required for the Hybrid Cloud project. | 12/08/2026 | 12/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Learn about Amazon EC2, Amazon EBS, and Amazon VPC.<br>- Explore Instance Types, Amazon Machine Images (AMIs), Security Groups, and public IP addresses.<br>- Understand the roles of EC2, VPC, and EBS in the Hybrid Cloud architecture. | 13/08/2026 | 13/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 6 | - Create an AWS account for practical exercises.<br>- Log in to the AWS Management Console and become familiar with its interface.<br>- Explore basic AWS services and learn how to access them.<br>- Learn about Regions, Availability Zones, and important considerations regarding account security and AWS usage costs. | 14/08/2026 | 15/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 1 Achievements:
+### Week 1 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Became familiar with the FCAJ community and understood the internship orientation.
+- Gained an overview of cloud computing and the role of AWS in implementing IT infrastructure.
+- **Successfully created an AWS account** for learning, practical exercises, and the implementation of the Hybrid Cloud project.
+- Became familiar with the AWS Management Console and learned how to search for and access AWS services.
+- Acquired basic knowledge of Regions, Availability Zones, Amazon EC2, Amazon EBS, Amazon VPC, and Security Groups.
+- Gained an initial understanding of the roles of AWS services in the Hybrid Cloud project:
+  - Amazon VPC provides a private networking environment on AWS.
+  - Amazon EC2 provides servers for deploying services.
+  - Amazon EBS provides storage capacity for servers.
+  - Security Groups control inbound and outbound network traffic according to configured rules.
+- Recognized the importance of account security, access control, and monitoring AWS usage costs.
+- Established a foundational knowledge base for designing the Hybrid Cloud architecture and planning IP addresses in Week 2.

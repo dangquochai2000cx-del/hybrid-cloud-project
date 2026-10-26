@@ -1,59 +1,35 @@
+
 ---
 title: "Worklog Tuần 9"
-date: 2024-01-01
-weight: 1
+date: 2026-10-10
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 9:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Tìm hiểu kiến trúc và nguyên lý hoạt động của Grafana trong hệ thống giám sát tập trung.
+- Cài đặt và cấu hình Grafana trên máy chủ EC2 chạy Ubuntu Server.
+- Tích hợp Prometheus làm nguồn dữ liệu cho Grafana.
+- Xây dựng dashboard để trực quan hóa các chỉ số CPU, RAM, dung lượng ổ đĩa và trạng thái hệ thống.
+- Kiểm tra khả năng cập nhật dữ liệu và theo dõi tài nguyên máy chủ thông qua dashboard Grafana.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Tìm hiểu kiến trúc và vai trò của Grafana trong hệ thống giám sát tập trung.<br>- Tìm hiểu cách Grafana kết nối với các nguồn dữ liệu như Prometheus.<br>- Kiểm tra trạng thái hoạt động của Prometheus và Node Exporter đã triển khai ở tuần 8.<br>- Chuẩn bị môi trường để cài đặt và cấu hình Grafana. | 10/10/2026 | 10/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Cập nhật danh sách gói phần mềm trên Ubuntu Server.<br>- Cài đặt Grafana trên máy chủ EC2.<br>- Khởi động Grafana và cấu hình dịch vụ tự động chạy khi hệ thống khởi động.<br>- Kiểm tra trạng thái dịch vụ và khả năng truy cập giao diện web Grafana. | 11/10/2026 | 12/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Đăng nhập vào giao diện Grafana và cấu hình Prometheus làm nguồn dữ liệu.<br>- Kiểm tra kết nối giữa Grafana và Prometheus.<br>- Tạo dashboard mới để theo dõi tài nguyên máy chủ EC2.<br>- Xây dựng các biểu đồ hiển thị thông tin CPU, RAM và dung lượng ổ đĩa từ dữ liệu thu thập được. | 13/10/2026 | 14/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Kiểm tra khả năng cập nhật dữ liệu trên dashboard Grafana.<br>- Thử truy vấn và hiển thị các chỉ số tài nguyên của máy chủ.<br>- Kiểm tra cấu hình truy cập Grafana và các quy tắc bảo mật liên quan.<br>- Tổng hợp kết quả triển khai và chuẩn bị kiểm thử tổng thể hệ thống Hybrid Cloud trong tuần 10. | 15/10/2026 | 16/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Kết quả đạt được tuần 9:
+### Kết quả đạt được trong tuần 9:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Hiểu kiến trúc và vai trò của Grafana trong hệ thống giám sát tập trung.
+- Tìm hiểu và thực hiện cài đặt Grafana trên máy chủ EC2 chạy Ubuntu Server.
+- Cấu hình Grafana sử dụng Prometheus làm nguồn dữ liệu giám sát.
+- Kiểm tra kết nối giữa Grafana và Prometheus để bảo đảm dữ liệu được truy xuất.
+- Xây dựng dashboard hiển thị các chỉ số tài nguyên cơ bản như CPU, RAM và dung lượng ổ đĩa.
+- Kiểm tra khả năng cập nhật dữ liệu và theo dõi trạng thái máy chủ thông qua dashboard.
+- Chuẩn bị hệ thống giám sát để phục vụ quá trình kiểm thử và đánh giá mô hình Hybrid Cloud trong tuần 10.

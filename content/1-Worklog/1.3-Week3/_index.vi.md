@@ -1,59 +1,38 @@
 ---
 title: "Worklog Tuần 3"
-date: 2024-01-01
-weight: 1
+date: 2026-08-24
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Triển khai hạ tầng mạng cơ bản trên AWS dựa trên kiến trúc và kế hoạch địa chỉ IP đã xây dựng trong tuần 2.
+- Tạo và cấu hình Amazon VPC với dải địa chỉ CIDR phù hợp cho hệ thống Hybrid Cloud.
+- Tạo subnet và tìm hiểu cách phân bổ tài nguyên mạng trong VPC.
+- Cấu hình Internet Gateway và Route Table để xác định đường đi của lưu lượng mạng.
+- Kiểm tra lại cấu hình mạng nhằm chuẩn bị cho việc triển khai máy chủ EC2 và kết nối VPN ở các tuần tiếp theo.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Truy cập AWS Management Console và mở dịch vụ Amazon VPC.<br>- Tạo VPC phục vụ đề tài Hybrid Cloud.<br>- Cấu hình dải địa chỉ IPv4 CIDR cho VPC theo kế hoạch đã xây dựng.<br>- Kiểm tra thông tin và trạng thái của VPC sau khi tạo. | 24/08/2026 | 24/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Tạo subnet trong VPC theo kế hoạch địa chỉ IP.<br>- Xác định dải CIDR và Availability Zone cho subnet.<br>- Tìm hiểu sự khác nhau giữa public subnet và private subnet.<br>- Cấu hình tự động gán địa chỉ IPv4 công khai cho public subnet khi cần thiết. | 25/08/2026 | 26/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Tạo Internet Gateway và gắn vào VPC.<br>- Tạo Route Table phục vụ định tuyến cho public subnet.<br>- Thêm tuyến mặc định `0.0.0.0/0` trỏ đến Internet Gateway.<br>- Liên kết Route Table với subnet tương ứng và kiểm tra các tuyến đã cấu hình. | 27/08/2026 | 27/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Rà soát cấu hình VPC, subnet, Internet Gateway và Route Table.<br>- Kiểm tra dải CIDR, trạng thái liên kết và các tuyến định tuyến.<br>- Đối chiếu cấu hình thực tế với sơ đồ kiến trúc và kế hoạch địa chỉ IP.<br>- Tổng hợp kết quả triển khai làm cơ sở cho tuần 4. | 28/08/2026 | 28/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Tạo và cấu hình được Amazon VPC phục vụ việc triển khai hệ thống Hybrid Cloud.
+- Xác định và cấu hình dải địa chỉ IPv4 CIDR cho VPC theo kế hoạch thiết kế.
+- Tạo subnet và hiểu được vai trò của subnet trong việc phân chia mạng và triển khai tài nguyên AWS.
+- Phân biệt được public subnet và private subnet dựa trên cấu hình định tuyến, thay vì chỉ dựa vào tên gọi.
+- Tạo Internet Gateway và liên kết với VPC để chuẩn bị khả năng kết nối Internet cho các tài nguyên phù hợp.
+- Tạo và cấu hình Route Table với các tuyến định tuyến cần thiết:
+  - Tuyến local cho phép định tuyến giữa các subnet trong phạm vi VPC theo cấu hình mạng.
+  - Tuyến mặc định `0.0.0.0/0` trỏ đến Internet Gateway cho lưu lượng Internet từ public subnet.
+- Liên kết Route Table với subnet tương ứng và kiểm tra các tuyến định tuyến đã cấu hình.
+- Đối chiếu cấu hình thực tế với sơ đồ kiến trúc và kế hoạch địa chỉ IP đã xây dựng trong tuần 2.
+- Hoàn thành phần hạ tầng mạng AWS cơ bản, tạo tiền đề triển khai Amazon EC2 và cấu hình bảo mật bằng Security Group trong tuần 4.

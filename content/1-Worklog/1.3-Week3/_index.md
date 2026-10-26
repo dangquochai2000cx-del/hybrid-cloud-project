@@ -1,57 +1,38 @@
 ---
-title: "Week 3 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 3"
+date: 2026-08-24
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 3 Objectives:
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+- Deploy the basic network infrastructure on AWS based on the architecture and IP addressing plan developed in Week 2.
+- Create and configure an Amazon VPC with a suitable CIDR range for the Hybrid Cloud system.
+- Create subnets and learn how to allocate network resources within the VPC.
+- Configure an Internet Gateway and Route Tables to determine network traffic paths.
+- Verify the network configuration to prepare for EC2 deployment and VPN connectivity in the following weeks.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to Be Implemented This Week:
 
+| Day | Tasks | Start Date | Completion Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| 2 | - Access the AWS Management Console and open the Amazon VPC service.<br>- Create a VPC for the Hybrid Cloud project.<br>- Configure the VPC IPv4 CIDR range according to the previously developed plan.<br>- Verify the VPC information and status after creation. | 24/08/2026 | 24/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Create subnets within the VPC according to the IP addressing plan.<br>- Determine the CIDR range and Availability Zone for each subnet.<br>- Learn the differences between public and private subnets.<br>- Configure automatic public IPv4 address assignment for the public subnet when required. | 25/08/2026 | 26/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Create an Internet Gateway and attach it to the VPC.<br>- Create a Route Table for routing traffic from the public subnet.<br>- Add the default route `0.0.0.0/0` pointing to the Internet Gateway.<br>- Associate the Route Table with the corresponding subnet and verify the configured routes. | 27/08/2026 | 27/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Review the configuration of the VPC, subnets, Internet Gateway, and Route Table.<br>- Check the CIDR ranges, association status, and routing entries.<br>- Compare the actual configuration with the architecture diagram and IP addressing plan.<br>- Summarize the implementation results as preparation for Week 4. | 28/08/2026 | 28/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Week 3 Achievements:
+### Week 3 Results:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Created and configured an Amazon VPC for the Hybrid Cloud system.
+- Determined and configured the VPC IPv4 CIDR range according to the design plan.
+- Created subnets and understood their role in network segmentation and AWS resource deployment.
+- Distinguished between public and private subnets based on routing configuration rather than their names alone.
+- Created an Internet Gateway and attached it to the VPC to enable Internet connectivity for eligible resources.
+- Created and configured a Route Table with the necessary routing entries:
+  - The local route enables routing between subnets within the VPC according to the network configuration.
+  - The default route `0.0.0.0/0` points to the Internet Gateway for Internet-bound traffic from the public subnet.
+- Associated the Route Table with the corresponding subnet and verified the configured routing entries.
+- Compared the actual configuration with the architecture diagram and IP addressing plan developed in Week 2.
+- Completed the basic AWS network infrastructure, providing a foundation for deploying Amazon EC2 and configuring Security Groups in Week 4.
