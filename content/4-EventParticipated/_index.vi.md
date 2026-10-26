@@ -31,7 +31,7 @@ Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là
 &emsp;**Vai trò trong sự kiện:** Người tham dự 
 
 
-### [Meetting 3](4.2-Event2/)
+### [Meetting 3](4.3-Event3/)
 &emsp;**Tên sự kiện:** Gặp mặt ngày 05/09/2026
 
 &emsp;**Thời gian:** 09:00 ngày 05/09/2026

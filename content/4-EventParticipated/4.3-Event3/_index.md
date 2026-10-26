@@ -1,6 +1,6 @@
 
 ---
-title: "Event 3"
+title: "Meeting 3"
 date: 2026-09-05 
 weight: 3
 chapter: false

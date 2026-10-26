@@ -1,6 +1,6 @@
 
 ---
-title: "Event 1"
+title: "Meeting 1"
 date: 2026-08-15
 weight: 1
 chapter: false
@@ -9,11 +9,11 @@ pre: " <b> 4.1. </b> "
 
 # Bài thu hoạch Mini Meetup – First Cloud AI Journey
 
-## 1. Mục đích của sự kiện
+## 1. Mục đích của buổi gặp mặt
 
 Mini Meetup – First Cloud AI Journey là buổi gặp gỡ và chia sẻ kiến thức do cộng đồng FCAJ tổ chức, hướng đến những người quan tâm đến Cloud, AI và công nghệ. Chương trình tạo cơ hội để người tham gia tiếp cận kiến thức nền tảng về điện toán đám mây, tìm hiểu các lựa chọn hạ tầng máy chủ và phát triển thương hiệu cá nhân trong lĩnh vực công nghệ.
 
-Các mục tiêu chính của sự kiện bao gồm:
+Các mục tiêu chính của buổi gặp mặt bao gồm:
 
 - Tìm hiểu những kiến thức cơ bản và định hướng học tập trong lĩnh vực Cloud Computing.
 - Nắm được sự khác biệt giữa các mô hình hosting và các lựa chọn máy chủ phổ biến.

@@ -1,6 +1,6 @@
 
 ---
-title: "Event 1"
+title: "Meeting 1"
 date: 2026-08-15
 weight: 1
 chapter: false
@@ -9,11 +9,11 @@ pre: " <b> 4.1. </b> "
 
 # Report on the Mini Meetup – First Cloud AI Journey
 
-## 1. Event Objectives
+## 1. mini meetup Objectives
 
 The Mini Meetup – First Cloud AI Journey was a knowledge-sharing event organized by the FCAJ community for people interested in Cloud, AI, and modern technologies. The event provided an opportunity for participants to gain foundational knowledge of cloud computing, explore different server infrastructure options, and learn how to build a personal brand in the technology industry.
 
-The main objectives of the event were:
+The main objectives of the mini meetup were:
 
 - To explore fundamental concepts and learning pathways in Cloud Computing.
 - To understand the differences between common hosting models and server options.
