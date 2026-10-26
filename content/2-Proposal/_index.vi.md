@@ -7,12 +7,6 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Nội dung dưới đây trình bày định hướng và kế hoạch triển khai dự án. Khi hoàn thiện báo cáo, cần điều chỉnh để phản ánh chính xác kết quả thực tế đã thực hiện.
-{{% /notice %}}
-
-Tại phần này, trình bày tổng quan dự án, các vấn đề cần giải quyết, kiến trúc hệ thống, phương án triển khai, lộ trình thực hiện, ngân sách dự kiến, rủi ro và kết quả kỳ vọng.
-
 # Thiết kế và triển khai hệ thống Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh bằng VPN Site-to-Site tích hợp giải pháp giám sát tập trung
 
 ## 1. Tóm tắt điều hành

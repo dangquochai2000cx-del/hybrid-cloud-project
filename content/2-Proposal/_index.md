@@ -7,11 +7,7 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The following content presents the proposed project direction and implementation plan. Please adjust it to accurately reflect the actual results achieved when completing your report.
-{{% /notice %}}
 
-This section presents an overview of the project, the problems to be addressed, the proposed architecture, the implementation plan, the timeline, the estimated budget, potential risks, and expected outcomes.
 
 # Design and Implementation of a Hybrid Cloud System Connecting Multi-Branch Enterprise Networks Using Site-to-Site VPN with Integrated Centralized Monitoring
 
