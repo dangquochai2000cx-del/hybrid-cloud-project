@@ -35,6 +35,3 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 10:** [Kiểm thử Hybrid Cloud, đánh giá bảo mật và tối ưu chi phí](1.10-week10/)
 
-**Tuần 11:** [Làm công việc M...](1.11-week11/)
-
-**Tuần 12:** [Làm công việc N...](1.12-week12/)
