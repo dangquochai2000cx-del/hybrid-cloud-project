@@ -1,33 +1,39 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-10-27
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Thiết kế và triển khai hệ thống Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh bằng VPN Site-to-Site tích hợp giải pháp giám sát tập trung
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+Trong workshop này, chúng ta sẽ tìm hiểu cách thiết kế và triển khai hệ thống **Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh bằng VPN Site-to-Site tích hợp giải pháp giám sát tập trung**.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+Mô hình sử dụng EVE-NG để mô phỏng hạ tầng mạng doanh nghiệp tại chỗ (On-premises), kết hợp với Amazon Web Services (AWS) để xây dựng môi trường điện toán đám mây. Các mạng nội bộ tại trung tâm và các chi nhánh được kết nối với AWS thông qua các đường hầm VPN Site-to-Site sử dụng giao thức IPsec, giúp đảm bảo tính bảo mật khi trao đổi dữ liệu giữa hai môi trường.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+Bên cạnh việc triển khai kết nối Hybrid Cloud, hệ thống còn tích hợp cơ chế định tuyến dự phòng nhằm tăng tính sẵn sàng của kết nối mạng. Giải pháp giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana để thu thập, theo dõi và trực quan hóa các chỉ số hoạt động của máy chủ, hỗ trợ quản trị viên giám sát tài nguyên và phát hiện sự cố.
+
+Thông qua workshop này, chúng ta sẽ thực hành xây dựng hạ tầng mạng Hybrid Cloud, thiết lập kết nối VPN an toàn, cấu hình định tuyến giữa các mạng, kiểm tra khả năng kết nối và triển khai hệ thống giám sát tập trung.
+
+Các nội dung chính bao gồm:
+
+- **Thiết kế kiến trúc Hybrid Cloud:** Xây dựng mô hình kết nối giữa mạng doanh nghiệp đa chi nhánh và môi trường AWS.
+- **Triển khai hạ tầng AWS:** Cấu hình Amazon VPC, Subnet, Internet Gateway, Virtual Private Gateway và Route Table.
+- **Cấu hình VPN Site-to-Site:** Thiết lập các đường hầm VPN IPsec kết nối hạ tầng On-premises với AWS.
+- **Cấu hình định tuyến và dự phòng:** Thiết lập định tuyến giữa các mạng nội bộ, kiểm tra kết nối và đánh giá khả năng chuyển đổi khi đường truyền gặp sự cố.
+- **Triển khai giám sát tập trung:** Cài đặt Prometheus, Node Exporter và Grafana để theo dõi tài nguyên máy chủ.
+- **Kiểm tra và đánh giá hệ thống:** Kiểm tra kết nối mạng, trạng thái VPN, khả năng dự phòng và hoạt động của hệ thống giám sát.
 
 #### Nội dung
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Tổng quan kiến trúc Hybrid Cloud](5.1-Workshop-overview/)
+2. [Chuẩn bị môi trường triển khai](5.2-Prerequisite/)
+3. [Thiết kế và triển khai hạ tầng mạng AWS](5.3-AWS-network/)
+4. [Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh](5.4-Site-to-Site-VPN/)
+5. [Cấu hình định tuyến và cơ chế dự phòng VPN](5.5-Routing-failover/)
+6. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana](5.6-Monitoring/)
+7. [Kiểm tra và đánh giá hệ thống Hybrid Cloud](5.7-Testing/)
+8. [Dọn dẹp tài nguyên AWS](5.8-Cleanup/)
