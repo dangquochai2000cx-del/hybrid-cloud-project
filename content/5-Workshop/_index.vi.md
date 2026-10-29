@@ -26,14 +26,13 @@ Các nội dung chính bao gồm:
 - **Cấu hình định tuyến và dự phòng:** Thiết lập định tuyến giữa các mạng nội bộ, kiểm tra kết nối và đánh giá khả năng chuyển đổi khi đường truyền gặp sự cố.
 - **Triển khai giám sát tập trung:** Cài đặt Prometheus, Node Exporter và Grafana để theo dõi tài nguyên máy chủ.
 - **Kiểm tra và đánh giá hệ thống:** Kiểm tra kết nối mạng, trạng thái VPN, khả năng dự phòng và hoạt động của hệ thống giám sát.
-
 #### Nội dung
 
 1. [Tổng quan kiến trúc Hybrid Cloud](5.1-Workshop-overview/)
 2. [Chuẩn bị môi trường triển khai](5.2-Prerequisite/)
-3. [Thiết kế và triển khai hạ tầng mạng AWS](5.3-AWS-network/)
-4. [Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh](5.4-Site-to-Site-VPN/)
-5. [Cấu hình định tuyến và cơ chế dự phòng VPN](5.5-Routing-failover/)
-6. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana](5.6-Monitoring/)
-7. [Kiểm tra và đánh giá hệ thống Hybrid Cloud](5.7-Testing/)
-8. [Dọn dẹp tài nguyên AWS](5.8-Cleanup/)
+3. [Thiết kế và triển khai hạ tầng mạng AWS](5.3-AWS-Network-Infrastructure/)
+4. [Triển khai máy chủ EC2 và cấu hình Security Groups](5.4-EC2-Security-Groups/)
+5. [Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh](5.5-Site-to-Site-VPN/)
+6. [Cấu hình định tuyến và cơ chế dự phòng VPN](5.6-VPN-Routing-Failover/)
+7. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana](5.7-Centralized-Monitoring/)
+8. [Kiểm tra hệ thống Hybrid Cloud và dọn dẹp tài nguyên AWS](5.8-System-Testing-Cleanup/)
