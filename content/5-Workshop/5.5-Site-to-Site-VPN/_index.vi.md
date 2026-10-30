@@ -1,95 +1,179 @@
+
 ---
-title : "VPC Endpoint Policies"
-date : 2024-01-01
-weight : 5
-chapter : false
-pre : " <b> 5.5 </b> "
+title: "Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh"
+date: 2026-10-30
+weight: 5
+chapter: false
+pre: " <b> 5.5. </b> "
 ---
 
-Khi bạn tạo một Interface Endpoint  hoặc cổng, bạn có thể đính kèm một chính sách điểm cuối để kiểm soát quyền truy cập vào dịch vụ mà bạn đang kết nối. Chính sách VPC Endpoint là chính sách tài nguyên IAM mà bạn đính kèm vào điểm cuối. Nếu bạn không đính kèm chính sách khi tạo điểm cuối, thì AWS sẽ đính kèm chính sách mặc định cho bạn để cho phép toàn quyền truy cập vào dịch vụ thông qua điểm cuối.
+#### Tổng quan
 
-Bạn có thể tạo chính sách chỉ hạn chế quyền truy cập vào các S3 bucket cụ thể. Điều này hữu ích nếu bạn chỉ muốn một số Bộ chứa S3 nhất định có thể truy cập được thông qua điểm cuối.
+Trong phần này, chúng ta sẽ cấu hình kết nối AWS Site-to-Site VPN nhằm kết nối an toàn mạng doanh nghiệp nội bộ được mô phỏng trên EVE-NG với môi trường điện toán đám mây AWS.
 
-Trong phần này, bạn sẽ tạo chính sách VPC Endpoint hạn chế quyền truy cập vào S3 bucket được chỉ định trong chính sách VPC Endpoint.
+Giải pháp sử dụng Virtual Private Gateway (VGW) trên AWS được gắn với Hybrid Cloud VPC và Customer Gateway đại diện cho thiết bị VPN tại mạng doanh nghiệp. Các đường hầm IPsec VPN cung cấp kết nối được mã hóa giữa hai môi trường.
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+Mạng doanh nghiệp bao gồm mạng tại trụ sở chính và các chi nhánh. Kết nối VPN cho phép các mạng nội bộ được cấp quyền giao tiếp với tài nguyên được triển khai trong AWS VPC.
 
-#### Kết nối tới EC2 và xác minh kết nối tới S3. 
+#### 1. Chuẩn bị môi trường VPN
 
-1. Bắt đầu một phiên AWS Session Manager mới trên máy chủ có tên là Test-Gateway-Endpoint. Từ phiên này, xác minh rằng bạn có thể liệt kê nội dung của bucket mà bạn đã tạo trong Phần 1: Truy cập S3 từ VPC.
+Trước khi tạo kết nối VPN, cần kiểm tra và chuẩn bị các tài nguyên, thông tin sau:
 
+- AWS VPC đã được tạo.
+- Virtual Private Gateway (VGW) đã được gắn với VPC.
+- Địa chỉ IP public có thể được AWS truy cập của thiết bị VPN tại mạng doanh nghiệp.
+- Các dải địa chỉ CIDR của mạng nội bộ.
+- Dải địa chỉ CIDR của AWS VPC.
+- Router hoặc thiết bị VPN tại EVE-NG đang hoạt động.
+
+Trong dự án này, AWS VPC sử dụng dải địa chỉ `10.100.0.0/16`. Các dải mạng nội bộ cần được khai báo theo đúng cấu hình thực tế của hệ thống doanh nghiệp.
+
+**Hình 1: AWS VPC và Virtual Private Gateway**
+
+![AWS VPC và Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/01-vpc-vgw.png)
+
+#### 2. Tạo Customer Gateway
+
+Customer Gateway đại diện cho thiết bị VPN tại mạng doanh nghiệp trong hệ thống AWS.
+
+1. Truy cập AWS Management Console.
+2. Mở dịch vụ **VPC**.
+3. Trong thanh điều hướng, chọn **Customer Gateways**.
+4. Nhấn **Create customer gateway**.
+5. Nhập tên mô tả, ví dụ: `HYBRID-CLOUD-CGW`.
+6. Chọn phương thức định tuyến phù hợp. Trong bài thực hành này, chọn định tuyến tĩnh nếu hệ thống sử dụng static routing.
+7. Chỉ khai báo BGP ASN nếu sử dụng định tuyến động BGP.
+8. Nhập địa chỉ IP public có thể được AWS truy cập của thiết bị VPN tại mạng doanh nghiệp.
+9. Nhấn **Create customer gateway** để hoàn tất.
+
+**Lưu ý:** Địa chỉ IP của Customer Gateway phải có khả năng được AWS truy cập qua Internet. Không sử dụng địa chỉ private của VMnet8 như `192.168.80.x` làm địa chỉ VPN public endpoint.
+
+**Hình 2: Tạo Customer Gateway**
+
+![Tạo Customer Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/02-create-customer-gateway.png)
+
+#### 3. Tạo kết nối Site-to-Site VPN
+
+Sau khi tạo Customer Gateway, tiến hành tạo kết nối VPN.
+
+1. Trong giao diện VPC, chọn **Site-to-Site VPN Connections**.
+2. Nhấn **Create VPN connection**.
+3. Nhập tên kết nối, ví dụ: `HYBRID-CLOUD-S2S-VPN`.
+4. Chọn Virtual Private Gateway đã tạo và gắn với VPC.
+5. Chọn Customer Gateway vừa tạo.
+6. Chọn phương thức định tuyến phù hợp với cấu hình mạng nội bộ.
+7. Nếu sử dụng định tuyến tĩnh, khai báo các dải CIDR của mạng doanh nghiệp.
+8. Kiểm tra lại cấu hình và nhấn **Create VPN connection**.
+
+AWS sẽ tạo hai đường hầm IPsec VPN cho kết nối. Hai đường hầm này cung cấp các đường kết nối thay thế giữa mạng nội bộ và AWS.
+
+**Hình 3: Tạo kết nối Site-to-Site VPN**
+
+![Tạo kết nối Site-to-Site VPN](/images/5-Workshop/5.5-Site-to-Site-VPN/03-create-vpn-connection.png)
+
+#### 4. Tải cấu hình VPN từ AWS
+
+AWS cung cấp tệp cấu hình chứa các thông số đường hầm và cấu hình mẫu cho thiết bị VPN tại mạng nội bộ.
+
+1. Chọn kết nối VPN vừa tạo.
+2. Nhấn **Download configuration**.
+3. Chọn nhà sản xuất và nền tảng thiết bị VPN phù hợp nếu có.
+4. Tải tệp cấu hình về máy tính.
+5. Kiểm tra các thông tin về địa chỉ IP outside tunnel, inside tunnel, pre-shared key, thuật toán mã hóa và các tham số IPsec khác.
+
+Tệp cấu hình được sử dụng làm tài liệu tham khảo khi cấu hình thiết bị VPN trên EVE-NG.
+
+**Lưu ý bảo mật:** Không công khai pre-shared key trong ảnh chụp màn hình, mã nguồn hoặc kho lưu trữ công khai.
+
+**Hình 4: Tải cấu hình VPN từ AWS**
+
+![Tải cấu hình VPN từ AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/04-download-vpn-configuration.png)
+
+#### 5. Cấu hình VPN Tunnel trên Router mạng nội bộ
+
+Sử dụng tệp cấu hình tải từ AWS làm tài liệu tham khảo để cấu hình router tại EVE-NG.
+
+Cấu hình cần đảm bảo các thông số trùng khớp với thông tin AWS cung cấp, bao gồm:
+
+- Địa chỉ IP outside tunnel.
+- Địa chỉ IP inside tunnel.
+- Pre-shared key.
+- Phiên bản IKE và phương thức xác thực.
+- Thuật toán mã hóa và kiểm tra tính toàn vẹn.
+- Diffie-Hellman group.
+- Thời gian tồn tại của IPsec SA và các tham số liên quan.
+
+Tiến hành cấu hình cả hai đường hầm VPN do AWS cung cấp trên thiết bị VPN mạng nội bộ phù hợp.
+
+**Lưu ý:** Câu lệnh cấu hình cụ thể phụ thuộc vào dòng router và hệ điều hành đang sử dụng. Cần sử dụng thông số được AWS tạo ra thay vì sao chép cấu hình mẫu có thông số tunnel khác.
+
+**Hình 5: Cấu hình IPsec VPN trên Router EVE-NG**
+
+![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/05-configure-router-vpn.png)
+
+#### 6. Cấu hình định tuyến giữa mạng nội bộ và AWS
+
+Để hai môi trường có thể giao tiếp với nhau, cần cấu hình định tuyến ở cả hai phía.
+
+**Trên AWS:**
+
+1. Mở giao diện VPC.
+2. Chọn **Route Tables**.
+3. Mở route table gắn với các subnet cần giao tiếp với mạng nội bộ.
+4. Chọn **Edit routes**.
+5. Thêm các dải CIDR của mạng doanh nghiệp.
+6. Chọn Virtual Private Gateway làm target.
+7. Lưu cấu hình.
+
+**Trên mạng nội bộ:**
+
+1. Cấu hình route đến dải mạng AWS VPC `10.100.0.0/16`.
+2. Chỉ định next hop hoặc tunnel interface theo thiết kế VPN.
+3. Kiểm tra các router nội bộ có thể chuyển tiếp lưu lượng đến thiết bị VPN.
+
+Đảm bảo các dải CIDR của mạng nội bộ không bị trùng lặp với dải CIDR của AWS VPC.
+
+**Hình 6: Cấu hình Route Table trên AWS**
+
+![Cấu hình Route Table trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/06-configure-route-table.png)
+
+**Hình 7: Cấu hình định tuyến trên Router mạng nội bộ**
+
+![Cấu hình định tuyến mạng nội bộ](/images/5-Workshop/5.5-Site-to-Site-VPN/07-configure-onprem-routes.png)
+
+#### 7. Kiểm tra trạng thái VPN Tunnel
+
+Sau khi hoàn tất cấu hình, tiến hành kiểm tra trạng thái hoạt động của các VPN Tunnel.
+
+1. Mở **Site-to-Site VPN Connections** trong giao diện VPC.
+2. Chọn kết nối VPN vừa tạo.
+3. Mở tab **Tunnel details**.
+4. Kiểm tra trạng thái của cả hai tunnel.
+5. Xác nhận tunnel hoạt động có trạng thái **UP**.
+
+Trên router EVE-NG, sử dụng các câu lệnh phù hợp để kiểm tra IKE, IPsec Security Associations và trạng thái tunnel interface.
+
+Ví dụ các câu lệnh kiểm tra trên Cisco IOS:
+
+```bash
+show crypto isakmp sa
+show crypto ipsec sa
+show interface tunnel
+show ip route
 ```
-aws s3 ls s3://<your-bucket-name>
-```
-![test](/images/5-Workshop/5.5-Policy/test1.png)
 
-Nội dung của bucket bao gồm hai tệp có dung lượng 1GB đã được tải lên trước đó.
+Các câu lệnh cụ thể có thể thay đổi tùy theo nền tảng router và cấu hình VPN.
 
-2. Tạo một bucket S3 mới; tuân thủ mẫu đặt tên mà bạn đã sử dụng trong Phần 1, nhưng thêm '-2' vào tên. Để các trường khác là mặc định và nhấp vào **Create**.
+**Hình 8: Trạng thái VPN Tunnel trên AWS**
 
-![create bucket](/images/5-Workshop/5.5-Policy/create-bucket.png)
+![Trạng thái VPN Tunnel trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/08-vpn-tunnel-status.png)
 
-3. Tạo bucket thành công.
+**Hình 9: Kiểm tra trạng thái IPsec trên Router**
 
-![Success](/images/5-Workshop/5.5-Policy/create-bucket-success.png)
+![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/09-verify-ipsec-status.png)
 
-Policy mặc định cho phép truy cập vào tất cả các S3 Buckets thông qua VPC endpoint.
+#### Kết luận
 
-4. Trong giao diện **Edit Policy**, sao chép và dán theo policy sau, thay thế yourbucketname-2 với tên bucket thứ hai của bạn. Policy này sẽ cho phép truy cập đến bucket mới thông qua VPC endpoint, nhưng không cho phép truy cập đến các bucket còn lại. Chọn **Save** để kích hoạt policy.
+Trong phần này, chúng ta đã tạo Customer Gateway và kết nối Site-to-Site VPN trên AWS, cấu hình các đường hầm IPsec trên thiết bị VPN mạng nội bộ và thiết lập định tuyến giữa mạng doanh nghiệp với AWS VPC.
 
-
-```
-{
-  "Id": "Policy1631305502445",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1631305501021",
-      "Action": "s3:*",
-      "Effect": "Allow",
-      "Resource": [
-      				"arn:aws:s3:::yourbucketname-2",
-       				"arn:aws:s3:::yourbucketname-2/*"
-       ],
-      "Principal": "*"
-    }
-  ]
-}
-```
-
-![custom policy](/images/5-Workshop/5.5-Policy/policy2.png)
-
-Cấu hình policy thành công.
-
-![success](/images/5-Workshop/5.5-Policy/success.png)
-
-5. Từ session của bạn trên Test-Gateway-Endpoint instance, kiểm tra truy cập đến S3 bucket bạn tạo ở bước đầu
-
-```
-aws s3 ls s3://<yourbucketname>
-```
-
-Câu lệnh trả về lỗi bởi vì truy cập vào S3 bucket không có quyền trong VPC endpoint policy.
-
-![error](/images/5-Workshop/5.5-Policy/error.png)
-
-6. Trở lại home directory của bạn trên EC2 instance ```cd~```
-
-+ Tạo file ```fallocate -l 1G test-bucket2.xyz ```
-+ Sao chép file lên bucket thứ  2 ```aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>```
-
-![success](/images/5-Workshop/5.5-Policy/test2.png)
-
-Thao tác này được cho phép bởi VPC endpoint policy.
-
-![success](/images/5-Workshop/5.5-Policy/test2-success.png)
-
-Sau đó chúng ta kiểm tra truy cập vào S3 bucket đầu tiên
-
- ```aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>```
-
- ![fail](/images/5-Workshop/5.5-Policy/test2-fail.png)
-
- Câu lệnh xảy ra lỗi bởi vì bucket không có quyền truy cập bởi VPC endpoint policy.
-
-Trong phần này, bạn đã tạo chính sách VPC Endpoint cho Amazon S3 và sử dụng AWS CLI để kiểm tra chính sách. Các hoạt động AWS CLI liên quan đến bucket S3 ban đầu của bạn thất bại vì bạn áp dụng một chính sách chỉ cho phép truy cập đến bucket thứ hai mà bạn đã tạo. Các hoạt động AWS CLI nhắm vào bucket thứ hai của bạn thành công vì chính sách cho phép chúng. Những chính sách này có thể hữu ích trong các tình huống khi bạn cần kiểm soát quyền truy cập vào tài nguyên thông qua VPC Endpoint.
+Kết nối VPN cung cấp đường truyền được mã hóa giữa hạ tầng mạng nội bộ và môi trường điện toán đám mây. Trong phần tiếp theo, chúng ta sẽ cấu hình định tuyến và cơ chế dự phòng VPN nhằm nâng cao tính sẵn sàng của kết nối.

@@ -1,99 +1,179 @@
+
 ---
-title : "VPC Endpoint Policies"
-date : 2024-01-01
-weight : 5
-chapter : false
-pre : " <b> 5.5. </b> "
+title: "Site-to-Site VPN Configuration for Multi-Branch Enterprise Networks"
+date: 2026-10-30
+weight: 5
+chapter: false
+pre: " <b> 5.5. </b> "
 ---
 
-When you create an interface or gateway endpoint, you can attach an endpoint policy to it that controls access to the service to which you are connecting. A VPC endpoint policy is an IAM resource policy that you attach to an endpoint. If you do not attach a policy when you create an endpoint, AWS attaches a default policy for you that allows full access to the service through the endpoint.
+#### Overview
 
-You can create a policy that restricts access to specific S3 buckets only. This is useful if you only want certain S3 Buckets to be accessible through the endpoint.
+In this section, we will configure an AWS Site-to-Site VPN connection to securely connect the on-premises enterprise network simulated in EVE-NG with the AWS cloud environment.
 
-In this section you will create a VPC endpoint policy that restricts access to the S3 bucket specified in the VPC endpoint policy.
+The solution uses an AWS Virtual Private Gateway (VGW) attached to the Hybrid Cloud VPC and a Customer Gateway representing the on-premises VPN device. The IPsec VPN tunnels provide encrypted communication between the enterprise network and AWS.
 
-![endpoint diagram](/images/5-Workshop/5.5-Policy/s3-bucket-policy.png)
+The enterprise network includes a headquarters and multiple branch offices. The VPN connection allows authorized internal networks to communicate with resources deployed in the AWS VPC.
 
-#### Connect to an EC2 instance and verify connectivity to S3
+#### 1. Prepare the VPN Environment
 
-1. Start a new AWS Session Manager session on the instance named Test-Gateway-Endpoint. From the session, verify that you can list the contents of the bucket you created in Part 1: Access S3 from VPC:
+Before creating the VPN connection, verify that the following resources and information are available:
 
+- An existing AWS VPC.
+- A Virtual Private Gateway (VGW) attached to the VPC.
+- The public IP address reachable by AWS for the on-premises VPN device.
+- The on-premises network CIDR ranges.
+- The AWS VPC CIDR range.
+- An operational edge router or VPN device in EVE-NG.
+
+For this project, the AWS VPC uses the CIDR range `10.100.0.0/16`. The on-premises network ranges must match the actual enterprise network configuration.
+
+**Image 1: AWS VPC and Virtual Private Gateway**
+
+![AWS VPC and Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/01-vpc-vgw.png)
+
+#### 2. Create a Customer Gateway
+
+A Customer Gateway represents the on-premises VPN device in AWS.
+
+1. Open the AWS Management Console.
+2. Navigate to **VPC**.
+3. In the navigation pane, select **Customer Gateways**.
+4. Choose **Create customer gateway**.
+5. Enter a descriptive name, such as `HYBRID-CLOUD-CGW`.
+6. Select **Routing** according to the routing design. For this lab, use static routing if the VPN configuration uses static routes.
+7. Select the appropriate BGP ASN only if dynamic BGP routing is being used.
+8. Enter the public IP address reachable by AWS for the on-premises VPN device.
+9. Choose **Create customer gateway**.
+
+**Note:** The Customer Gateway IP must be reachable from AWS over the Internet. Do not enter a private VMnet8 address such as `192.168.80.x` as the public VPN endpoint.
+
+**Image 2: Create Customer Gateway**
+
+![Create Customer Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/02-create-customer-gateway.png)
+
+#### 3. Create a Site-to-Site VPN Connection
+
+After creating the Customer Gateway, create the VPN connection.
+
+1. In the VPC console, select **Site-to-Site VPN Connections**.
+2. Choose **Create VPN connection**.
+3. Enter the VPN connection name, such as `HYBRID-CLOUD-S2S-VPN`.
+4. Select the existing Virtual Private Gateway.
+5. Select the Customer Gateway created in the previous step.
+6. Choose the routing option that matches the on-premises configuration.
+7. If using static routing, add the on-premises network CIDR ranges.
+8. Review the configuration and choose **Create VPN connection**.
+
+AWS creates two IPsec VPN tunnels for the connection. These tunnels provide alternative paths between the on-premises network and AWS.
+
+**Image 3: Create Site-to-Site VPN Connection**
+
+![Create Site-to-Site VPN Connection](/images/5-Workshop/5.5-Site-to-Site-VPN/03-create-vpn-connection.png)
+
+#### 4. Download the VPN Configuration
+
+AWS provides a configuration file containing the tunnel parameters and example device configuration.
+
+1. Select the newly created VPN connection.
+2. Choose **Download configuration**.
+3. Select the appropriate vendor and platform for the on-premises VPN device, if available.
+4. Download the configuration file.
+5. Review the outside tunnel IP addresses, inside tunnel IP addresses, pre-shared keys, encryption algorithms, and other IPsec parameters.
+
+The downloaded configuration is used as a reference when configuring the VPN device in EVE-NG.
+
+**Important:** Keep the pre-shared keys confidential. Do not publish them in screenshots, source files, or public repositories.
+
+**Image 4: Download VPN Configuration**
+
+![Download VPN Configuration](/images/5-Workshop/5.5-Site-to-Site-VPN/04-download-vpn-configuration.png)
+
+#### 5. Configure the VPN Tunnel on the On-Premises Router
+
+Use the downloaded AWS configuration as a reference to configure the on-premises router in EVE-NG.
+
+The configuration must match the parameters provided by AWS, including:
+
+- Outside tunnel IP address.
+- Inside tunnel IP address.
+- Pre-shared key.
+- IKE version and authentication settings.
+- Encryption and integrity algorithms.
+- Diffie-Hellman group.
+- IPsec lifetime and related parameters.
+
+Configure both AWS-provided tunnels on the appropriate on-premises VPN device.
+
+**Note:** The exact commands depend on the router model and operating system. Use the configuration generated by AWS rather than copying example commands with different tunnel parameters.
+
+**Image 5: Configure IPsec VPN on the EVE-NG Router**
+
+![Configure IPsec VPN on EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/05-configure-router-vpn.png)
+
+#### 6. Configure Routing Between the On-Premises Network and AWS
+
+To allow communication between the two environments, configure routing on both sides.
+
+**On the AWS side:**
+
+1. Open the VPC console.
+2. Select **Route Tables**.
+3. Open the route table associated with the subnets that need to communicate with the on-premises network.
+4. Choose **Edit routes**.
+5. Add the on-premises network CIDR ranges.
+6. Set the target to the Virtual Private Gateway.
+7. Save the changes.
+
+**On the on-premises side:**
+
+1. Configure routes to the AWS VPC CIDR range `10.100.0.0/16`.
+2. Set the next hop or tunnel interface according to the VPN design.
+3. Verify that the internal routers can forward traffic toward the VPN device.
+
+Ensure that the on-premises network CIDRs do not overlap with the AWS VPC CIDR.
+
+**Image 6: Configure AWS Route Table**
+
+![Configure AWS Route Table](/images/5-Workshop/5.5-Site-to-Site-VPN/06-configure-route-table.png)
+
+**Image 7: Configure Routes on the On-Premises Router**
+
+![Configure On-Premises Routes](/images/5-Workshop/5.5-Site-to-Site-VPN/07-configure-onprem-routes.png)
+
+#### 7. Verify the VPN Tunnel Status
+
+After completing the configuration, verify the status of the VPN tunnels.
+
+1. Open **Site-to-Site VPN Connections** in the VPC console.
+2. Select the VPN connection.
+3. Open the **Tunnel details** tab.
+4. Check the status of both tunnels.
+5. Confirm that the expected tunnel status is **UP**.
+
+On the EVE-NG router, use the appropriate commands to check the IKE and IPsec security associations and tunnel interfaces.
+
+Example verification commands for Cisco IOS:
+
+```bash
+show crypto isakmp sa
+show crypto ipsec sa
+show interface tunnel
+show ip route
 ```
-aws s3 ls s3://\<your-bucket-name\>
-```
-![test](/images/5-Workshop/5.5-Policy/test1.png)
 
-The bucket contents include the two 1 GB files uploaded in earlier.
+The exact commands may vary depending on the router platform and VPN configuration.
 
-2. Create a new S3 bucket; follow the naming pattern you used in Part 1, but add a '-2' to the name. Leave other fields as default and click create
+**Image 8: AWS VPN Tunnel Status**
 
-![create bucket](/images/5-Workshop/5.5-Policy/create-bucket.png)
+![AWS VPN Tunnel Status](/images/5-Workshop/5.5-Site-to-Site-VPN/08-vpn-tunnel-status.png)
 
-Successfully create bucket
+**Image 9: Verify IPsec Status on the Router**
 
-![Success](/images/5-Workshop/5.5-Policy/create-bucket-success.png)
+![Verify IPsec Status](/images/5-Workshop/5.5-Site-to-Site-VPN/09-verify-ipsec-status.png)
 
-3. Navigate to: Services > VPC > Endpoints, then select the Gateway VPC endpoint you created earlier. Click the Policy tab. Click Edit policy.
+#### Conclusion
 
-![policy](/images/5-Workshop/5.5-Policy/policy1.png)
+In this section, we created an AWS Customer Gateway and Site-to-Site VPN connection, configured the IPsec tunnels on the on-premises VPN device, and established routing between the enterprise network and the AWS VPC.
 
-The default policy allows access to all S3 Buckets through the VPC endpoint.
-
-4. In Edit Policy console, copy & Paste the following policy, then replace yourbucketname-2 with your 2nd bucket name. This policy will allow access through the VPC endpoint to your new bucket, but not any other bucket in Amazon S3. Click Save to apply the policy.
-
-```
-{
-  "Id": "Policy1631305502445",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "Stmt1631305501021",
-      "Action": "s3:*",
-      "Effect": "Allow",
-      "Resource": [
-      				"arn:aws:s3:::yourbucketname-2",
-       				"arn:aws:s3:::yourbucketname-2/*"
-       ],
-      "Principal": "*"
-    }
-  ]
-}
-```
-
-![custom policy](/images/5-Workshop/5.5-Policy/policy2.png)
-
-Successfully customize policy
-
-![success](/static/images/5-Workshop/5.5-Policy/success.png)
-
-5. From your session on the Test-Gateway-Endpoint instance, test access to the S3 bucket you created in Part 1: Access S3 from VPC
-```
-aws s3 ls s3://<yourbucketname>
-```
-
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy:
-
-![error](/static/images/5-Workshop/5.5-Policy/error.png)
-
-6. Return to your home directory on your EC2 instance ` cd~ `
-
-+ Create a file ```fallocate -l 1G test-bucket2.xyz ```
-+ Copy file to 2nd bucket ```aws s3 cp test-bucket2.xyz s3://<your-2nd-bucket-name>```
-
-![success](/static/images/5-Workshop/5.5-Policy/test2.png)
-
-This operation succeeds because it is permitted by the VPC endpoint policy.
-
-![success](/static/images/5-Workshop/5.5-Policy/test2-success.png)
-
-+ Then we test access to the first bucket by copy the file to 1st bucket `aws s3 cp test-bucket2.xyz s3://<your-1st-bucket-name>`
-
-![fail](/static/images/5-Workshop/5.5-Policy/test2-fail.png)
-
-This command will return an error because access to this bucket is not permitted by your new VPC endpoint policy.
-
-#### Part 3 Summary:
-
-In this section, you created a VPC endpoint policy for Amazon S3, and used the AWS CLI to test the policy. AWS CLI actions targeted to your original S3 bucket failed because you applied a policy that only allowed access to the second bucket you created. AWS CLI actions targeted for your second bucket succeeded because the policy allowed them. These policies can be useful in situations where you need to control access to resources through VPC endpoints.
-
-
+The VPN connection provides an encrypted communication path between the on-premises infrastructure and the cloud environment. In the next section, we will configure routing and VPN failover mechanisms to improve connectivity availability.

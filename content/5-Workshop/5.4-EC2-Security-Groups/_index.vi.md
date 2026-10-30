@@ -1,6 +1,6 @@
 ---
 title: "Triển khai máy chủ Amazon EC2 và cấu hình Security Groups"
-date: 2026-11-06
+date: 2026-10-30
 weight: 4
 chapter: false
 pre: " <b> 5.4. </b> "
