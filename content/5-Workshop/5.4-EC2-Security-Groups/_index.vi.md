@@ -30,12 +30,11 @@ Trong phạm vi dự án, một máy chủ EC2 chạy Ubuntu Server 24.04 đư�
 | Instance Type | `t3.micro` |
 | VPC | `HYBRID-CLOUD-VPC` |
 | Subnet | `AWS-PUBLIC-SUBNET` |
-| Private IPv4 Address | `10.100.1.118` |
+| Private IPv4 Address | `10.100.0.0/16` |
 | Root Volume | 8 GiB gp3 |
 | Web Server | Nginx |
 | Monitoring Components | Prometheus, Node Exporter, Grafana |
 
-**[Chèn hình ảnh tại đây: Thông tin máy chủ EC2 trên AWS Management Console]**
 
 Lưu ý: Địa chỉ IPv4 công khai của EC2 có thể thay đổi sau khi dừng và khởi động lại máy chủ nếu không sử dụng Elastic IP. Khi truy cập dịch vụ, cần kiểm tra địa chỉ IP hiện tại trong AWS Console.
 
@@ -56,7 +55,7 @@ Các bước thực hiện:
 11. Cấu hình dung lượng ổ đĩa theo nhu cầu, ví dụ 8 GiB gp3.
 12. Kiểm tra lại các thông số và nhấn **Launch instance**.
 
-**[Chèn hình ảnh tại đây: Cấu hình Launch instance trên AWS Console]**
+![Tạo EC2](/images/5-Workshop/5.4-EC2-Security-Groups/create-ec2.png)
 
 Sau khi khởi chạy, kiểm tra trạng thái máy chủ là **Running** và trạng thái kiểm tra hệ thống đã hoàn tất trước khi kết nối.
 
@@ -72,17 +71,9 @@ Security Group hoạt động như một tường lửa ảo ở cấp độ tà
 | HTTP | TCP | 80 | `0.0.0.0/0` | Truy cập website Nginx |
 | Custom TCP | TCP | 3000 | My IP `/32` hoặc mạng quản trị | Truy cập Grafana khi cần |
 | Custom TCP | TCP | 9090 | My IP `/32` hoặc mạng quản trị | Truy cập Prometheus khi cần |
-| Custom TCP | TCP | 9100 | Chỉ máy chủ Prometheus hoặc mạng giám sát | Thu thập số liệu Node Exporter |
 
-**[Chèn hình ảnh tại đây: Các inbound rules của Security Group trên AWS Console]**
+![Tạo inbound rules](/images/5-Workshop/5.4-EC2-Security-Groups/inbound_rules_SG.png)
 
-Lưu ý bảo mật:
-
-- Không nên mở SSH port 22 cho toàn bộ Internet nếu không thực sự cần thiết.
-- Chỉ cho phép truy cập các cổng giám sát từ địa chỉ IP hoặc mạng quản trị phù hợp.
-- Không mở port 9100 công khai vì Node Exporter cung cấp thông tin giám sát của máy chủ.
-- Các quy tắc inbound phải phù hợp với mô hình triển khai thực tế. Nếu các dịch vụ chỉ được truy cập qua VPN, hãy giới hạn nguồn truy cập theo các dải mạng nội bộ tương ứng.
-- Security Group có tính chất stateful, vì vậy lưu lượng phản hồi của kết nối được cho phép sẽ được tự động chấp nhận.
 
 #### Kết nối đến máy chủ bằng SSH
 

@@ -17,7 +17,7 @@ chapter: false
 
 &emsp; **Ngành:** Công nghệ thông tin
 
-&emsp; **Lớp:** AWS082026
+&emsp; **Lớp:** K67MMTA
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 

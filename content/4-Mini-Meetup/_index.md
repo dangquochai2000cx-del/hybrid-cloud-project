@@ -9,7 +9,7 @@ pre: " <b> 4. </b> "
 
 During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
 
-### [Meetting 1](4.1-Event1/)  
+### [Meetting 1](4.1-Meeting1/)  
 &emsp;**Event Name:** meeting 15/08/2026
 
 &emsp;**Date & Time:** 09:00, August 15, 2026 
@@ -20,7 +20,7 @@ During my internship, I participated in two events. Each one was a memorable exp
 
 ---
 
-### [Meetting 2](4.2-Event2/)  
+### [Meetting 2](4.2-Meeting2/)  
 &emsp;**Event Name:** meeting 22/08/2026
 
 &emsp;**Date & Time:** 09:00, August 22, 2026 
@@ -31,7 +31,7 @@ During my internship, I participated in two events. Each one was a memorable exp
 
 ---
 
-### [Meetting 3](4.3-Event3/)  
+### [Meetting 3](4.3-Meeting3/)  
 &emsp;**Event Name:** meeting 05/09/2026
 
 &emsp;**Date & Time:** 09:00, September 5, 2026 

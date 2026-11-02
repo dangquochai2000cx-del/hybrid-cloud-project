@@ -46,7 +46,7 @@ Follow these steps:
 6. Keep the other settings according to the lab requirements.
 7. Click **Create VPC** to complete the process.
 
-**[Insert image here: AWS console interface for creating an Amazon VPC]**
+![create vpc](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-vpc.png)
 
 After the VPC is created successfully, verify its name and IPv4 address range in the **Your VPCs** list.
 
