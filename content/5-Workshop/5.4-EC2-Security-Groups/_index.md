@@ -35,7 +35,6 @@ In this project, an EC2 instance running Ubuntu Server 24.04 is deployed in the 
 | Web Server | Nginx |
 | Monitoring Components | Prometheus, Node Exporter, Grafana |
 
-**[Insert image here: EC2 instance details in the AWS Management Console]**
 
 Note: The public IPv4 address of an EC2 instance may change after the instance is stopped and started if an Elastic IP is not assigned. Before accessing the services, check the current public IP address in the AWS Console.
 
@@ -56,7 +55,7 @@ Follow these steps:
 11. Configure the storage capacity according to the requirements, for example, an 8 GiB gp3 volume.
 12. Review the configuration and click **Launch instance**.
 
-**[Insert image here: Launch instance configuration in the AWS Console]**
+![create EC2](/images/5-Workshop/5.4-EC2-Security-Groups/create-ec2.png)
 
 After launching the instance, verify that its state is **Running** and that the instance status checks have passed before connecting.
 
@@ -72,9 +71,9 @@ For this project, inbound rules should follow the principle of allowing only the
 | HTTP | TCP | 80 | `0.0.0.0/0` | Access to the Nginx website |
 | Custom TCP | TCP | 3000 | My IP `/32` or management network | Access to Grafana when required |
 | Custom TCP | TCP | 9090 | My IP `/32` or monitoring network | Access to Prometheus when required |
-| Custom TCP | TCP | 9100 | Prometheus server or monitoring network only | Collect metrics from Node Exporter |
 
-**[Insert image here: Security Group inbound rules in the AWS Console]**
+
+![xreate inbound rules](/images/5-Workshop/5.4-EC2-Security-Groups/inbound_rules_SG.png)
 
 Security considerations:
 

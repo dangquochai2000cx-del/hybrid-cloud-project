@@ -65,7 +65,7 @@ Follow these steps:
 7. Click **Create subnet**.
 8. Select the newly created subnet, open **Actions**, and enable **Enable auto-assign public IPv4 address** if new EC2 instances should automatically receive public IPv4 addresses.
 
-**[Insert image here: AWS console configuration for creating the public subnet]**
+![create subnet](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-subnet.png)
 
 Note: Enabling automatic public IPv4 address assignment does not replace the need to configure an Internet Gateway and route table.
 
@@ -83,7 +83,7 @@ Follow these steps:
 6. Open **Actions** and select **Attach to a VPC**.
 7. Select `HYBRID-CLOUD-VPC` and confirm the attachment.
 
-**[Insert image here: Internet Gateway successfully created and attached to the VPC]**
+![create Internet gateways](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-igw.png)
 
 After completing these steps, verify that the Internet Gateway is attached to the VPC.
 
@@ -102,7 +102,7 @@ Follow these steps:
 7. Save the changes and open the **Subnet associations** tab.
 8. Associate `AWS-PUBLIC-SUBNET` with `AWS-PUBLIC-RT`.
 
-**[Insert image here: AWS-PUBLIC-RT route table with the default route pointing to the Internet Gateway]**
+![create Route tables](/images/5-Workshop/5.3-AWS-Network-Infrastructure/route-table.png)
 
 Routes to on-premises networks will work only after the VPN and the corresponding routing configuration are ready. Do not add network ranges that are not used in the actual environment.
 
@@ -117,7 +117,6 @@ After completing the configuration, verify the following:
 - The public subnet is associated with the appropriate route table.
 - Routes to enterprise networks are added when the Site-to-Site VPN has been configured.
 
-**[Insert image here: Overview of the configured VPC, subnet, Internet Gateway, and route table]**
 
 #### Expected Results
 

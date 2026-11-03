@@ -21,19 +21,16 @@ Trước khi cấu hình định tuyến, cần kiểm tra lại sơ đồ Hybri
 
 Mô hình bao gồm:
 
-- **Router15:** Router VPN chính tại mạng doanh nghiệp.
-- **Router16:** Router VPN dự phòng.
+- **Router15, Router17:** Router VPN chính tại mạng doanh nghiệp.
+- **Router16, Router18:** Router VPN dự phòng.
 - **AWS Virtual Private Gateway:** Thiết bị kết cuối các kết nối Site-to-Site VPN trên AWS.
-- **VPN chính:** Kết nối Router15 với AWS.
-- **VPN dự phòng:** Kết nối Router16 với AWS.
+- **VPN chính:** Kết nối Router15 và Router17 với AWS.
+- **VPN dự phòng:** Kết nối Router16 và Router18 với AWS.
 - **Mạng nội bộ doanh nghiệp:** Bao gồm mạng trụ sở chính và các chi nhánh.
 - **AWS VPC:** Mạng Cloud sử dụng dải địa chỉ `10.100.0.0/16`.
 
 Mỗi Customer Gateway phải đại diện cho đúng địa chỉ public endpoint của thiết bị VPN tương ứng tại mạng nội bộ.
 
-**Hình 1: Sơ đồ kết nối VPN chính và dự phòng của hệ thống Hybrid Cloud**
-
-![Sơ đồ VPN chính và dự phòng](/images/5-Workshop/5.6-VPN-Routing-Failover/01-vpn-topology.png)
 
 #### 2. Cấu hình định tuyến VPN chính
 
@@ -44,14 +41,11 @@ Thiết kế định tuyến cần đảm bảo lưu lượng có đích đến 
 Đối với router Cisco sử dụng định tuyến tĩnh, có thể cấu hình route kết hợp với tracking object:
 
 ```bash
-ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100
+ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100 1
 ```
 
 Tracking object cần giám sát một địa chỉ đích có thể truy cập thông qua đường VPN chính. Cấu hình cơ chế tracking phải phù hợp với tunnel interface và sơ đồ mạng thực tế.
 
-**Hình 2: Cấu hình định tuyến VPN chính**
-
-![Cấu hình định tuyến VPN chính](/images/5-Workshop/5.6-VPN-Routing-Failover/02-primary-routing.png)
 
 #### 3. Cấu hình định tuyến VPN dự phòng
 
@@ -62,16 +56,13 @@ Cấu hình route dự phòng với Administrative Distance cao hơn để route
 Ví dụ:
 
 ```bash
-ip route 10.100.0.0 255.255.0.0 <BACKUP_NEXT_HOP> 10
+ip route 10.100.0.0 255.255.0.0 Tunnel2 track 200 10
 ```
 
-Thay `<BACKUP_NEXT_HOP>` bằng địa chỉ next-hop hoặc interface phù hợp với đường VPN dự phòng.
 
 Nếu hai router cùng tham gia một miền định tuyến nội bộ, cần đảm bảo việc quảng bá route và lựa chọn đường đi được cấu hình thống nhất. Đường dự phòng phải có khả năng được sử dụng khi route chính bị rút khỏi bảng định tuyến.
 
-**Hình 3: Cấu hình định tuyến VPN dự phòng**
 
-![Cấu hình định tuyến VPN dự phòng](/images/5-Workshop/5.6-VPN-Routing-Failover/03-backup-routing.png)
 
 #### 4. Cấu hình Route Tracking và cơ chế chuyển đổi dự phòng
 
@@ -82,23 +73,29 @@ Trên Cisco IOS, có thể sử dụng IP SLA kết hợp với Object Tracking 
 Ví dụ cấu hình:
 
 ```bash
-ip sla 1
- icmp-echo <REACHABLE_DESTINATION> source-interface <SOURCE_INTERFACE>
- frequency 5
+ip sla 100
+   icmp-echo 169.254.161.73 source-interface Tunnel1
+   timeout 1000
+   frequency 5
 exit
-
-ip sla schedule 1 life forever start-time now
-
-track 100 ip sla 1 reachability
+ip sla schedule 100  life forever start-time now
+track 100 ip sla 100 reachability
+```
+```bash
+ip sla 200
+   icmp-echo 169.254.39.93 source-interface Tunnel2
+   timeout 1000
+   frequency 5
+exit
+ip sla schedule 200  life forever start-time now
+track 200 ip sla 200 reachability
 ```
 
 Địa chỉ đích và source interface cần được lựa chọn theo sơ đồ mạng thực tế. Địa chỉ giám sát phải được truy cập thông qua đường chính và không nên được truy cập qua một đường định tuyến khác không liên quan, vì điều đó có thể khiến router không phát hiện được lỗi VPN chính.
 
 Liên kết tracking object với route tĩnh chính. Khi đường kết nối được giám sát gặp sự cố, route chính sẽ bị loại khỏi bảng định tuyến, cho phép route dự phòng được sử dụng.
 
-**Hình 4: Cấu hình IP SLA và Object Tracking**
 
-![Cấu hình IP SLA và Tracking](/images/5-Workshop/5.6-VPN-Routing-Failover/04-ip-sla-tracking.png)
 
 #### 5. Kiểm tra bảng định tuyến
 
@@ -108,7 +105,6 @@ Trên router Cisco, sử dụng các câu lệnh:
 
 ```bash
 show ip route 10.100.0.0
-show track 100
 show ip sla statistics
 ```
 
@@ -118,7 +114,7 @@ Trong điều kiện hoạt động bình thường, xác nhận route đến `1
 
 **Hình 5: Kiểm tra route chính trong bảng định tuyến**
 
-![Kiểm tra route chính](/images/5-Workshop/5.6-VPN-Routing-Failover/05-primary-route-verification.png)
+![Kiểm tra route chính](/images/5-Workshop/5.6-VPN-Routing-Failover/ktra_bdt.png)
 
 #### 6. Kiểm tra cơ chế chuyển đổi VPN dự phòng
 
@@ -140,7 +136,7 @@ Sử dụng các câu lệnh sau để kiểm tra:
 show ip route 10.100.0.0
 show track 100
 show crypto ipsec sa
-ping <AWS_PRIVATE_IP>
+ping <AWS_PRIVATE_IP>  
 ```
 
 Kết quả kiểm tra cần chứng minh lưu lượng có thể sử dụng đường VPN dự phòng khi đường chính không còn hoạt động.

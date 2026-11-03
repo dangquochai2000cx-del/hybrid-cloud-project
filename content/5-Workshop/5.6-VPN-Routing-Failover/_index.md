@@ -21,19 +21,16 @@ Before configuring routing, review the Hybrid Cloud topology and identify the pr
 
 The design includes:
 
-- **Router15:** Primary on-premises VPN router.
-- **Router16:** Backup on-premises VPN router.
+- **Router15, Router17:** Primary on-premises VPN router.
+- **Router16, Router18:** Backup on-premises VPN router.
 - **AWS Virtual Private Gateway:** Terminates the AWS Site-to-Site VPN connections.
-- **Primary VPN connection:** Connects Router15 to AWS.
-- **Backup VPN connection:** Connects Router16 to AWS.
+- **Primary VPN connection:** Connects Router15 and Router17 to AWS.
+- **Backup VPN connection:** Connects Router16 and Router18 to AWS.
 - **Enterprise internal networks:** Headquarters and branch office networks.
 - **AWS VPC:** Cloud network using CIDR `10.100.0.0/16`.
 
 Each Customer Gateway must represent the correct public endpoint of its corresponding on-premises VPN device.
 
-**Image 1: Hybrid Cloud Primary and Backup VPN Topology**
-
-![Hybrid Cloud VPN Topology](/images/5-Workshop/5.6-VPN-Routing-Failover/01-vpn-topology.png)
 
 #### 2. Configure the Primary VPN Route
 
@@ -44,14 +41,11 @@ The routing design should ensure that traffic destined for `10.100.0.0/16` uses 
 For a Cisco router using static routing, a route can be configured with a tracking object:
 
 ```bash
-ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100
+ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100 1
 ```
 
 The tracking object must monitor a destination that is reachable through the primary VPN path. Configure the tracking mechanism according to the actual tunnel interface and network topology.
 
-**Image 2: Primary VPN Routing Configuration**
-
-![Primary VPN Routing](/images/5-Workshop/5.6-VPN-Routing-Failover/02-primary-routing.png)
 
 #### 3. Configure the Backup VPN Route
 
@@ -62,16 +56,12 @@ Configure a backup route with a higher administrative distance so that it is not
 Example:
 
 ```bash
-ip route 10.100.0.0 255.255.0.0 <BACKUP_NEXT_HOP> 10
+ip route 10.100.0.0 255.255.0.0 Tunnel2 track 200 10
 ```
 
-Replace `<BACKUP_NEXT_HOP>` with the correct next-hop address or interface for the backup VPN path.
 
 If both routers participate in a shared internal routing domain, ensure that route advertisement and route preference are configured consistently. The backup path must be reachable when the primary route is withdrawn.
 
-**Image 3: Backup VPN Routing Configuration**
-
-![Backup VPN Routing](/images/5-Workshop/5.6-VPN-Routing-Failover/03-backup-routing.png)
 
 #### 4. Configure Route Tracking and Failover
 
@@ -108,7 +98,6 @@ On the Cisco router, use:
 
 ```bash
 show ip route 10.100.0.0
-show track 100
 show ip sla statistics
 ```
 

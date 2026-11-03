@@ -30,7 +30,9 @@ Trong dự án này, AWS VPC sử dụng dải địa chỉ `10.100.0.0/16`. Cá
 
 **Hình 1: AWS VPC và Virtual Private Gateway**
 
-![AWS VPC và Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/01-vpc-vgw.png)
+![AWS VPC và Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/vpc.png)
+
+![AWS VPC và Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/vgw.png)
 
 #### 2. Tạo Customer Gateway
 
@@ -50,7 +52,7 @@ Customer Gateway đại diện cho thiết bị VPN tại mạng doanh nghiệp 
 
 **Hình 2: Tạo Customer Gateway**
 
-![Tạo Customer Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/02-create-customer-gateway.png)
+![Tạo Customer Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/create-cgw.png)
 
 #### 3. Tạo kết nối Site-to-Site VPN
 
@@ -69,27 +71,10 @@ AWS sẽ tạo hai đường hầm IPsec VPN cho kết nối. Hai đường hầ
 
 **Hình 3: Tạo kết nối Site-to-Site VPN**
 
-![Tạo kết nối Site-to-Site VPN](/images/5-Workshop/5.5-Site-to-Site-VPN/03-create-vpn-connection.png)
+![Tạo kết nối Site-to-Site VPN](/images/5-Workshop/5.5-Site-to-Site-VPN/create-vpn.png)
 
-#### 4. Tải cấu hình VPN từ AWS
 
-AWS cung cấp tệp cấu hình chứa các thông số đường hầm và cấu hình mẫu cho thiết bị VPN tại mạng nội bộ.
-
-1. Chọn kết nối VPN vừa tạo.
-2. Nhấn **Download configuration**.
-3. Chọn nhà sản xuất và nền tảng thiết bị VPN phù hợp nếu có.
-4. Tải tệp cấu hình về máy tính.
-5. Kiểm tra các thông tin về địa chỉ IP outside tunnel, inside tunnel, pre-shared key, thuật toán mã hóa và các tham số IPsec khác.
-
-Tệp cấu hình được sử dụng làm tài liệu tham khảo khi cấu hình thiết bị VPN trên EVE-NG.
-
-**Lưu ý bảo mật:** Không công khai pre-shared key trong ảnh chụp màn hình, mã nguồn hoặc kho lưu trữ công khai.
-
-**Hình 4: Tải cấu hình VPN từ AWS**
-
-![Tải cấu hình VPN từ AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/04-download-vpn-configuration.png)
-
-#### 5. Cấu hình VPN Tunnel trên Router mạng nội bộ
+#### 4. Cấu hình VPN Tunnel trên Router mạng nội bộ
 
 Sử dụng tệp cấu hình tải từ AWS làm tài liệu tham khảo để cấu hình router tại EVE-NG.
 
@@ -107,11 +92,11 @@ Tiến hành cấu hình cả hai đường hầm VPN do AWS cung cấp trên th
 
 **Lưu ý:** Câu lệnh cấu hình cụ thể phụ thuộc vào dòng router và hệ điều hành đang sử dụng. Cần sử dụng thông số được AWS tạo ra thay vì sao chép cấu hình mẫu có thông số tunnel khác.
 
-**Hình 5: Cấu hình IPsec VPN trên Router EVE-NG**
+**Hình 4: Cấu hình IPsec VPN trên Router EVE-NG**
 
-![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/05-configure-router-vpn.png)
-
-#### 6. Cấu hình định tuyến giữa mạng nội bộ và AWS
+![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn1.png)
+![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn2.png)
+#### 5. Cấu hình định tuyến giữa mạng nội bộ và AWS
 
 Để hai môi trường có thể giao tiếp với nhau, cần cấu hình định tuyến ở cả hai phía.
 
@@ -133,15 +118,15 @@ Tiến hành cấu hình cả hai đường hầm VPN do AWS cung cấp trên th
 
 Đảm bảo các dải CIDR của mạng nội bộ không bị trùng lặp với dải CIDR của AWS VPC.
 
-**Hình 6: Cấu hình Route Table trên AWS**
+**Hình 5: Cấu hình Route Table trên AWS**
 
-![Cấu hình Route Table trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/06-configure-route-table.png)
+![Cấu hình Route Table trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/route_table.png)
 
-**Hình 7: Cấu hình định tuyến trên Router mạng nội bộ**
+**Hình 6: Cấu hình định tuyến trên Router mạng nội bộ**
 
-![Cấu hình định tuyến mạng nội bộ](/images/5-Workshop/5.5-Site-to-Site-VPN/07-configure-onprem-routes.png)
+![Cấu hình định tuyến mạng nội bộ](/images/5-Workshop/5.5-Site-to-Site-VPN/config_route.png)
 
-#### 7. Kiểm tra trạng thái VPN Tunnel
+#### 6. Kiểm tra trạng thái VPN Tunnel
 
 Sau khi hoàn tất cấu hình, tiến hành kiểm tra trạng thái hoạt động của các VPN Tunnel.
 
@@ -164,13 +149,14 @@ show ip route
 
 Các câu lệnh cụ thể có thể thay đổi tùy theo nền tảng router và cấu hình VPN.
 
-**Hình 8: Trạng thái VPN Tunnel trên AWS**
+**Hình 7: Trạng thái VPN Tunnel trên AWS**
 
-![Trạng thái VPN Tunnel trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/08-vpn-tunnel-status.png)
+![Trạng thái VPN Tunnel trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn_status.png)
 
-**Hình 9: Kiểm tra trạng thái IPsec trên Router**
+**Hình 8: Kiểm tra trạng thái IPsec trên Router**
 
-![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/09-verify-ipsec-status.png)
+![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn-status1.png)
+![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn-status2.png)
 
 #### Kết luận
 
