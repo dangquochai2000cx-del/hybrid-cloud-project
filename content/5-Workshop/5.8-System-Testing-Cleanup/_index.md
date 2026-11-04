@@ -29,9 +29,6 @@ The system consists of:
 - **EC2 instance:** Hosts the web server and monitoring components.
 - **Monitoring system:** Uses Prometheus, Node Exporter, and Grafana to monitor server performance.
 
-**Image 1: Overall Hybrid Cloud Architecture**
-
-![Hybrid Cloud Architecture](/images/5-Workshop/5.8-System-Testing-Cleanup/01-hybrid-cloud-architecture.png)
 
 #### 2. Test Network Connectivity
 
@@ -42,10 +39,10 @@ From an authorized on-premises host or router, test connectivity to the private 
 Example:
 
 ```bash
-ping <EC2_PRIVATE_IP>
+ping 10.100.1.118
 ```
 
-Replace `<EC2_PRIVATE_IP>` with the actual private IP address of the EC2 instance.
+`10.100.1.118` is the current private IPv4 address of the EC2 instance.
 
 Also verify that the routing table contains the expected routes to the AWS VPC:
 
@@ -64,9 +61,9 @@ If connectivity fails, review the following:
 - Network ACL rules, if customized.
 - Host firewall configuration.
 
-**Image 2: Test Connectivity from the Enterprise Network to AWS**
+**Image 5.8.1: Test Connectivity from the Enterprise Network to AWS**
 
-![Network Connectivity Test](/images/5-Workshop/5.8-System-Testing-Cleanup/02-network-connectivity.png)
+![Network Connectivity Test](/images/5-Workshop/5.8-System-Testing-Cleanup/.png)
 
 #### 3. Verify Site-to-Site VPN Connections
 
@@ -80,16 +77,19 @@ On the on-premises routers, use the following Cisco IOS commands:
 
 ```bash
 show crypto isakmp sa
-show crypto ipsec sa
-show interface tunnel
+show ip interface brief
 ```
 
 Check that the IPsec security associations are established and that traffic counters increase when communication occurs between the enterprise network and AWS.
 
-**Image 3: AWS Site-to-Site VPN Tunnel Status**
+**Image 5.8.2: AWS Site-to-Site VPN Tunnel Status**
 
-![AWS VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/03-vpn-status.png)
-
+![AWS VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status1.png)
+![AWS VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status2.png)
+![AWS VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status3.png)
+![AWS VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status4.png)
+![Router VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status5.png)
+![Router VPN Tunnel Status](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status6.png)
 #### 4. Test Routing and VPN Failover
 
 Verify that the primary and backup VPN paths operate according to the routing design.
@@ -119,11 +119,10 @@ Perform a controlled failover test:
 6. Restore the primary path.
 7. Verify that the original route preference is recovered.
 
-Do not perform this test during normal production operation without an approved maintenance window.
 
-**Image 4: Verify Primary and Backup VPN Routing**
+**Image 5.8.3: Verify Primary and Backup VPN Routing**
 
-![VPN Routing Failover](/images/5-Workshop/5.8-System-Testing-Cleanup/04-vpn-failover.png)
+![VPN Routing Failover](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-failover.png)
 
 #### 5. Test the EC2 Web Server
 
@@ -150,20 +149,20 @@ sudo ss -tulpn | grep :80
 From an authorized browser, access:
 
 ```text
-http://<EC2_PUBLIC_IP>
+http://44.203.161.19/
 ```
 
 Confirm that the web page is displayed successfully.
 
 Also verify that the EC2 instance is in the **Running** state in the AWS EC2 console.
 
-**Image 5: Verify EC2 Instance Status**
+**Image 5.8.4: Verify EC2 Instance Status**
 
-![EC2 Instance Status](/images/5-Workshop/5.8-System-Testing-Cleanup/05-ec2-status.png)
+![EC2 Instance Status](/images/5-Workshop/5.8-System-Testing-Cleanup/ec2-status.png)
 
-**Image 6: Access the Nginx Web Server**
+**Image 5.8.5: Access the Nginx Web Server**
 
-![Nginx Web Server](/images/5-Workshop/5.8-System-Testing-Cleanup/06-nginx-web-server.png)
+![Nginx Web Server](/images/5-Workshop/5.8-System-Testing-Cleanup/nginx-web-server.png)
 
 #### 6. Verify the Centralized Monitoring System
 
@@ -200,43 +199,15 @@ Verify that the monitoring dashboard displays server metrics such as:
 
 Confirm that the graphs are receiving updated data from Prometheus.
 
-**Image 7: Prometheus Targets Verification**
+**Image 5.8.6: Prometheus Targets Verification**
 
-![Prometheus Targets](/images/5-Workshop/5.8-System-Testing-Cleanup/07-prometheus-targets.png)
+![Prometheus Targets](/images/5-Workshop/5.8-System-Testing-Cleanup/prometheus-targets.png)
 
-**Image 8: Centralized Monitoring Dashboard**
+**Image 5.8.7: Centralized Monitoring Dashboard**
 
-![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/08-grafana-dashboard.png)
-
-#### 7. Review AWS Resource Usage and Costs
-
-Before cleaning up the environment, review the resources that may generate charges.
-
-Open the AWS Management Console and check the following services:
-
-- **EC2:** Check running instances and attached storage volumes.
-- **Elastic IP addresses:** Check allocated addresses that are not associated with running resources.
-- **EBS Volumes:** Check volumes that are no longer required.
-- **Snapshots:** Review snapshots that are no longer needed.
-- **VPN Connections:** Review active Site-to-Site VPN connections.
-- **NAT Gateway:** Check whether any NAT Gateway is deployed.
-- **CloudWatch:** Review any monitoring resources that may incur additional charges.
-
-You can also review estimated spending through **Billing and Cost Management**.
-
-**Important:** Stopping an EC2 instance does not stop all related charges. EBS volumes and other retained resources may continue to incur costs. Public IPv4 addresses and VPN connections may also have separate charges.
-
-**Image 9: Review AWS Resources**
-
-![AWS Resource Review](/images/5-Workshop/5.8-System-Testing-Cleanup/09-aws-resource-review.png)
+![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
 #### 8. Clean Up Unnecessary AWS Resources
-
-Only delete resources that are no longer required for the workshop.
-
-Before deleting anything, save the required configuration files, screenshots, and test results.
-
-The cleanup process may include:
 
 **EC2 Instance**
 
@@ -246,7 +217,7 @@ If the instance is no longer needed:
 2. Select **Instances**.
 3. Select the workshop EC2 instance.
 4. Choose **Instance state**.
-5. Select **Terminate instance** only if the instance is no longer required.
+5. Select **Terminate instance** .
 
 **EBS Volumes and Snapshots**
 
@@ -257,22 +228,11 @@ If the instance is no longer needed:
 
 **Site-to-Site VPN Resources**
 
-If the VPN environment is no longer needed:
-
 1. Open **Site-to-Site VPN Connections**.
 2. Delete the VPN connections that are no longer required.
 3. Review and delete unused Customer Gateways.
 4. Review the Virtual Private Gateway before detaching or deleting it.
 
-**Other Resources**
-
-Review unused Elastic IP addresses, NAT Gateways, and other resources before deleting them.
-
-**Important:** Do not delete shared resources or resources still used by another part of the project. Terminating an EC2 instance is irreversible for its instance storage, and associated resources may require separate cleanup.
-
-**Image 10: AWS Resource Cleanup**
-
-![AWS Resource Cleanup](/images/5-Workshop/5.8-System-Testing-Cleanup/10-aws-cleanup.png)
 
 #### 9. Final System Evaluation
 
@@ -291,9 +251,6 @@ The evaluation should cover:
 
 The results should be recorded with screenshots and test evidence for the project report.
 
-**Image 11: Final Hybrid Cloud System Verification**
-
-![Final Hybrid Cloud Verification](/images/5-Workshop/5.8-System-Testing-Cleanup/11-final-system-verification.png)
 
 #### Conclusion
 

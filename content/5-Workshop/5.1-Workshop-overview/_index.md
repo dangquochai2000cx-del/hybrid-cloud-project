@@ -16,7 +16,7 @@ pre: " <b> 5.1. </b> "
 
 #### Workshop Overview
 
-In this workshop, you will build a Hybrid Cloud model consisting of a multi-branch enterprise network simulated using EVE-NG and an AWS environment using Amazon VPC.
+In this workshop, will build a Hybrid Cloud model consisting of a multi-branch enterprise network simulated using EVE-NG and an AWS environment using Amazon VPC.
 
 - **"On-premises Enterprise Network"** simulates the network infrastructure at the headquarters and branch offices. Routers are configured to connect internal networks and establish Site-to-Site VPN connections with AWS.
 

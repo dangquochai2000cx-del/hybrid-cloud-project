@@ -55,6 +55,7 @@ Các bước thực hiện:
 11. Cấu hình dung lượng ổ đĩa theo nhu cầu, ví dụ 8 GiB gp3.
 12. Kiểm tra lại các thông số và nhấn **Launch instance**.
 
+Hình 5.4.1: tạo EC2
 ![Tạo EC2](/images/5-Workshop/5.4-EC2-Security-Groups/create-ec2.png)
 
 Sau khi khởi chạy, kiểm tra trạng thái máy chủ là **Running** và trạng thái kiểm tra hệ thống đã hoàn tất trước khi kết nối.
@@ -72,6 +73,7 @@ Security Group hoạt động như một tường lửa ảo ở cấp độ tà
 | Custom TCP | TCP | 3000 | My IP `/32` hoặc mạng quản trị | Truy cập Grafana khi cần |
 | Custom TCP | TCP | 9090 | My IP `/32` hoặc mạng quản trị | Truy cập Prometheus khi cần |
 
+Hình 5.4.2: tạo inbound rule
 ![Tạo inbound rules](/images/5-Workshop/5.4-EC2-Security-Groups/inbound_rules_SG.png)
 
 

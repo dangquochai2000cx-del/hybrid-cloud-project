@@ -26,10 +26,10 @@ Before installing the monitoring components, connect to the EC2 instance using S
 Use the following command from your local terminal:
 
 ```bash
-ssh -i "hybrid-cloud-webserver-key.pem" ubuntu@<EC2_PUBLIC_IP>
+ssh -i "hybrid-cloud-webserver-key.pem" ubuntu@44.203.161.19
 ```
 
-Replace `<EC2_PUBLIC_IP>` with the current public IPv4 address of the EC2 instance.
+`44.203.161.19` is the current public IPv4 address of the EC2 instance.
 
 Update the Ubuntu package index:
 
@@ -46,9 +46,10 @@ lsb_release -a
 
 Confirm that the instance is running Ubuntu 24.04.
 
-**Image 1: Connect to the EC2 Instance**
+**Image 5.7.1: Connect to the EC2 Instance**
 
-![Connect to EC2](/images/5-Workshop/5.7-Centralized-Monitoring/01-ec2-ssh.png)
+![Connect to EC2](/images/5-Workshop/5.7-Centralized-Monitoring/ec2-ssh.png)
+![show version](/images/5-Workshop/5.7-Centralized-Monitoring/version.png)
 
 #### 2. Install Node Exporter
 
@@ -116,9 +117,9 @@ sudo systemctl status node_exporter
 
 Node Exporter uses TCP port `9100` by default.
 
-**Image 2: Node Exporter Installation and Service Status**
+**Image 5.7.2: Node Exporter Installation and Service Status**
 
-![Node Exporter Service](/images/5-Workshop/5.7-Centralized-Monitoring/02-node-exporter.png)
+![Node Exporter Service](/images/5-Workshop/5.7-Centralized-Monitoring/node-exporter.png)
 
 #### 3. Install Prometheus
 
@@ -167,10 +168,6 @@ sudo chown -R prometheus:prometheus /etc/prometheus
 
 sudo chown -R prometheus:prometheus /var/lib/prometheus
 ```
-
-**Image 3: Prometheus Installation**
-
-![Prometheus Installation](/images/5-Workshop/5.7-Centralized-Monitoring/03-prometheus-installation.png)
 
 #### 4. Configure Prometheus
 
@@ -248,23 +245,20 @@ Check the service:
 sudo systemctl status prometheus
 ```
 
-**Image 4: Prometheus Configuration**
 
-![Prometheus Configuration](/images/5-Workshop/5.7-Centralized-Monitoring/04-prometheus-configuration.png)
+**Image 5.7.3: Prometheus Service Status**
 
-**Image 5: Prometheus Service Status**
-
-![Prometheus Service Status](/images/5-Workshop/5.7-Centralized-Monitoring/05-prometheus-status.png)
+![Prometheus Service Status](/images/5-Workshop/5.7-Centralized-Monitoring/install-prometheus.png)
 
 #### 5. Verify Prometheus Targets
 
 Open the following address in a web browser:
 
 ```text
-http://<EC2_PUBLIC_IP>:9090/targets
+http://44.203.161.19:9090/classic/targets
 ```
 
-Replace `<EC2_PUBLIC_IP>` with the public IPv4 address of the EC2 instance.
+`44.203.161.19` is the current public IPv4 address of the EC2 instance.
 
 The Targets page should display the configured monitoring endpoints.
 
@@ -275,9 +269,9 @@ Verify that both targets have the status **UP**:
 
 If a target is DOWN, check the corresponding service and Prometheus configuration.
 
-**Image 6: Prometheus Targets Status**
+**Image 5.7.4: Prometheus Targets Status**
 
-![Prometheus Targets](/images/5-Workshop/5.7-Centralized-Monitoring/06-prometheus-targets.png)
+![Prometheus Targets](/images/5-Workshop/5.7-Centralized-Monitoring/prometheus-targets.png)
 
 #### 6. Install Grafana
 
@@ -329,16 +323,16 @@ sudo systemctl status grafana-server
 
 Grafana uses TCP port `3000` by default.
 
-**Image 7: Grafana Installation and Service Status**
+**Image 5.7.5: Grafana Installation and Service Status**
 
-![Grafana Installation](/images/5-Workshop/5.7-Centralized-Monitoring/07-grafana-installation.png)
+![Grafana Installation](/images/5-Workshop/5.7-Centralized-Monitoring/Service-Status.png)
 
 #### 7. Access Grafana and Add Prometheus as a Data Source
 
 Open Grafana in a web browser:
 
 ```text
-http://<EC2_PUBLIC_IP>:3000
+http://44.203.161.19:3000
 ```
 
 Log in using the configured administrator credentials. On a fresh installation, the default credentials are:
@@ -364,9 +358,9 @@ http://localhost:9090
 
 Confirm that Grafana can successfully connect to Prometheus.
 
-**Image 8: Add Prometheus Data Source in Grafana**
+**Image 5.7.6: Add Prometheus Data Source in Grafana**
 
-![Grafana Prometheus Data Source](/images/5-Workshop/5.7-Centralized-Monitoring/08-grafana-datasource.png)
+![Grafana Prometheus Data Source](/images/5-Workshop/5.7-Centralized-Monitoring/grafana-datasource.png)
 
 #### 8. Create a Monitoring Dashboard
 
@@ -408,15 +402,16 @@ rate(node_network_receive_bytes_total{device!="lo"}[5m])
 
 The dashboard can display CPU utilization, memory consumption, disk usage, and network traffic.
 
-**Image 9: Grafana Monitoring Dashboard**
+**Image 5.7.7: Grafana Monitoring Dashboard**
 
-![Grafana Dashboard](/images/5-Workshop/5.7-Centralized-Monitoring/09-grafana-dashboard.png)
+![Grafana Dashboard](/images/5-Workshop/5.7-Centralized-Monitoring/grafana-dashboard.png)
 
-#### 9. Test the Monitoring System
 
-To verify that the monitoring system collects real-time metrics, generate a temporary CPU workload on the EC2 instance.
+#### 9. Checking the Operation of the Monitoring System
 
-Install stress-ng if it is not already installed:
+To verify that the system can collect real-time data, temporarily generate CPU, RAM, and Disk loads on the EC2 server.
+
+Install stress-ng if it is not already installed on the server:
 
 ```bash
 sudo apt update
@@ -432,21 +427,65 @@ stress-ng --cpu 2 --timeout 60s
 
 While the test is running:
 
-1. Open the Grafana dashboard.
-2. Observe the CPU utilization graph.
+1. Open the Grafana Dashboard.
+2. Observe the CPU Utilization chart.
 3. Check whether CPU usage increases during the test.
-4. Wait for the workload to finish.
-5. Verify that CPU usage returns toward its normal level.
+4. Wait for the load generation process to finish.
+5. Confirm that CPU usage gradually decreases to its normal state.
 
-After the test, check that Prometheus continues to report both monitoring targets as UP.
+Generate RAM load for a short period:
 
-**Image 10: Generate CPU Load for Monitoring**
+```bash
+stress-ng --vm 1 --vm-bytes 200M --vm-keep --timeout 60s
+```
 
-![CPU Stress Test](/images/5-Workshop/5.7-Centralized-Monitoring/10-cpu-stress-test.png)
+While the test is running:
 
-**Image 11: Monitor CPU Usage in Grafana**
+1. Observe the Memory Usage chart on Grafana.
+2. Check whether RAM usage increases during the test.
+3. Wait for the load generation process to finish.
+4. Confirm that RAM usage gradually decreases to its normal state.
 
-![Grafana CPU Monitoring](/images/5-Workshop/5.7-Centralized-Monitoring/11-grafana-cpu-monitoring.png)
+Check the current Disk capacity and generate Disk read/write activity:
+
+```bash
+df -h
+stress-ng --hdd 1 --hdd-bytes 100M --timeout 60s
+```
+
+While the test is running:
+
+1. Observe the Disk I/O chart on Grafana.
+2. Check whether Disk read/write activity increases during the test.
+3. Wait for the load generation process to finish.
+4. Confirm that Disk activity returns to its normal state.
+
+After the tests, verify that both monitoring targets are still displayed as UP in Prometheus.
+
+**Image 5.7.8: Generating CPU load for monitoring testing**
+
+![CPU load test](/images/5-Workshop/5.7-Centralized-Monitoring/cpu-stress-test.png)
+
+**Image 5.7.9: Monitoring CPU on Grafana**
+
+![CPU monitoring on Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/cpu.png)
+
+**Image 5.7.10: Generating RAM load for monitoring testing**
+
+![RAM load test](/images/5-Workshop/5.7-Centralized-Monitoring/ram-stress-test.png)
+
+**Image 5.7.11: Monitoring RAM on Grafana**
+
+![RAM monitoring on Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/ram.png)
+
+**Image 5.7.12: Generating Disk load for monitoring testing**
+
+![Disk load test](/images/5-Workshop/5.7-Centralized-Monitoring/disk-stress-test.png)
+
+**Image 5.7.13: Monitoring Disk on Grafana**
+
+![Disk monitoring on Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/disk.png)
+
 
 #### Conclusion
 

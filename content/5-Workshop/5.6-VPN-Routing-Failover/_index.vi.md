@@ -34,12 +34,12 @@ Mỗi Customer Gateway phải đại diện cho đúng địa chỉ public endpo
 
 #### 2. Cấu hình định tuyến VPN chính
 
-Cấu hình Router15 làm đường kết nối được ưu tiên sử dụng để đi đến AWS VPC.
+Cấu hình Router15 và Router17 làm đường kết nối được ưu tiên sử dụng để đi đến AWS VPC.
 
 Thiết kế định tuyến cần đảm bảo lưu lượng có đích đến `10.100.0.0/16` sử dụng đường VPN chính trong điều kiện hoạt động bình thường.
 
 Đối với router Cisco sử dụng định tuyến tĩnh, có thể cấu hình route kết hợp với tracking object:
-
+Ví dụ:
 ```bash
 ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100 1
 ```
@@ -49,7 +49,7 @@ Tracking object cần giám sát một địa chỉ đích có thể truy cập 
 
 #### 3. Cấu hình định tuyến VPN dự phòng
 
-Router16 cung cấp đường kết nối thay thế đến AWS khi đường VPN chính gặp sự cố.
+Router16 và Router18 cung cấp đường kết nối thay thế đến AWS khi đường VPN chính gặp sự cố.
 
 Cấu hình route dự phòng với Administrative Distance cao hơn để route này không được ưu tiên khi đường chính vẫn hoạt động.
 
@@ -112,7 +112,7 @@ Trong điều kiện hoạt động bình thường, xác nhận route đến `1
 
 Đồng thời, kiểm tra route dự phòng đã được cấu hình và có thể được đưa vào bảng định tuyến khi route chính bị rút khỏi hệ thống.
 
-**Hình 5: Kiểm tra route chính trong bảng định tuyến**
+**Hình 5.6.1: Kiểm tra route chính trong bảng định tuyến**
 
 ![Kiểm tra route chính](/images/5-Workshop/5.6-VPN-Routing-Failover/ktra_bdt.png)
 
@@ -141,13 +141,10 @@ ping <AWS_PRIVATE_IP>
 
 Kết quả kiểm tra cần chứng minh lưu lượng có thể sử dụng đường VPN dự phòng khi đường chính không còn hoạt động.
 
-**Hình 6: Kiểm tra khi VPN chính gặp sự cố**
+**Hình 5.6.2: Kiểm tra khi VPN chính gặp sự cố**
 
-![Kiểm tra lỗi VPN chính](/images/5-Workshop/5.6-VPN-Routing-Failover/06-primary-failure-test.png)
+![Kiểm tra lỗi VPN chính](/images/5-Workshop/5.6-VPN-Routing-Failover/duphong.png)
 
-**Hình 7: Đường VPN dự phòng sau khi chuyển đổi**
-
-![Đường VPN dự phòng](/images/5-Workshop/5.6-VPN-Routing-Failover/07-backup-path.png)
 
 #### 7. Khôi phục đường VPN chính và kiểm tra hoạt động
 
@@ -161,9 +158,9 @@ Sau khi hoàn thành kiểm tra chuyển đổi dự phòng, tiến hành khôi 
 
 Bước này giúp xác nhận hệ thống có thể khôi phục hoạt động bình thường sau khi sự cố tạm thời được xử lý.
 
-**Hình 8: Khôi phục đường VPN chính**
+**Hình 5.6.3: Khôi phục đường VPN chính**
 
-![Khôi phục VPN chính](/images/5-Workshop/5.6-VPN-Routing-Failover/08-primary-recovery.png)
+![Khôi phục VPN chính](/images/5-Workshop/5.6-VPN-Routing-Failover/duphong1.png)
 
 #### Kết luận
 

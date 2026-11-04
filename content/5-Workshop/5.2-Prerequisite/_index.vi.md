@@ -40,8 +40,6 @@ Hình 5.2.2: Môi trường Amazon VPC trên AWS.
 ![AWS VPC Environment](/images/5-Workshop/5.2-Prerequisite/aws-vpc-fixed.png)
 #### Yêu cầu trước khi triển khai
 
-Trước khi bắt đầu workshop, bạn cần đảm bảo các yêu cầu sau:
-
 1. Có tài khoản AWS và quyền truy cập để tạo, cấu hình các tài nguyên cần thiết.
 2. Đã cài đặt và có thể truy cập EVE-NG để mô phỏng mạng doanh nghiệp.
 3. Đã chuẩn bị các thiết bị router và sơ đồ mạng cho trụ sở chính cùng các chi nhánh.

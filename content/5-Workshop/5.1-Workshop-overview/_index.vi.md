@@ -16,7 +16,7 @@ pre: " <b> 5.1. </b> "
 
 #### Tổng quan về workshop
 
-Trong workshop này, bạn sẽ xây dựng mô hình Hybrid Cloud bao gồm hạ tầng mạng doanh nghiệp đa chi nhánh được mô phỏng bằng EVE-NG và môi trường AWS sử dụng Amazon VPC.
+Trong workshop này, sẽ xây dựng mô hình Hybrid Cloud bao gồm hạ tầng mạng doanh nghiệp đa chi nhánh được mô phỏng bằng EVE-NG và môi trường AWS sử dụng Amazon VPC.
 
 - **"Mạng doanh nghiệp On-premises"** mô phỏng hệ thống mạng tại trụ sở chính và các chi nhánh. Các thiết bị định tuyến được cấu hình để kết nối những mạng nội bộ và thiết lập VPN Site-to-Site với AWS.
 

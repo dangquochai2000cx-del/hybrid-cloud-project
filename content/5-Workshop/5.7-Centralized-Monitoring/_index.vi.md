@@ -26,10 +26,10 @@ Trước khi cài đặt các thành phần giám sát, tiến hành kết nối
 Sử dụng câu lệnh sau trên máy tính cá nhân:
 
 ```bash
-ssh -i "hybrid-cloud-webserver-key.pem" ubuntu@<EC2_PUBLIC_IP>
+ssh -i "hybrid-cloud-webserver-key.pem" ubuntu@44.203.161.19
 ```
 
-Thay `<EC2_PUBLIC_IP>` bằng địa chỉ IPv4 Public hiện tại của máy chủ EC2.
+ `44.203.161.19` là địa chỉ IPv4 Public hiện tại của máy chủ EC2.
 
 Cập nhật danh sách gói phần mềm Ubuntu:
 
@@ -46,9 +46,10 @@ lsb_release -a
 
 Xác nhận máy chủ đang sử dụng Ubuntu 24.04.
 
-**Hình 1: Kết nối SSH đến máy chủ EC2**
+**Hình 5.7.1: Kết nối SSH đến máy chủ EC2**
 
-![Kết nối SSH đến EC2](/images/5-Workshop/5.7-Centralized-Monitoring/01-ec2-ssh.png)
+![Kết nối SSH đến EC2](/images/5-Workshop/5.7-Centralized-Monitoring/ec2-ssh.png)
+![show version](/images/5-Workshop/5.7-Centralized-Monitoring/version.png)
 
 #### 2. Cài đặt Node Exporter
 
@@ -116,9 +117,9 @@ sudo systemctl status node_exporter
 
 Node Exporter mặc định sử dụng cổng TCP `9100`.
 
-**Hình 2: Cài đặt Node Exporter và kiểm tra trạng thái dịch vụ**
+**Hình 5.7.2: Cài đặt Node Exporter và kiểm tra trạng thái dịch vụ**
 
-![Node Exporter](/images/5-Workshop/5.7-Centralized-Monitoring/02-node-exporter.png)
+![Node Exporter](/images/5-Workshop/5.7-Centralized-Monitoring/node-exporter.png)
 
 #### 3. Cài đặt Prometheus
 
@@ -167,10 +168,6 @@ sudo chown -R prometheus:prometheus /etc/prometheus
 
 sudo chown -R prometheus:prometheus /var/lib/prometheus
 ```
-
-**Hình 3: Cài đặt Prometheus**
-
-![Cài đặt Prometheus](/images/5-Workshop/5.7-Centralized-Monitoring/03-prometheus-installation.png)
 
 #### 4. Cấu hình Prometheus
 
@@ -248,23 +245,19 @@ Kiểm tra trạng thái dịch vụ:
 sudo systemctl status prometheus
 ```
 
-**Hình 4: Cấu hình Prometheus**
+**Hình 5.7.3: Kiểm tra trạng thái dịch vụ Prometheus**
 
-![Cấu hình Prometheus](/images/5-Workshop/5.7-Centralized-Monitoring/04-prometheus-configuration.png)
-
-**Hình 5: Kiểm tra trạng thái dịch vụ Prometheus**
-
-![Trạng thái Prometheus](/images/5-Workshop/5.7-Centralized-Monitoring/05-prometheus-status.png)
+![Trạng thái Prometheus](/images/5-Workshop/5.7-Centralized-Monitoring/install-prometheus.png)
 
 #### 5. Kiểm tra các Prometheus Targets
 
 Mở trình duyệt và truy cập địa chỉ:
 
 ```text
-http://<EC2_PUBLIC_IP>:9090/targets
+http://44.203.161.19:9090/classic/targets
 ```
 
-Thay `<EC2_PUBLIC_IP>` bằng địa chỉ IPv4 Public hiện tại của máy chủ EC2.
+`44.203.161.19` là địa chỉ IPv4 Public hiện tại của máy chủ EC2.
 
 Trang Targets hiển thị các endpoint giám sát đã được cấu hình.
 
@@ -275,9 +268,9 @@ Kiểm tra cả hai đối tượng có trạng thái **UP**:
 
 Nếu một target có trạng thái DOWN, cần kiểm tra dịch vụ tương ứng và file cấu hình Prometheus.
 
-**Hình 6: Kiểm tra trạng thái Prometheus Targets**
+**Hình 5.7.4: Kiểm tra trạng thái Prometheus Targets**
 
-![Prometheus Targets](/images/5-Workshop/5.7-Centralized-Monitoring/06-prometheus-targets.png)
+![Prometheus Targets](/images/5-Workshop/5.7-Centralized-Monitoring/prometheus-targets.png)
 
 #### 6. Cài đặt Grafana
 
@@ -329,16 +322,16 @@ sudo systemctl status grafana-server
 
 Grafana mặc định sử dụng cổng TCP `3000`.
 
-**Hình 7: Cài đặt Grafana và kiểm tra trạng thái dịch vụ**
+**Hình 5.7.5: Cài đặt Grafana và kiểm tra trạng thái dịch vụ**
 
-![Cài đặt Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/07-grafana-installation.png)
+![Cài đặt Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/Service-Status.png)
 
 #### 7. Truy cập Grafana và thêm Prometheus Data Source
 
 Mở trình duyệt và truy cập Grafana:
 
 ```text
-http://<EC2_PUBLIC_IP>:3000
+http://44.203.161.19:3000
 ```
 
 Đăng nhập bằng tài khoản quản trị đã cấu hình. Với cài đặt mới, thông tin đăng nhập mặc định là:
@@ -364,9 +357,9 @@ http://localhost:9090
 
 Xác nhận Grafana có thể kết nối thành công đến Prometheus.
 
-**Hình 8: Thêm Prometheus Data Source trong Grafana**
+**Hình 5.7.6: Thêm Prometheus Data Source trong Grafana**
 
-![Grafana Prometheus Data Source](/images/5-Workshop/5.7-Centralized-Monitoring/08-grafana-datasource.png)
+![Grafana Prometheus Data Source](/images/5-Workshop/5.7-Centralized-Monitoring/grafana-datasource.png)
 
 #### 8. Tạo Dashboard giám sát hệ thống
 
@@ -408,13 +401,13 @@ rate(node_network_receive_bytes_total{device!="lo"}[5m])
 
 Dashboard có thể hiển thị các thông số CPU, RAM, dung lượng ổ đĩa và lưu lượng mạng của máy chủ.
 
-**Hình 9: Dashboard giám sát trên Grafana**
+**Hình 5.7.7: Bảng điều khiển giám sát Grafana**
 
-![Grafana Dashboard](/images/5-Workshop/5.7-Centralized-Monitoring/09-grafana-dashboard.png)
+![Grafana Dashboard](/images/5-Workshop/5.7-Centralized-Monitoring/grafana-dashboard.png)
 
 #### 9. Kiểm tra hoạt động của hệ thống giám sát
 
-Để xác nhận hệ thống có thể thu thập dữ liệu theo thời gian thực, tiến hành tạo tải CPU tạm thời trên máy chủ EC2.
+Để xác nhận hệ thống có thể thu thập dữ liệu theo thời gian thực, tiến hành tạo tải CPU, RAM, Disk tạm thời trên máy chủ EC2.
 
 Cài đặt stress-ng nếu máy chủ chưa có:
 
@@ -438,16 +431,58 @@ Trong khi bài kiểm tra đang chạy:
 4. Chờ quá trình tạo tải kết thúc.
 5. Xác nhận mức sử dụng CPU giảm dần về trạng thái bình thường.
 
+Tạo tải RAM trong khoảng thời gian ngắn:
+
+```bash
+stress-ng --vm 1 --vm-bytes 200M --vm-keep --timeout 60s
+```
+
+Trong khi bài kiểm tra đang chạy:
+
+1. Quan sát biểu đồ Memory Usage trên Grafana.
+2. Kiểm tra mức sử dụng RAM có tăng trong quá trình kiểm tra hay không.
+3. Chờ quá trình tạo tải kết thúc.
+4. Xác nhận mức sử dụng RAM giảm dần về trạng thái bình thường.
+
+Kiểm tra dung lượng Disk và tạo hoạt động đọc/ghi Disk:
+
+```bash
+df -h
+stress-ng --hdd 1 --hdd-bytes 100M --timeout 60s
+```
+
+Trong khi bài kiểm tra đang chạy:
+
+1. Quan sát biểu đồ Disk I/O trên Grafana.
+2. Kiểm tra hoạt động đọc/ghi Disk có tăng trong quá trình kiểm tra hay không.
+3. Chờ quá trình tạo tải kết thúc.
+4. Xác nhận hoạt động Disk trở về trạng thái bình thường.
+
 Sau khi kiểm tra, xác nhận Prometheus vẫn hiển thị cả hai monitoring target ở trạng thái UP.
 
-**Hình 10: Tạo tải CPU để kiểm tra giám sát**
+**Hình 5.7.8: Tạo tải CPU để kiểm tra giám sát**
 
-![Kiểm tra tải CPU](/images/5-Workshop/5.7-Centralized-Monitoring/10-cpu-stress-test.png)
+![Kiểm tra tải CPU](/images/5-Workshop/5.7-Centralized-Monitoring/cpu-stress-test.png)
 
-**Hình 11: Theo dõi CPU trên Grafana**
+**Hình 5.7.9: Theo dõi CPU trên Grafana**
 
-![Giám sát CPU trên Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/11-grafana-cpu-monitoring.png)
+![Giám sát CPU trên Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/cpu.png)
 
+**Hình 5.7.10: Tạo tải RAM để kiểm tra giám sát**
+
+![Kiểm tra tải RAM](/images/5-Workshop/5.7-Centralized-Monitoring/ram-stress-test.png)
+
+**Hình 5.7.11: Theo dõi RAM trên Grafana**
+
+![Giám sát RAM trên Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/ram.png)
+
+**Hình 5.7.12: Tạo tải Disk để kiểm tra giám sát**
+
+![Kiểm tra tải Disk](/images/5-Workshop/5.7-Centralized-Monitoring/disk-stress-test.png)
+
+**Hình 5.7.13: Theo dõi Disk trên Grafana**
+
+![Giám sát Disk trên Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/disk.png)
 #### Kết luận
 
 Trong phần này, chúng ta đã triển khai hệ thống giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana trên máy chủ AWS EC2.

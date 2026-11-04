@@ -29,9 +29,6 @@ Hệ thống bao gồm:
 - **EC2 Instance:** Máy chủ triển khai Web Server và các thành phần giám sát.
 - **Hệ thống giám sát:** Sử dụng Prometheus, Node Exporter và Grafana để theo dõi hiệu suất máy chủ.
 
-**Hình 1: Kiến trúc tổng thể hệ thống Hybrid Cloud**
-
-![Kiến trúc Hybrid Cloud](/images/5-Workshop/5.8-System-Testing-Cleanup/01-hybrid-cloud-architecture.png)
 
 #### 2. Kiểm tra khả năng kết nối mạng
 
@@ -42,10 +39,10 @@ Từ một máy tính hoặc router được cấp quyền trong mạng nội b�
 Ví dụ:
 
 ```bash
-ping <EC2_PRIVATE_IP>
+ping 10.100.1.118
 ```
 
-Thay `<EC2_PRIVATE_IP>` bằng địa chỉ IP private thực tế của máy chủ EC2.
+`10.100.1.118` là  địa chỉ IP private thực tế của máy chủ EC2.
 
 Kiểm tra bảng định tuyến để xác nhận route đến AWS VPC:
 
@@ -64,9 +61,9 @@ Nếu kết nối không thành công, cần kiểm tra:
 - Network ACL nếu đã tùy chỉnh.
 - Cấu hình Firewall trên máy chủ.
 
-**Hình 2: Kiểm tra kết nối từ mạng doanh nghiệp đến AWS**
+**Hình 5.8.1: Kiểm tra kết nối từ mạng doanh nghiệp đến AWS**
 
-![Kiểm tra kết nối mạng](/images/5-Workshop/5.8-System-Testing-Cleanup/02-network-connectivity.png)
+![Kiểm tra kết nối mạng](/images/5-Workshop/5.8-System-Testing-Cleanup/network-connectivity.png)
 
 #### 3. Kiểm tra kết nối Site-to-Site VPN
 
@@ -80,15 +77,21 @@ Trên các router mạng nội bộ, sử dụng các câu lệnh Cisco IOS sau:
 
 ```bash
 show crypto isakmp sa
-show crypto ipsec sa
-show interface tunnel
+show ip interface brief
 ```
 
 Kiểm tra các IPsec Security Association đã được thiết lập và bộ đếm lưu lượng tăng khi có hoạt động giao tiếp giữa mạng doanh nghiệp và AWS.
 
-**Hình 3: Kiểm tra trạng thái VPN Tunnel trên AWS**
+**Hình 5.8.2: Kiểm tra trạng thái VPN Tunnel trên AWS**
 
-![Trạng thái VPN Tunnel AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/03-vpn-status.png)
+![Trạng thái VPN Tunnel AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status1.png)
+![Trạng thái VPN Tunnel AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status2.png)
+![Trạng thái VPN Tunnel AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status3.png)
+![Trạng thái VPN Tunnel AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status4.png)
+![Trạng thái VPN Tunnel Router](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status5.png)
+![Trạng thái VPN Tunnel Router](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-status6.png)
+
+
 
 #### 4. Kiểm tra định tuyến và cơ chế dự phòng VPN
 
@@ -119,11 +122,10 @@ Thực hiện kiểm tra chuyển đổi dự phòng có kiểm soát:
 6. Khôi phục đường VPN chính.
 7. Kiểm tra lại mức độ ưu tiên của route ban đầu.
 
-Không thực hiện kiểm tra này trên hệ thống đang vận hành thực tế nếu chưa có kế hoạch bảo trì được phê duyệt.
 
-**Hình 4: Kiểm tra định tuyến VPN chính và dự phòng**
+**Hình 5.8.3: Kiểm tra định tuyến VPN chính và dự phòng**
 
-![Kiểm tra VPN Failover](/images/5-Workshop/5.8-System-Testing-Cleanup/04-vpn-failover.png)
+![Kiểm tra VPN Failover](/images/5-Workshop/5.8-System-Testing-Cleanup/vpn-failover.png)
 
 #### 5. Kiểm tra máy chủ Web trên EC2
 
@@ -150,20 +152,20 @@ sudo ss -tulpn | grep :80
 Từ trình duyệt được cấp quyền truy cập, mở địa chỉ:
 
 ```text
-http://<EC2_PUBLIC_IP>
+http://44.203.161.19/
 ```
 
 Xác nhận trang Web được hiển thị thành công.
 
 Đồng thời, kiểm tra EC2 Instance đang ở trạng thái **Running** trong AWS EC2 Console.
 
-**Hình 5: Kiểm tra trạng thái EC2 Instance**
+**Hình 5.8.4: Kiểm tra trạng thái EC2 Instance**
 
-![Trạng thái EC2 Instance](/images/5-Workshop/5.8-System-Testing-Cleanup/05-ec2-status.png)
+![Trạng thái EC2 Instance](/images/5-Workshop/5.8-System-Testing-Cleanup/ec2-status.png)
 
-**Hình 6: Truy cập Web Server Nginx**
+**Hình 5.8.5: Truy cập Web Server Nginx**
 
-![Web Server Nginx](/images/5-Workshop/5.8-System-Testing-Cleanup/06-nginx-web-server.png)
+![Web Server Nginx](/images/5-Workshop/5.8-System-Testing-Cleanup/nginx-web-server.png)
 
 #### 6. Kiểm tra hệ thống giám sát tập trung
 
@@ -200,53 +202,25 @@ Kiểm tra Dashboard hiển thị các thông số tài nguyên máy chủ như:
 
 Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prometheus.
 
-**Hình 7: Kiểm tra Prometheus Targets**
+**Hình 5.8.6: Kiểm tra Prometheus Targets**
 
-![Prometheus Targets](/images/5-Workshop/5.8-System-Testing-Cleanup/07-prometheus-targets.png)
+![Prometheus Targets](/images/5-Workshop/5.8-System-Testing-Cleanup/prometheus-targets.png)
 
-**Hình 8: Dashboard giám sát tập trung**
+**Hình 5.8.7: Dashboard giám sát tập trung**
 
-![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/08-grafana-dashboard.png)
+![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
-#### 7. Kiểm tra tài nguyên và chi phí AWS
-
-Trước khi dọn dẹp môi trường, cần rà soát các tài nguyên có khả năng phát sinh chi phí.
-
-Truy cập AWS Management Console và kiểm tra các dịch vụ sau:
-
-- **EC2:** Kiểm tra các instance đang chạy và dung lượng lưu trữ đi kèm.
-- **Elastic IP Addresses:** Kiểm tra các địa chỉ được cấp phát nhưng không còn gắn với tài nguyên cần thiết.
-- **EBS Volumes:** Kiểm tra các volume không còn sử dụng.
-- **Snapshots:** Rà soát các bản snapshot không còn cần thiết.
-- **VPN Connections:** Kiểm tra các kết nối Site-to-Site VPN đang hoạt động.
-- **NAT Gateway:** Kiểm tra xem có NAT Gateway nào được triển khai hay không.
-- **CloudWatch:** Rà soát các tài nguyên giám sát có thể phát sinh thêm chi phí.
-
-Ngoài ra, có thể kiểm tra mức chi tiêu ước tính trong mục **Billing and Cost Management**.
-
-**Lưu ý quan trọng:** Dừng EC2 Instance không đồng nghĩa với việc dừng toàn bộ chi phí liên quan. EBS Volume và một số tài nguyên được giữ lại vẫn có thể phát sinh phí. Địa chỉ IPv4 Public và VPN Connection cũng có thể có chi phí riêng.
-
-**Hình 9: Rà soát tài nguyên AWS**
-
-![Rà soát tài nguyên AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/09-aws-resource-review.png)
 
 #### 8. Dọn dẹp các tài nguyên AWS không cần thiết
 
-Chỉ xóa những tài nguyên không còn cần thiết cho workshop.
-
-Trước khi xóa, cần lưu lại các file cấu hình, ảnh chụp màn hình và kết quả kiểm tra cần thiết.
-
-Quá trình dọn dẹp có thể bao gồm:
 
 **EC2 Instance**
-
-Nếu không còn cần sử dụng máy chủ:
 
 1. Truy cập EC2 Console.
 2. Chọn **Instances**.
 3. Chọn EC2 Instance sử dụng trong workshop.
 4. Chọn **Instance state**.
-5. Chọn **Terminate instance** nếu chắc chắn không còn cần sử dụng máy chủ.
+5. Chọn **Terminate instance** .
 
 **EBS Volumes và Snapshots**
 
@@ -257,22 +231,11 @@ Nếu không còn cần sử dụng máy chủ:
 
 **Site-to-Site VPN Resources**
 
-Nếu không còn cần sử dụng môi trường VPN:
-
 1. Mở **Site-to-Site VPN Connections**.
 2. Xóa các kết nối VPN không còn cần thiết.
 3. Kiểm tra và xóa các Customer Gateway không còn sử dụng.
 4. Kiểm tra Virtual Private Gateway trước khi thực hiện thao tác detach hoặc delete.
 
-**Các tài nguyên khác**
-
-Rà soát Elastic IP, NAT Gateway và các tài nguyên khác trước khi xóa.
-
-**Lưu ý quan trọng:** Không xóa tài nguyên dùng chung hoặc tài nguyên vẫn được sử dụng bởi các phần khác của dự án. Việc terminate EC2 Instance không thể khôi phục dữ liệu trên instance storage; các tài nguyên liên quan cũng có thể cần được dọn dẹp riêng.
-
-**Hình 10: Dọn dẹp tài nguyên AWS**
-
-![Dọn dẹp tài nguyên AWS](/images/5-Workshop/5.8-System-Testing-Cleanup/10-aws-cleanup.png)
 
 #### 9. Đánh giá tổng thể hệ thống
 
@@ -289,11 +252,6 @@ Các nội dung đánh giá bao gồm:
 - Khả năng trực quan hóa dữ liệu giám sát trên Grafana.
 - Quá trình rà soát và dọn dẹp các tài nguyên AWS không cần thiết.
 
-Các kết quả cần được ghi nhận bằng ảnh chụp màn hình và minh chứng kiểm tra để đưa vào báo cáo dự án.
-
-**Hình 11: Kiểm tra hoàn thiện hệ thống Hybrid Cloud**
-
-![Kiểm tra hệ thống Hybrid Cloud](/images/5-Workshop/5.8-System-Testing-Cleanup/11-final-system-verification.png)
 
 #### Kết luận
 

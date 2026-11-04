@@ -55,6 +55,7 @@ Follow these steps:
 11. Configure the storage capacity according to the requirements, for example, an 8 GiB gp3 volume.
 12. Review the configuration and click **Launch instance**.
 
+Figure 5.4.1: create EC2
 ![create EC2](/images/5-Workshop/5.4-EC2-Security-Groups/create-ec2.png)
 
 After launching the instance, verify that its state is **Running** and that the instance status checks have passed before connecting.
@@ -72,7 +73,7 @@ For this project, inbound rules should follow the principle of allowing only the
 | Custom TCP | TCP | 3000 | My IP `/32` or management network | Access to Grafana when required |
 | Custom TCP | TCP | 9090 | My IP `/32` or monitoring network | Access to Prometheus when required |
 
-
+Figure 5.4.2: create inbound rules
 ![xreate inbound rules](/images/5-Workshop/5.4-EC2-Security-Groups/inbound_rules_SG.png)
 
 Security considerations:

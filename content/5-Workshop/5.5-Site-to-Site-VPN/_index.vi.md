@@ -28,7 +28,7 @@ Trước khi tạo kết nối VPN, cần kiểm tra và chuẩn bị các tài 
 
 Trong dự án này, AWS VPC sử dụng dải địa chỉ `10.100.0.0/16`. Các dải mạng nội bộ cần được khai báo theo đúng cấu hình thực tế của hệ thống doanh nghiệp.
 
-**Hình 1: AWS VPC và Virtual Private Gateway**
+**Hình 5.5.1: AWS VPC và Virtual Private Gateway**
 
 ![AWS VPC và Virtual Private Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/vpc.png)
 
@@ -48,9 +48,8 @@ Customer Gateway đại diện cho thiết bị VPN tại mạng doanh nghiệp 
 8. Nhập địa chỉ IP public có thể được AWS truy cập của thiết bị VPN tại mạng doanh nghiệp.
 9. Nhấn **Create customer gateway** để hoàn tất.
 
-**Lưu ý:** Địa chỉ IP của Customer Gateway phải có khả năng được AWS truy cập qua Internet. Không sử dụng địa chỉ private của VMnet8 như `192.168.80.x` làm địa chỉ VPN public endpoint.
 
-**Hình 2: Tạo Customer Gateway**
+**Hình 5.5.2: Tạo Customer Gateway**
 
 ![Tạo Customer Gateway](/images/5-Workshop/5.5-Site-to-Site-VPN/create-cgw.png)
 
@@ -69,7 +68,7 @@ Sau khi tạo Customer Gateway, tiến hành tạo kết nối VPN.
 
 AWS sẽ tạo hai đường hầm IPsec VPN cho kết nối. Hai đường hầm này cung cấp các đường kết nối thay thế giữa mạng nội bộ và AWS.
 
-**Hình 3: Tạo kết nối Site-to-Site VPN**
+**Hình 5.5.3: Tạo kết nối Site-to-Site VPN**
 
 ![Tạo kết nối Site-to-Site VPN](/images/5-Workshop/5.5-Site-to-Site-VPN/create-vpn.png)
 
@@ -90,9 +89,8 @@ Cấu hình cần đảm bảo các thông số trùng khớp với thông tin A
 
 Tiến hành cấu hình cả hai đường hầm VPN do AWS cung cấp trên thiết bị VPN mạng nội bộ phù hợp.
 
-**Lưu ý:** Câu lệnh cấu hình cụ thể phụ thuộc vào dòng router và hệ điều hành đang sử dụng. Cần sử dụng thông số được AWS tạo ra thay vì sao chép cấu hình mẫu có thông số tunnel khác.
 
-**Hình 4: Cấu hình IPsec VPN trên Router EVE-NG**
+**Hình 5.5.4: Cấu hình IPsec VPN trên Router EVE-NG**
 
 ![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn1.png)
 ![Cấu hình IPsec VPN trên EVE-NG](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn2.png)
@@ -118,11 +116,11 @@ Tiến hành cấu hình cả hai đường hầm VPN do AWS cung cấp trên th
 
 Đảm bảo các dải CIDR của mạng nội bộ không bị trùng lặp với dải CIDR của AWS VPC.
 
-**Hình 5: Cấu hình Route Table trên AWS**
+**Hình 5.5.5: Cấu hình Route Table trên AWS**
 
 ![Cấu hình Route Table trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/route_table.png)
 
-**Hình 6: Cấu hình định tuyến trên Router mạng nội bộ**
+**Hình 5.5.6: Cấu hình định tuyến trên Router mạng nội bộ**
 
 ![Cấu hình định tuyến mạng nội bộ](/images/5-Workshop/5.5-Site-to-Site-VPN/config_route.png)
 
@@ -149,11 +147,11 @@ show ip route
 
 Các câu lệnh cụ thể có thể thay đổi tùy theo nền tảng router và cấu hình VPN.
 
-**Hình 7: Trạng thái VPN Tunnel trên AWS**
+**Hình 5.5.7: Trạng thái VPN Tunnel trên AWS**
 
 ![Trạng thái VPN Tunnel trên AWS](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn_status.png)
 
-**Hình 8: Kiểm tra trạng thái IPsec trên Router**
+**Hình 5.5.8: Kiểm tra trạng thái IPsec trên Router**
 
 ![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn-status1.png)
 ![Kiểm tra trạng thái IPsec](/images/5-Workshop/5.5-Site-to-Site-VPN/vpn-status2.png)

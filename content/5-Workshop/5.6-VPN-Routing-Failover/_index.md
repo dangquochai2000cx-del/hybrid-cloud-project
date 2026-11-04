@@ -34,12 +34,12 @@ Each Customer Gateway must represent the correct public endpoint of its correspo
 
 #### 2. Configure the Primary VPN Route
 
-Configure Router15 as the preferred path to the AWS VPC.
+Configure Router15 and Router17 as the preferred path to the AWS VPC.
 
 The routing design should ensure that traffic destined for `10.100.0.0/16` uses the primary VPN tunnel under normal conditions.
 
 For a Cisco router using static routing, a route can be configured with a tracking object:
-
+Example:
 ```bash
 ip route 10.100.0.0 255.255.0.0 Tunnel1 track 100 1
 ```
@@ -49,7 +49,7 @@ The tracking object must monitor a destination that is reachable through the pri
 
 #### 3. Configure the Backup VPN Route
 
-Router16 provides an alternative path to AWS when the primary connection fails.
+Router16 and Router18 provides an alternative path to AWS when the primary connection fails.
 
 Configure a backup route with a higher administrative distance so that it is not selected while the primary route is available.
 
@@ -72,23 +72,28 @@ For Cisco IOS, IP SLA and object tracking can be used to monitor reachability th
 Example configuration:
 
 ```bash
-ip sla 1
- icmp-echo <REACHABLE_DESTINATION> source-interface <SOURCE_INTERFACE>
- frequency 5
+ip sla 100
+   icmp-echo 169.254.161.73 source-interface Tunnel1
+   timeout 1000
+   frequency 5
 exit
-
-ip sla schedule 1 life forever start-time now
-
-track 100 ip sla 1 reachability
+ip sla schedule 100  life forever start-time now
+track 100 ip sla 100 reachability
+```
+```bash
+ip sla 200
+   icmp-echo 169.254.39.93 source-interface Tunnel2
+   timeout 1000
+   frequency 5
+exit
+ip sla schedule 200  life forever start-time now
+track 200 ip sla 200 reachability
 ```
 
 The destination and source interface must be selected according to the actual network design. The monitoring destination should be reachable through the primary path and should not be reachable through an unrelated route that could hide a primary VPN failure.
 
 Associate the tracking object with the primary static route. When the tracked path becomes unavailable, the primary route is removed from the routing table, allowing the backup route to be selected.
 
-**Image 4: IP SLA and Object Tracking Configuration**
-
-![IP SLA and Tracking](/images/5-Workshop/5.6-VPN-Routing-Failover/04-ip-sla-tracking.png)
 
 #### 5. Verify the Routing Table
 
@@ -105,9 +110,9 @@ During normal operation, confirm that the route to `10.100.0.0/16` uses the prim
 
 Also verify that the backup route is available and can be installed when the primary route is withdrawn.
 
-**Image 5: Verify the Primary Route**
+**Image 5.6.1: Verify the Primary Route**
 
-![Verify Primary Route](/images/5-Workshop/5.6-VPN-Routing-Failover/05-primary-route-verification.png)
+![Verify Primary Route](/images/5-Workshop/5.6-VPN-Routing-Failover/ktra_bdt.png)
 
 #### 6. Test VPN Failover
 
@@ -134,13 +139,10 @@ ping <AWS_PRIVATE_IP>
 
 The test should demonstrate that traffic can use the backup path when the primary path is unavailable.
 
-**Image 6: Primary VPN Failure Test**
+**Image 5.6.2: Primary VPN Failure Test**
 
-![Primary VPN Failure Test](/images/5-Workshop/5.6-VPN-Routing-Failover/06-primary-failure-test.png)
+![Primary VPN Failure Test](/images/5-Workshop/5.6-VPN-Routing-Failover/duphong.png)
 
-**Image 7: Backup VPN Path After Failover**
-
-![Backup VPN Path](/images/5-Workshop/5.6-VPN-Routing-Failover/07-backup-path.png)
 
 #### 7. Restore the Primary Path and Verify Recovery
 
@@ -154,9 +156,9 @@ After completing the failover test:
 
 This step verifies that the routing design can recover after a temporary failure.
 
-**Image 8: Primary VPN Path Recovery**
+**Image 5.6.3: Primary VPN Path Recovery**
 
-![Primary VPN Recovery](/images/5-Workshop/5.6-VPN-Routing-Failover/08-primary-recovery.png)
+![Primary VPN Recovery](/images/5-Workshop/5.6-VPN-Routing-Failover/duphong1.png)
 
 #### Conclusion
 

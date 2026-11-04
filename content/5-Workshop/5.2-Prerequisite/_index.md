@@ -30,17 +30,16 @@ The on-premises environment is simulated using EVE-NG, which allows us to build 
 
 #### Images of the Deployment Environment
 
-Figure 5.2.1: Enterprise network topology simulated in EVE-NG.
+Image 5.2.1: Enterprise network topology simulated in EVE-NG.
 
 ![EVE-NG Network Topology](/images/5-Workshop/5.2-Prerequisite/eve-ng-topology.png)
 
-Figure 5.2.2: Amazon VPC environment on AWS.
+Image 5.2.2: Amazon VPC environment on AWS.
 
 ![AWS VPC Environment](/images/5-Workshop/5.2-Prerequisite/aws-vpc-fixed.png)
 
 #### Prerequisites Before Deployment
 
-Before starting the workshop, ensure that the following requirements are met:
 
 1. An AWS account with permissions to create and configure the required resources.
 2. EVE-NG is installed and accessible for enterprise network simulation.

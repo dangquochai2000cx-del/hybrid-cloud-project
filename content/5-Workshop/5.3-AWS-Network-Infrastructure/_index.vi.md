@@ -46,6 +46,8 @@ Các bước thực hiện:
 6. Giữ các tùy chọn khác theo yêu cầu của môi trường lab.
 7. Nhấn **Create VPC** để hoàn tất.
 
+Hình 5.3.1 Tạo VPC
+
 ![Tạo VPC](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-vpc.png)
 Sau khi tạo thành công, kiểm tra lại tên VPC và dải địa chỉ IPv4 trong danh sách Your VPCs.
 
@@ -64,9 +66,9 @@ Các bước thực hiện:
 7. Nhấn **Create subnet**.
 8. Chọn subnet vừa tạo, mở phần **Actions** và bật **Enable auto-assign public IPv4 address** nếu cần tự động cấp địa chỉ IPv4 công khai cho các EC2 mới.
 
+Hình 5.3.2: Tạo Public Subnet
 ![Tạo subnet](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-subnet.png)
 
-Lưu ý: Việc bật tự động cấp IPv4 công khai không thay thế cấu hình Internet Gateway và route table.
 
 #### Tạo và gắn Internet Gateway
 
@@ -82,6 +84,7 @@ Các bước thực hiện:
 6. Mở **Actions** và chọn **Attach to a VPC**.
 7. Chọn `HYBRID-CLOUD-VPC`, sau đó xác nhận gắn kết.
 
+Hình 5.3.3: Tạo Internet Gateway
 ![Tạo Internet gateways](/images/5-Workshop/5.3-AWS-Network-Infrastructure/create-igw.png)
 
 Sau khi hoàn tất, kiểm tra trạng thái Internet Gateway đã được gắn với VPC.
@@ -101,10 +104,9 @@ Các bước thực hiện:
 7. Lưu thay đổi và mở tab **Subnet associations**.
 8. Liên kết `AWS-PUBLIC-SUBNET` với `AWS-PUBLIC-RT`.
 
-**[Chèn hình ảnh tại đây: Bảng định tuyến AWS-PUBLIC-RT với route mặc định đến Internet Gateway]**
+Hình 5.3.4: Tạo Route Table
 ![Tạo Route tables](/images/5-Workshop/5.3-AWS-Network-Infrastructure/route-table.png)
 
-Các route đến mạng On-premises chỉ hoạt động khi VPN và cấu hình định tuyến tương ứng đã sẵn sàng. Không thêm các dải địa chỉ chưa được sử dụng trong mô hình thực tế.
 
 #### Kiểm tra kết quả triển khai
 
