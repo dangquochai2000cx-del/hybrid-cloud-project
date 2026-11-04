@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Tuần 6"
-date: 2026-09-19
+date: 2026-09-21
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.6. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Kiểm tra cấu hình VPC, Virtual Private Gateway và các thông tin VPN đã chuẩn bị trong tuần 5.<br>- Kiểm tra địa chỉ IP public của router tại mạng doanh nghiệp mô phỏng và các dải địa chỉ mạng cần kết nối.<br>- Đối chiếu thông tin mạng nội bộ với cấu hình AWS để tránh trùng lặp dải CIDR.<br>- Chuẩn bị các thông số cần thiết trước khi cấu hình VPN. | 19/09/2026 | 19/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Cấu hình Customer Gateway và kết nối AWS Site-to-Site VPN theo thiết kế đã xây dựng.<br>- Tải và kiểm tra tệp cấu hình VPN do AWS cung cấp.<br>- Cấu hình các thông số IPsec, khóa chia sẻ trước và địa chỉ đầu cuối đường hầm trên router.<br>- Kiểm tra trạng thái thiết lập của các đường hầm VPN. | 20/09/2026 | 21/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Cấu hình định tuyến giữa mạng doanh nghiệp và VPC trên AWS.<br>- Kiểm tra Route Table của VPC và bổ sung các tuyến đến mạng nội bộ khi cần thiết.<br>- Cấu hình các tuyến mạng trên router để chuyển lưu lượng đến AWS qua đường hầm VPN.<br>- Kiểm tra bảng định tuyến và xác minh đường đi của lưu lượng mạng. | 22/09/2026 | 23/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Kiểm tra trạng thái hoạt động của các đường hầm VPN và khả năng trao đổi dữ liệu giữa hai hệ thống mạng.<br>- Thực hiện kiểm tra kết nối bằng lệnh ping và các lệnh kiểm tra định tuyến phù hợp.<br>- Kiểm tra cấu hình dự phòng và xác định khả năng chuyển đổi khi đường hầm chính gặp sự cố, nếu môi trường cho phép.<br>- Tổng hợp kết quả triển khai, ghi nhận lỗi và chuẩn bị cho giai đoạn triển khai máy chủ web trong tuần 7. | 24/09/2026 | 25/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Kiểm tra cấu hình VPC, Virtual Private Gateway và các thông tin VPN đã chuẩn bị trong tuần 5.<br>- Kiểm tra địa chỉ IP public của router tại mạng doanh nghiệp mô phỏng và các dải địa chỉ mạng cần kết nối.<br>- Đối chiếu thông tin mạng nội bộ với cấu hình AWS để tránh trùng lặp dải CIDR.<br>- Chuẩn bị các thông số cần thiết trước khi cấu hình VPN. | 21/09/2026 | 21/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Cấu hình Customer Gateway và kết nối AWS Site-to-Site VPN theo thiết kế đã xây dựng.<br>- Tải và kiểm tra tệp cấu hình VPN do AWS cung cấp.<br>- Cấu hình các thông số IPsec, khóa chia sẻ trước và địa chỉ đầu cuối đường hầm trên router.<br>- Kiểm tra trạng thái thiết lập của các đường hầm VPN. | 22/09/2026 | 23/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Cấu hình định tuyến giữa mạng doanh nghiệp và VPC trên AWS.<br>- Kiểm tra Route Table của VPC và bổ sung các tuyến đến mạng nội bộ khi cần thiết.<br>- Cấu hình các tuyến mạng trên router để chuyển lưu lượng đến AWS qua đường hầm VPN.<br>- Kiểm tra bảng định tuyến và xác minh đường đi của lưu lượng mạng. | 24/09/2026 | 25/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Kiểm tra trạng thái hoạt động của các đường hầm VPN và khả năng trao đổi dữ liệu giữa hai hệ thống mạng.<br>- Thực hiện kiểm tra kết nối bằng lệnh ping và các lệnh kiểm tra định tuyến phù hợp.<br>- Kiểm tra cấu hình dự phòng và xác định khả năng chuyển đổi khi đường hầm chính gặp sự cố, nếu môi trường cho phép.<br>- Tổng hợp kết quả triển khai, ghi nhận lỗi và chuẩn bị cho giai đoạn triển khai máy chủ web trong tuần 7. | 26/09/2026 | 26/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được trong tuần 6:
 

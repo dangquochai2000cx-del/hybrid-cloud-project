@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Week 6"
-date: 2026-09-19
+date: 2026-09-21
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.6. </b> "
 
 | Day | Tasks | Start Date | Completion Date | Reference Materials |
 | --- | --- | --- | --- | --- |
-| 2 | - Check the VPC, Virtual Private Gateway, and VPN information prepared in Week 5.<br>- Check the public IP address of the router in the simulated enterprise network and the network ranges that need to be connected.<br>- Compare the internal network information with the AWS configuration to avoid overlapping CIDR ranges.<br>- Prepare the necessary parameters before configuring the VPN. | 19/09/2026 | 19/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Configure the Customer Gateway and AWS Site-to-Site VPN connection according to the established design.<br>- Download and review the VPN configuration file provided by AWS.<br>- Configure IPsec parameters, pre-shared keys, and tunnel endpoint addresses on the router.<br>- Check the establishment status of the VPN tunnels. | 20/09/2026 | 21/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Configure routing between the enterprise network and the AWS VPC.<br>- Check the VPC Route Table and add routes to the internal network when necessary.<br>- Configure network routes on the router to forward traffic to AWS through the VPN tunnels.<br>- Check the routing table and verify network traffic paths. | 22/09/2026 | 23/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Check the operational status of the VPN tunnels and the ability to exchange data between the two network environments.<br>- Test connectivity using the ping command and appropriate routing diagnostic commands.<br>- Review the redundancy configuration and determine whether failover occurs when the primary tunnel fails, if the environment allows.<br>- Summarize the implementation results, record errors, and prepare for web server deployment in Week 7. | 24/09/2026 | 25/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Check the VPC, Virtual Private Gateway, and VPN information prepared in Week 5.<br>- Check the public IP address of the router in the simulated enterprise network and the network ranges that need to be connected.<br>- Compare the internal network information with the AWS configuration to avoid overlapping CIDR ranges.<br>- Prepare the necessary parameters before configuring the VPN. | 21/09/2026 | 21/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Configure the Customer Gateway and AWS Site-to-Site VPN connection according to the established design.<br>- Download and review the VPN configuration file provided by AWS.<br>- Configure IPsec parameters, pre-shared keys, and tunnel endpoint addresses on the router.<br>- Check the establishment status of the VPN tunnels. | 22/09/2026 | 23/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Configure routing between the enterprise network and the AWS VPC.<br>- Check the VPC Route Table and add routes to the internal network when necessary.<br>- Configure network routes on the router to forward traffic to AWS through the VPN tunnels.<br>- Check the routing table and verify network traffic paths. | 24/09/2026 | 25/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Check the operational status of the VPN tunnels and the ability to exchange data between the two network environments.<br>- Test connectivity using the ping command and appropriate routing diagnostic commands.<br>- Review the redundancy configuration and determine whether failover occurs when the primary tunnel fails, if the environment allows.<br>- Summarize the implementation results, record errors, and prepare for web server deployment in Week 7. | 26/09/2026 | 26/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 6 Results:
 

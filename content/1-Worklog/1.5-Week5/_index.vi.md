@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Tuần 5"
-date: 2026-09-12
+date: 2026-09-14
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.5. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tìm hiểu AWS Site-to-Site VPN và vai trò của dịch vụ trong việc kết nối mạng doanh nghiệp với VPC trên AWS.<br>- Tìm hiểu Virtual Private Gateway (VGW), Customer Gateway (CGW) và kết nối VPN.<br>- Nghiên cứu kiến trúc cơ bản của kết nối VPN IPsec giữa mạng nội bộ doanh nghiệp và AWS. | 12/09/2026 | 12/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Kiểm tra lại VPC và cấu hình mạng đã triển khai trong các tuần trước.<br>- Kiểm tra Virtual Private Gateway và tìm hiểu cách gắn VGW vào VPC.<br>- Xác định địa chỉ IP public và các thông tin mạng cần thiết để cấu hình Customer Gateway.<br>- Tìm hiểu các điều kiện cần thiết trước khi tạo kết nối Site-to-Site VPN. | 13/09/2026 | 14/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Tìm hiểu các tham số cấu hình của kết nối AWS Site-to-Site VPN.<br>- Nghiên cứu địa chỉ đầu cuối của đường hầm IPsec, khóa chia sẻ trước (Pre-Shared Key), thuật toán mã hóa và địa chỉ IP bên trong đường hầm.<br>- Hiểu mục đích của hai đường hầm VPN do AWS cung cấp nhằm tăng khả năng dự phòng kết nối.<br>- Tổng hợp các thông tin cấu hình VPN cần thiết cho các router tại doanh nghiệp. | 15/09/2026 | 16/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Ôn tập định tuyến tĩnh và định tuyến động trong kết nối Site-to-Site VPN.<br>- Xác định các dải địa chỉ CIDR của mạng nội bộ cần giao tiếp với VPC trên AWS.<br>- Xem xét yêu cầu về Route Table và đường đi của lưu lượng giữa mạng doanh nghiệp với AWS.<br>- Tổng hợp thiết kế VPN và chuẩn bị cho việc cấu hình, kiểm tra kết nối trong tuần 6. | 17/09/2026 | 18/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Tìm hiểu AWS Site-to-Site VPN và vai trò của dịch vụ trong việc kết nối mạng doanh nghiệp với VPC trên AWS.<br>- Tìm hiểu Virtual Private Gateway (VGW), Customer Gateway (CGW) và kết nối VPN.<br>- Nghiên cứu kiến trúc cơ bản của kết nối VPN IPsec giữa mạng nội bộ doanh nghiệp và AWS. | 14/09/2026 | 14/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Kiểm tra lại VPC và cấu hình mạng đã triển khai trong các tuần trước.<br>- Kiểm tra Virtual Private Gateway và tìm hiểu cách gắn VGW vào VPC.<br>- Xác định địa chỉ IP public và các thông tin mạng cần thiết để cấu hình Customer Gateway.<br>- Tìm hiểu các điều kiện cần thiết trước khi tạo kết nối Site-to-Site VPN. | 15/09/2026 | 16/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Tìm hiểu các tham số cấu hình của kết nối AWS Site-to-Site VPN.<br>- Nghiên cứu địa chỉ đầu cuối của đường hầm IPsec, khóa chia sẻ trước (Pre-Shared Key), thuật toán mã hóa và địa chỉ IP bên trong đường hầm.<br>- Hiểu mục đích của hai đường hầm VPN do AWS cung cấp nhằm tăng khả năng dự phòng kết nối.<br>- Tổng hợp các thông tin cấu hình VPN cần thiết cho các router tại doanh nghiệp. | 16/09/2026 | 17/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Ôn tập định tuyến tĩnh và định tuyến động trong kết nối Site-to-Site VPN.<br>- Xác định các dải địa chỉ CIDR của mạng nội bộ cần giao tiếp với VPC trên AWS.<br>- Xem xét yêu cầu về Route Table và đường đi của lưu lượng giữa mạng doanh nghiệp với AWS.<br>- Tổng hợp thiết kế VPN và chuẩn bị cho việc cấu hình, kiểm tra kết nối trong tuần 6. | 18/09/2026 | 19/09/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được trong tuần 5:
 

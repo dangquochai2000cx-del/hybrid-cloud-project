@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Week 8"
-date: 2026-10-03
+date: 2026-10-19
 weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.8. </b> "
 
 | Day | Tasks | Start Date | Completion Date | Reference Materials |
 | --- | --- | --- | --- | --- |
-| 2 | - Learn about the architecture and operating principles of Prometheus.<br>- Learn about the role of Node Exporter in collecting Linux system metrics.<br>- Identify the metrics to monitor, including CPU, RAM, disk capacity, and system status.<br>- Check the EC2 instance deployed in Week 7. | 03/10/2026 | 03/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Update the software package list on Ubuntu Server.<br>- Download and install Prometheus on the EC2 instance.<br>- Configure Prometheus and validate the configuration file before starting the service.<br>- Start Prometheus and check the service status. | 04/10/2026 | 05/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Install Node Exporter to collect resource metrics on Ubuntu Server.<br>- Configure Node Exporter to run as a system service.<br>- Check its operational status and verify that metrics are available on port 9100.<br>- Configure Prometheus to collect data from Node Exporter through an appropriate monitoring target. | 06/10/2026 | 07/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Access the Prometheus web interface and check the system status.<br>- Check the Node Exporter monitoring target and confirm that data is being collected successfully.<br>- Query several basic server resource metrics.<br>- Summarize the results and prepare to integrate Prometheus with Grafana in Week 9. | 08/10/2026 | 09/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Learn about the architecture and operating principles of Prometheus.<br>- Learn about the role of Node Exporter in collecting Linux system metrics.<br>- Identify the metrics to monitor, including CPU, RAM, disk capacity, and system status.<br>- Check the EC2 instance deployed in Week 7. | 19/10/2026 | 19/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Update the software package list on Ubuntu Server.<br>- Download and install Prometheus on the EC2 instance.<br>- Configure Prometheus and validate the configuration file before starting the service.<br>- Start Prometheus and check the service status. | 20/10/2026 | 21/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Install Node Exporter to collect resource metrics on Ubuntu Server.<br>- Configure Node Exporter to run as a system service.<br>- Check its operational status and verify that metrics are available on port 9100.<br>- Configure Prometheus to collect data from Node Exporter through an appropriate monitoring target. | 22/10/2026 | 23/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Access the Prometheus web interface and check the system status.<br>- Check the Node Exporter monitoring target and confirm that data is being collected successfully.<br>- Query several basic server resource metrics.<br>- Summarize the results and prepare to integrate Prometheus with Grafana in Week 9. | 24/10/2026 | 25/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 8 Results:
 

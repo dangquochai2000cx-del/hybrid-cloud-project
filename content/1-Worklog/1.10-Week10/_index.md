@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Week 10"
-date: 2026-10-17
+date: 2026-11-02
 weight: 10
 chapter: false
 pre: " <b> 1.10. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.10. </b> "
 
 | Day | Tasks | Start Date | Completion Date | Reference Materials |
 | --- | --- | --- | --- | --- |
-| 2 | - Review the overall architecture of the deployed Hybrid Cloud system.<br>- Check the status of the VPC, Subnet, Route Table, Virtual Private Gateway, and Site-to-Site VPN connection.<br>- Check routing configurations between the enterprise network and the AWS network.<br>- Identify the components that need to be tested across the entire system. | 17/10/2026 | 17/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Test connectivity between the internal network and resources in the AWS VPC.<br>- Use ping and network diagnostic tools to verify data transmission.<br>- Check VPN tunnel status and routing configurations when connectivity issues occur.<br>- Record test results and any issues encountered. | 18/10/2026 | 19/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Check access to the Nginx web server on EC2.<br>- Verify the operation of Prometheus, Node Exporter, and Grafana.<br>- Evaluate the collection, querying, and visualization of CPU, RAM, and disk capacity metrics.<br>- Review Security Groups, service ports, and access rules to restrict unnecessary traffic. | 20/10/2026 | 21/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Review usage information and costs for AWS services during deployment.<br>- Identify resources that may incur charges when not in use, such as EC2, EBS, and related networking components.<br>- Propose cost optimization measures by stopping or releasing unnecessary resources after testing is complete.<br>- Summarize the results, evaluate the strengths and limitations of the Hybrid Cloud model, and propose improvements. | 22/10/2026 | 23/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Review the overall architecture of the deployed Hybrid Cloud system.<br>- Check the status of the VPC, Subnet, Route Table, Virtual Private Gateway, and Site-to-Site VPN connection.<br>- Check routing configurations between the enterprise network and the AWS network.<br>- Identify the components that need to be tested across the entire system. | 02/11/2026 | 02/11/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Test connectivity between the internal network and resources in the AWS VPC.<br>- Use ping and network diagnostic tools to verify data transmission.<br>- Check VPN tunnel status and routing configurations when connectivity issues occur.<br>- Record test results and any issues encountered. | 03/11/2026 | 04/11/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Check access to the Nginx web server on EC2.<br>- Verify the operation of Prometheus, Node Exporter, and Grafana.<br>- Evaluate the collection, querying, and visualization of CPU, RAM, and disk capacity metrics.<br>- Review Security Groups, service ports, and access rules to restrict unnecessary traffic. | 05/11/2026 | 06/11/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Review usage information and costs for AWS services during deployment.<br>- Identify resources that may incur charges when not in use, such as EC2, EBS, and related networking components.<br>- Propose cost optimization measures by stopping or releasing unnecessary resources after testing is complete.<br>- Summarize the results, evaluate the strengths and limitations of the Hybrid Cloud model, and propose improvements. | 07/11/2026 | 07/11/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 10 Results:
 

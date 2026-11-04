@@ -1,7 +1,7 @@
 
 ---
 title: "Worklog Tuần 9"
-date: 2026-10-10
+date: 2026-10-26
 weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
@@ -19,10 +19,10 @@ pre: " <b> 1.9. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tìm hiểu kiến trúc và vai trò của Grafana trong hệ thống giám sát tập trung.<br>- Tìm hiểu cách Grafana kết nối với các nguồn dữ liệu như Prometheus.<br>- Kiểm tra trạng thái hoạt động của Prometheus và Node Exporter đã triển khai ở tuần 8.<br>- Chuẩn bị môi trường để cài đặt và cấu hình Grafana. | 10/10/2026 | 10/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Cập nhật danh sách gói phần mềm trên Ubuntu Server.<br>- Cài đặt Grafana trên máy chủ EC2.<br>- Khởi động Grafana và cấu hình dịch vụ tự động chạy khi hệ thống khởi động.<br>- Kiểm tra trạng thái dịch vụ và khả năng truy cập giao diện web Grafana. | 11/10/2026 | 12/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Đăng nhập vào giao diện Grafana và cấu hình Prometheus làm nguồn dữ liệu.<br>- Kiểm tra kết nối giữa Grafana và Prometheus.<br>- Tạo dashboard mới để theo dõi tài nguyên máy chủ EC2.<br>- Xây dựng các biểu đồ hiển thị thông tin CPU, RAM và dung lượng ổ đĩa từ dữ liệu thu thập được. | 13/10/2026 | 14/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Kiểm tra khả năng cập nhật dữ liệu trên dashboard Grafana.<br>- Thử truy vấn và hiển thị các chỉ số tài nguyên của máy chủ.<br>- Kiểm tra cấu hình truy cập Grafana và các quy tắc bảo mật liên quan.<br>- Tổng hợp kết quả triển khai và chuẩn bị kiểm thử tổng thể hệ thống Hybrid Cloud trong tuần 10. | 15/10/2026 | 16/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Tìm hiểu kiến trúc và vai trò của Grafana trong hệ thống giám sát tập trung.<br>- Tìm hiểu cách Grafana kết nối với các nguồn dữ liệu như Prometheus.<br>- Kiểm tra trạng thái hoạt động của Prometheus và Node Exporter đã triển khai ở tuần 8.<br>- Chuẩn bị môi trường để cài đặt và cấu hình Grafana. | 26/10/2026 | 26/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Cập nhật danh sách gói phần mềm trên Ubuntu Server.<br>- Cài đặt Grafana trên máy chủ EC2.<br>- Khởi động Grafana và cấu hình dịch vụ tự động chạy khi hệ thống khởi động.<br>- Kiểm tra trạng thái dịch vụ và khả năng truy cập giao diện web Grafana. | 27/10/2026 | 28/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 4 | - Đăng nhập vào giao diện Grafana và cấu hình Prometheus làm nguồn dữ liệu.<br>- Kiểm tra kết nối giữa Grafana và Prometheus.<br>- Tạo dashboard mới để theo dõi tài nguyên máy chủ EC2.<br>- Xây dựng các biểu đồ hiển thị thông tin CPU, RAM và dung lượng ổ đĩa từ dữ liệu thu thập được. | 29/10/2026 | 30/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | - Kiểm tra khả năng cập nhật dữ liệu trên dashboard Grafana.<br>- Thử truy vấn và hiển thị các chỉ số tài nguyên của máy chủ.<br>- Kiểm tra cấu hình truy cập Grafana và các quy tắc bảo mật liên quan.<br>- Tổng hợp kết quả triển khai và chuẩn bị kiểm thử tổng thể hệ thống Hybrid Cloud trong tuần 10. | 31/10/2026 | 31/10/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được trong tuần 9:
 
