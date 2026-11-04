@@ -74,10 +74,6 @@ The main connectivity flow is as follows:
 5. AWS-hosted servers provide services according to their Security Group rules and network configurations.
 6. The monitoring system collects data from supported servers and components. Metrics are displayed in Grafana dashboards, while ELK Stack supports log analysis.
 
-![Hybrid Cloud Architecture](../images/2-Proposal/hybrid_cloud_architecture.png)
-
-![Centralized Monitoring Architecture](../images/2-Proposal/monitoring_architecture.png)
-
 ### AWS Services and Technologies
 
 - **EVE-NG:** Simulates the enterprise network infrastructure, including routers, switches, firewalls, and multiple LANs.

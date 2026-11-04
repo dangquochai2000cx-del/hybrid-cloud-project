@@ -72,9 +72,6 @@ Luồng kết nối chính được thiết kế như sau:
 5. Các máy chủ trên AWS cung cấp dịch vụ theo chính sách Security Group và cấu hình mạng tương ứng.
 6. Hệ thống giám sát thu thập dữ liệu từ máy chủ và các thành phần được hỗ trợ, sau đó hiển thị thông tin trên dashboard Grafana và hỗ trợ phân tích log bằng ELK Stack.
 
-![Kiến trúc Hybrid Cloud](../images/2-Proposal/hybrid_cloud_architecture.png)
-
-![Kiến trúc giám sát tập trung](../images/2-Proposal/monitoring_architecture.png)
 
 ### Dịch vụ và công nghệ sử dụng
 
