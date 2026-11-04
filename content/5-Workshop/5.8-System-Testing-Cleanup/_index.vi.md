@@ -222,19 +222,21 @@ Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prom
 4. Chọn **Instance state**.
 5. Chọn **Terminate instance** .
 
-**EBS Volumes và Snapshots**
+**Customer gateways**
 
-1. Mở mục **Volumes** trong EC2 Console.
-2. Kiểm tra các volume chưa được gắn với instance.
-3. Chỉ xóa những volume không còn cần thiết và đã được sao lưu nếu cần.
-4. Kiểm tra các snapshot và xóa những bản không còn sử dụng.
+1. Mở mục **Customer gateways** trong vpc Console.
+2. Chọn vào các customer gateway cần xóa.
+3. Chọn action.
+4. Chọn **delete custommer gateway**
+5. Nhập vào chữ 'delete' và chọn delete để xóa.
 
 **Site-to-Site VPN Resources**
 
 1. Mở **Site-to-Site VPN Connections**.
-2. Xóa các kết nối VPN không còn cần thiết.
-3. Kiểm tra và xóa các Customer Gateway không còn sử dụng.
-4. Kiểm tra Virtual Private Gateway trước khi thực hiện thao tác detach hoặc delete.
+2. Chọn vào các VPN cần xóa.
+3. Chọn action.
+4. Chọn **Delete VPN connection**.
+5. Nhập vào chữ 'delete' và chọn delete để xóa.
 
 
 #### 9. Đánh giá tổng thể hệ thống

@@ -15,7 +15,7 @@ chapter: false
 
 &emsp; **Trường:** Học Viện Nông Nghiệp Việt Nam
 
-&emsp; **Ngành:** Công nghệ thông tin
+&emsp; **Ngành:** Mạng máy tính và truyền thông dữ liệu
 
 &emsp; **Lớp:** K67MMTA
 
@@ -23,7 +23,7 @@ chapter: false
 
 &emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Thời gian thực tập:** Từ ngày 10/08/2026 đến ngày 18/10/2026
+&emsp; **Thời gian thực tập:** Từ ngày 10/08/2026 đến ngày 10/11/2026
 
 ![Your profile picture](/images/avatar.png)
 

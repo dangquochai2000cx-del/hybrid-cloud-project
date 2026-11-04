@@ -219,19 +219,22 @@ If the instance is no longer needed:
 4. Choose **Instance state**.
 5. Select **Terminate instance** .
 
-**EBS Volumes and Snapshots**
+**Customer Gateways**
 
-1. Open **Volumes** in the EC2 console.
-2. Review unattached volumes.
-3. Delete only volumes that are no longer required and have been backed up if necessary.
-4. Review snapshots and delete only unnecessary snapshots.
+1. Open **Customer Gateways in the VPC Console**.
+2. Select the customer gateways you want to delete.
+3. Select Actions.
+4. Select **Delete customer gateway**.
+5. Type delete and select Delete to confirm deletion.
+
 
 **Site-to-Site VPN Resources**
 
 1. Open **Site-to-Site VPN Connections**.
-2. Delete the VPN connections that are no longer required.
-3. Review and delete unused Customer Gateways.
-4. Review the Virtual Private Gateway before detaching or deleting it.
+2. Select the VPN connections you want to delete.
+3. Select Actions.
+4. Select **Delete VPN connection**.
+5. Type delete and select Delete to confirm deletion.
 
 
 #### 9. Final System Evaluation

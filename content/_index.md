@@ -18,7 +18,7 @@ chapter: false
 
 &emsp; **University:** Vietnam National University of Agriculture
 
-&emsp; **Major:** Information Technology
+&emsp; **Major:** Computer networks and data communications
 
 &emsp; **Class:** K67MMTA
 
@@ -26,7 +26,7 @@ chapter: false
 
 &emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Internship Duration:** From 10/08/2026 to 18/10/2026
+&emsp; **Internship Duration:** From 10/08/2026 to 10/11/2026
 
 ![Your profile picture](/images/avatar.png)
 

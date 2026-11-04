@@ -57,7 +57,8 @@ The project is expected to provide the following benefits:
 - Provide a practical environment for learning enterprise networking, security, cloud computing, and infrastructure monitoring.
 - Establish an extensible foundation for additional branches, servers, and monitoring services.
 
-The project's value will be assessed through technical performance, infrastructure reusability, incident response time, and operating costs. As this is a research and lab implementation project, financial benefits should be evaluated using actual results rather than an assumed fixed payback period.
+Investment effectiveness is evaluated based on the degree to which technical requirements are met, the reusability of infrastructure, incident resolution time, and operational costs. As this model is developed and implemented within a laboratory environment, financial benefits should be assessed based on actual outcomes.
+
 
 ## 3. Solution Architecture
 
