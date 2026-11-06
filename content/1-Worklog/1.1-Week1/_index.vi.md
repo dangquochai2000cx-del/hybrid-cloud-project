@@ -32,7 +32,7 @@ pre: " <b> 1.1. </b> "
 - Tìm hiểu tổng quan về điện toán đám mây và vai trò của AWS trong việc triển khai hạ tầng CNTT.
 - **Tạo tài khoản AWS thành công** để phục vụ quá trình học tập, thực hành và triển khai đề tài Hybrid Cloud.
 - Đăng nhập và làm quen với AWS Management Console, biết cách tìm kiếm và truy cập các dịch vụ AWS.
-- Nắm được các khái niệm cơ bản về Region, Availability Zone, Amazon EC2, Amazon EBS, Amazon VPC và Security Group.
+
 - Hiểu sơ bộ vai trò của các dịch vụ AWS trong đề tài Hybrid Cloud:
   - Amazon VPC cung cấp môi trường mạng riêng trên AWS.
   - Amazon EC2 cung cấp máy chủ để triển khai các dịch vụ.

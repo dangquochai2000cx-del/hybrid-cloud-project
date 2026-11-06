@@ -9,9 +9,9 @@ pre: " <b> 1.10. </b> "
 
 ### Week 10 Objectives:
 
-- Perform overall testing of the Hybrid Cloud model connecting the enterprise network to AWS through Site-to-Site VPN.
-- Verify routing and data exchange between the internal network and the VPC on AWS.
-- Evaluate the operation of the web server and the centralized monitoring system using Prometheus, Node Exporter, and Grafana.
+- Test and evaluate the overall architecture of the Hybrid Cloud model connecting the enterprise network to AWS.
+- Conduct connectivity, routing, and data exchange tests between the internal network and the AWS VPC.
+- Check the operational status of the Site-to-Site VPN and evaluate the ability to troubleshoot connectivity issues.
 - Review security configurations related to Security Groups, VPN, and AWS resource access permissions.
 - Evaluate AWS service costs and propose measures to optimize resource usage.
 

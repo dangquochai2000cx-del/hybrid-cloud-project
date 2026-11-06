@@ -63,7 +63,7 @@ If connectivity fails, review the following:
 
 **Image 5.8.1: Test Connectivity from the Enterprise Network to AWS**
 
-![Network Connectivity Test](/images/5-Workshop/5.8-System-Testing-Cleanup/.png)
+![Network Connectivity Test](/images/5-Workshop/5.8-System-Testing-Cleanup/network-connectivity.png)
 
 #### 3. Verify Site-to-Site VPN Connections
 
@@ -207,7 +207,7 @@ Confirm that the graphs are receiving updated data from Prometheus.
 
 ![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
-#### 8. Clean Up Unnecessary AWS Resources
+#### 7. Clean Up Unnecessary AWS Resources
 
 **EC2 Instance**
 
@@ -237,7 +237,7 @@ If the instance is no longer needed:
 5. Type delete and select Delete to confirm deletion.
 
 
-#### 9. Final System Evaluation
+#### 8. Final System Evaluation
 
 After completing the tests, evaluate the overall operation of the Hybrid Cloud system.
 

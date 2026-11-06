@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-#### Tổng quan về Amazon EC2
+#### 1 Tổng quan về Amazon EC2
 
 Amazon Elastic Compute Cloud (Amazon EC2) là dịch vụ cung cấp máy chủ ảo trên AWS. Trong mô hình Hybrid Cloud, EC2 được sử dụng để triển khai các dịch vụ cần thiết, bao gồm máy chủ web và các thành phần giám sát hệ thống.
 
@@ -38,7 +38,7 @@ Trong phạm vi dự án, một máy chủ EC2 chạy Ubuntu Server 24.04 đư�
 
 Lưu ý: Địa chỉ IPv4 công khai của EC2 có thể thay đổi sau khi dừng và khởi động lại máy chủ nếu không sử dụng Elastic IP. Khi truy cập dịch vụ, cần kiểm tra địa chỉ IP hiện tại trong AWS Console.
 
-#### Triển khai máy chủ EC2
+#### 2 Triển khai máy chủ EC2
 
 Các bước thực hiện:
 
@@ -77,7 +77,7 @@ Hình 5.4.2: tạo inbound rule
 ![Tạo inbound rules](/images/5-Workshop/5.4-EC2-Security-Groups/inbound_rules_SG.png)
 
 
-#### Kết nối đến máy chủ bằng SSH
+#### 3 Kết nối đến máy chủ bằng SSH
 
 Sau khi EC2 chạy ổn định, sử dụng SSH để quản trị hệ điều hành Ubuntu.
 

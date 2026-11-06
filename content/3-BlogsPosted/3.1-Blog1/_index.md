@@ -1,5 +1,5 @@
 ---
-title: "AWS EC2 Running but Website Is Unreachable – Causes and Solutions"
+title: "BLog1"
 date: 2026-11-04
 weight: 1
 chapter: false
@@ -57,6 +57,3 @@ Understanding the relationships between EC2, VPC, Subnet, Route Table, Internet 
 
 ![image 1](/images/3-BlogsPosted/3.1.png)
 
-[Tên hiển thị của liên kết](https://example.com)
-
-...Guide...

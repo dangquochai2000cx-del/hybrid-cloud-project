@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 5.4. </b> "
 ---
 
-#### Overview of Amazon EC2
+#### 1 Overview of Amazon EC2
 
 Amazon Elastic Compute Cloud (Amazon EC2) is an AWS service that provides virtual servers in the cloud. In the Hybrid Cloud model, EC2 is used to deploy essential services, including web servers and system monitoring components.
 
@@ -38,7 +38,7 @@ In this project, an EC2 instance running Ubuntu Server 24.04 is deployed in the 
 
 Note: The public IPv4 address of an EC2 instance may change after the instance is stopped and started if an Elastic IP is not assigned. Before accessing the services, check the current public IP address in the AWS Console.
 
-#### Deploying an EC2 Instance
+#### 2 Deploying an EC2 Instance
 
 Follow these steps:
 
@@ -84,7 +84,7 @@ Security considerations:
 - Inbound rules must match the actual deployment architecture. If services are accessible only through the VPN, restrict their sources to the corresponding internal network ranges.
 - Security Groups are stateful, so response traffic for an allowed connection is automatically permitted.
 
-#### Connecting to the EC2 Instance Using SSH
+#### 3 Connecting to the EC2 Instance Using SSH
 
 Once the EC2 instance is running properly, use SSH to administer the Ubuntu operating system.
 

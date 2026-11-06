@@ -211,7 +211,7 @@ Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prom
 ![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
 
-#### 8. Dọn dẹp các tài nguyên AWS không cần thiết
+#### 7. Dọn dẹp các tài nguyên AWS không cần thiết
 
 
 **EC2 Instance**
@@ -239,7 +239,7 @@ Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prom
 5. Nhập vào chữ 'delete' và chọn delete để xóa.
 
 
-#### 9. Đánh giá tổng thể hệ thống
+#### 8. Đánh giá tổng thể hệ thống
 
 Sau khi hoàn thành các bài kiểm tra, tiến hành đánh giá hoạt động tổng thể của hệ thống Hybrid Cloud.
 

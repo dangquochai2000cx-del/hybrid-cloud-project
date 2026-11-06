@@ -1,7 +1,7 @@
 
 ---
 title: "Bản đề xuất"
-date: 2024-01-01
+date: 2024-11-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -15,7 +15,7 @@ Dự án **Hybrid Cloud cho hệ thống mạng doanh nghiệp đa chi nhánh** 
 
 Hệ thống sử dụng mô hình Hybrid Cloud, trong đó hạ tầng mạng doanh nghiệp được mô phỏng bằng EVE-NG với các thiết bị mạng Cisco, bao gồm router, firewall Cisco ASA và các mạng LAN tại nhiều chi nhánh. Kết nối giữa hệ thống mạng tại chỗ và AWS được thiết lập thông qua AWS Site-to-Site VPN sử dụng IPsec, cho phép các mạng nội bộ trao đổi dữ liệu qua kết nối được mã hóa.
 
-Bên cạnh giải pháp kết nối mạng, dự án tích hợp hệ thống giám sát tập trung nhằm theo dõi tình trạng hoạt động của máy chủ, thiết bị mạng và các thành phần dịch vụ. Prometheus được sử dụng để thu thập và lưu trữ dữ liệu giám sát dạng chuỗi thời gian, Grafana cung cấp giao diện trực quan hóa và cảnh báo, trong khi ELK Stack hỗ trợ thu thập, tìm kiếm và phân tích nhật ký hệ thống.
+Bên cạnh giải pháp kết nối mạng, dự án tích hợp hệ thống giám sát tập trung nhằm theo dõi tình trạng hoạt động của máy chủ, thiết bị mạng và các thành phần dịch vụ. Prometheus được sử dụng để thu thập và lưu trữ dữ liệu giám sát dạng chuỗi thời gian, Grafana cung cấp giao diện trực quan hóa và cảnh báo.
 
 Hạ tầng AWS được triển khai với các dịch vụ như Amazon VPC, EC2, Virtual Private Gateway và Site-to-Site VPN. Mô hình được thiết kế theo hướng có khả năng mở rộng, hỗ trợ nhiều chi nhánh và có thể bổ sung các cơ chế dự phòng nhằm nâng cao tính sẵn sàng của hệ thống.
 
@@ -39,7 +39,7 @@ Giải pháp gồm các thành phần chính:
 - **Kết nối Hybrid Cloud:** Sử dụng Amazon VPC để xây dựng mạng riêng trên AWS và AWS Site-to-Site VPN để thiết lập kết nối IPsec giữa mạng doanh nghiệp với Virtual Private Gateway.
 - **Máy chủ cloud:** Sử dụng Amazon EC2 để triển khai máy chủ dịch vụ, máy chủ web hoặc các thành phần giám sát cần thiết.
 - **Định tuyến và dự phòng:** Cấu hình định tuyến giữa các mạng nội bộ và VPC; sử dụng hai đường hầm VPN và cơ chế chuyển đổi đường đi khi kết nối chính gặp sự cố.
-- **Giám sát tập trung:** Sử dụng Prometheus và Grafana để theo dõi các chỉ số hệ thống, kết hợp ELK Stack để tập trung hóa và phân tích log.
+- **Giám sát tập trung:** Sử dụng Prometheus và Grafana để theo dõi các chỉ số hệ thống.
 - **Bảo mật:** Áp dụng các quy tắc firewall, Security Group, Network ACL khi phù hợp, cùng với chính sách định tuyến và phân quyền truy cập nhằm hạn chế lưu lượng không cần thiết.
 
 Mô hình được triển khai trong môi trường lab để kiểm thử khả năng kết nối, trao đổi dữ liệu, truy cập dịch vụ cloud, giám sát và xử lý sự cố.
@@ -70,8 +70,7 @@ Luồng kết nối chính được thiết kế như sau:
 3. Router thiết lập đường hầm IPsec tới AWS Site-to-Site VPN.
 4. AWS tiếp nhận lưu lượng tại Virtual Private Gateway và định tuyến tới các subnet đích.
 5. Các máy chủ trên AWS cung cấp dịch vụ theo chính sách Security Group và cấu hình mạng tương ứng.
-6. Hệ thống giám sát thu thập dữ liệu từ máy chủ và các thành phần được hỗ trợ, sau đó hiển thị thông tin trên dashboard Grafana và hỗ trợ phân tích log bằng ELK Stack.
-
+6. Hệ thống giám sát thu thập dữ liệu từ máy chủ và các thành phần được hỗ trợ, sau đó hiển thị thông tin trên dashboard Grafana.
 
 ### Dịch vụ và công nghệ sử dụng
 
@@ -84,7 +83,6 @@ Luồng kết nối chính được thiết kế như sau:
 - **Amazon VPC Route Tables:** Quản lý đường đi của lưu lượng giữa các subnet và mạng kết nối VPN.
 - **Prometheus:** Thu thập các chỉ số hiệu năng và trạng thái của máy chủ, dịch vụ được cấu hình giám sát.
 - **Grafana:** Trực quan hóa số liệu trên dashboard và hỗ trợ cấu hình cảnh báo.
-- **ELK Stack:** Elasticsearch, Logstash và Kibana phục vụ lưu trữ, xử lý, tìm kiếm và phân tích log.
 - **AWS CloudWatch:** Theo dõi các chỉ số và nhật ký của những dịch vụ AWS được hỗ trợ.
 
 ### Thiết kế thành phần
@@ -135,7 +133,6 @@ Dự án được chia thành bốn giai đoạn chính.
 - Triển khai EC2 phục vụ ứng dụng web hoặc các dịch vụ cần thiết.
 - Cấu hình Prometheus để thu thập số liệu từ các endpoint giám sát.
 - Triển khai Grafana và xây dựng dashboard theo dõi tài nguyên hệ thống.
-- Triển khai ELK Stack khi đủ tài nguyên, cấu hình thu thập và phân tích log.
 - Kiểm tra kết nối quản trị và luồng dữ liệu giám sát qua VPN theo kiến trúc đã thiết kế.
 
 **Giai đoạn 4: Kiểm thử, tối ưu và hoàn thiện tài liệu**
@@ -169,7 +166,6 @@ Dự án được chia thành bốn giai đoạn chính.
 
 - Cài đặt Prometheus để thu thập số liệu từ các máy chủ hoặc exporter tương thích.
 - Sử dụng Grafana để xây dựng dashboard và cấu hình cảnh báo.
-- Triển khai ELK Stack nếu tài nguyên cho phép để thu thập và phân tích log.
 - Đánh giá tài nguyên CPU, RAM, dung lượng ổ đĩa và lưu lượng mạng.
 - Giới hạn quyền truy cập vào các giao diện quản trị và giám sát.
 
@@ -181,7 +177,7 @@ Dự án được triển khai theo các mốc công việc chính trong thời 
 - **Giai đoạn 2 – Xây dựng hạ tầng mạng:** Triển khai mô hình trên EVE-NG, cấu hình router, firewall và kiểm tra khả năng kết nối nội bộ.
 - **Giai đoạn 3 – Triển khai AWS VPN:** Tạo VPC, subnet, Virtual Private Gateway và VPN Connection; cấu hình tunnel và định tuyến giữa hai phía.
 - **Giai đoạn 4 – Triển khai máy chủ cloud:** Tạo EC2 và kiểm tra khả năng truy cập dịch vụ từ các mạng được phép.
-- **Giai đoạn 5 – Tích hợp giám sát:** Triển khai Prometheus, Grafana và ELK Stack theo khả năng tài nguyên; kiểm tra việc thu thập chỉ số và log.
+- **Giai đoạn 5 – Tích hợp giám sát:** Triển khai Prometheus, Grafana, kiểm tra việc thu thập các chỉ số 
 - **Giai đoạn 6 – Kiểm thử và hoàn thiện:** Kiểm tra kết nối, dự phòng, bảo mật, hiệu năng và hoàn thiện báo cáo.
 
 Sau giai đoạn thực tập, mô hình có thể tiếp tục được mở rộng để nghiên cứu thêm về tự động hóa cấu hình, cảnh báo nâng cao, quản lý cấu hình tập trung và các cơ chế bảo mật cloud.
@@ -198,10 +194,7 @@ Có thể tham khảo công cụ [AWS Pricing Calculator](https://calculator.aws
 - **Amazon EBS:** Chi phí ổ đĩa lưu trữ gắn với EC2.
 - **AWS Site-to-Site VPN:** Chi phí sử dụng kết nối VPN và các khoản phí truyền dữ liệu liên quan.
 - **Amazon VPC:** Các thành phần mạng cơ bản như VPC, subnet và route table thường không phát sinh phí riêng; các tài nguyên liên quan có thể phát sinh phí.
-- **Amazon CloudWatch:** Có thể phát sinh phí khi vượt các mức sử dụng miễn phí đối với chỉ số, log hoặc cảnh báo.
 - **Prometheus và Grafana:** Phần mềm có thể triển khai trên EC2, nhưng tài nguyên máy chủ và lưu trữ vẫn phát sinh chi phí.
-- **ELK Stack:** Cần dự trù CPU, RAM, dung lượng ổ đĩa và chi phí lưu trữ log nếu triển khai trên EC2.
-- **EVE-NG và môi trường ảo hóa:** Sử dụng hạ tầng máy tính cá nhân hiện có; chi phí điện và tài nguyên phần cứng được xem xét nếu cần.
 
 ### Biện pháp tối ưu chi phí
 
@@ -249,7 +242,6 @@ Khi một đường hầm VPN gặp sự cố, hệ thống được kiểm tra 
 - Kiểm thử hoạt động của hai đường hầm VPN và khả năng chuyển đổi tuyến khi xảy ra sự cố.
 - Triển khai máy chủ EC2 phục vụ ứng dụng hoặc dịch vụ cần thiết.
 - Xây dựng dashboard giám sát tài nguyên máy chủ bằng Prometheus và Grafana.
-- Tích hợp ELK Stack để hỗ trợ thu thập, tìm kiếm và phân tích log khi đủ tài nguyên.
 - Hoàn thiện sơ đồ mạng, bảng địa chỉ IP, cấu hình VPN, quy tắc bảo mật và quy trình kiểm thử.
 
 ### Giá trị dài hạn

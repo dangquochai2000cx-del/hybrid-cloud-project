@@ -1,7 +1,7 @@
 
 ---
 title: "Project Proposal"
-date: 2024-01-01
+date: 2026-11-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -17,7 +17,7 @@ The **Hybrid Cloud System for Multi-Branch Enterprise Networks** project aims to
 
 The system adopts a Hybrid Cloud model, in which the enterprise network infrastructure is simulated using EVE-NG with Cisco networking devices, including routers, Cisco ASA firewalls, and LANs representing multiple branches. Connectivity between the on-premises network and AWS is established through AWS Site-to-Site VPN using IPsec, allowing internal networks to exchange data through encrypted tunnels.
 
-In addition to network connectivity, the project integrates a centralized monitoring solution to monitor the operational status of servers, network devices, and system services. Prometheus is used to collect and store time-series monitoring data, Grafana provides visualization dashboards and alerting capabilities, while the ELK Stack supports centralized log collection, searching, and analysis.
+In addition to network connectivity, the project integrates a centralized monitoring solution to monitor the operational status of servers, network devices, and system services. Prometheus is used to collect and store time-series monitoring data, Grafana provides visualization dashboards and alerting capabilities.
 
 The AWS infrastructure uses services such as Amazon VPC, Amazon EC2, Virtual Private Gateway, and Site-to-Site VPN. The architecture is designed to support future expansion to additional branches and to incorporate redundancy mechanisms that improve system availability.
 
@@ -41,7 +41,7 @@ The proposed solution consists of the following components:
 - **Hybrid Cloud Connectivity:** Amazon VPC provides a private network environment on AWS, while AWS Site-to-Site VPN establishes IPsec connectivity between the enterprise network and a Virtual Private Gateway.
 - **Cloud Servers:** Amazon EC2 instances host web applications, network services, or monitoring components as required.
 - **Routing and Redundancy:** Routing is configured between internal networks and the VPC. Two VPN tunnels and appropriate failover mechanisms are used to improve connectivity resilience.
-- **Centralized Monitoring:** Prometheus and Grafana monitor system metrics, while the ELK Stack centralizes and analyzes log data.
+- **Centralized Monitoring:** Prometheus and Grafana monitor system metrics.
 - **Security:** Firewall rules, Security Groups, Network ACLs where appropriate, routing policies, and access controls restrict unnecessary traffic.
 
 The model is implemented in a lab environment to test network connectivity, data exchange, cloud service access, monitoring, and troubleshooting procedures.
@@ -73,7 +73,7 @@ The main connectivity flow is as follows:
 3. The routers establish IPsec tunnels to AWS Site-to-Site VPN.
 4. AWS receives traffic through the Virtual Private Gateway and routes it to the destination subnets.
 5. AWS-hosted servers provide services according to their Security Group rules and network configurations.
-6. The monitoring system collects data from supported servers and components. Metrics are displayed in Grafana dashboards, while ELK Stack supports log analysis.
+6. The monitoring system collects data from supported servers and components. Metrics are displayed in Grafana dashboards.
 
 ### AWS Services and Technologies
 
@@ -86,7 +86,6 @@ The main connectivity flow is as follows:
 - **Amazon VPC Route Tables:** Control traffic routing between subnets and enterprise networks connected through the VPN.
 - **Prometheus:** Collects performance metrics and status information from configured servers and services.
 - **Grafana:** Visualizes metrics through dashboards and supports alert configuration.
-- **ELK Stack:** Elasticsearch, Logstash, and Kibana provide log storage, processing, searching, and analysis.
 - **AWS CloudWatch:** Monitors metrics and logs from supported AWS services.
 
 ### Component Design
@@ -137,7 +136,6 @@ The project is divided into four main phases.
 - Deploy EC2 instances for web applications or other required services.
 - Configure Prometheus to collect metrics from monitoring endpoints.
 - Deploy Grafana and build dashboards for system resource monitoring.
-- Deploy the ELK Stack when sufficient resources are available, and configure log collection and analysis.
 - Verify administrative connectivity and monitoring traffic flows through the VPN according to the architecture.
 
 **Phase 4: Testing, Optimization, and Documentation**
@@ -171,7 +169,6 @@ The project is divided into four main phases.
 
 - Install Prometheus to collect metrics from servers or compatible exporters.
 - Use Grafana to build dashboards and configure alerts.
-- Deploy the ELK Stack when resources permit centralized log collection and analysis.
 - Monitor CPU, memory, disk capacity, and network utilization.
 - Restrict access to administrative interfaces and monitoring dashboards.
 
@@ -183,7 +180,7 @@ The project follows a series of milestones during the internship period from Aug
 - **Phase 2 – Network Infrastructure Setup:** Build the EVE-NG topology, configure routers and firewalls, and verify internal connectivity.
 - **Phase 3 – AWS VPN Deployment:** Create the VPC, subnets, Virtual Private Gateway, and VPN connection; configure tunnels and routing between both environments.
 - **Phase 4 – Cloud Server Deployment:** Launch EC2 instances and verify service access from permitted networks.
-- **Phase 5 – Monitoring Integration:** Deploy Prometheus, Grafana, and the ELK Stack according to available resources; verify metric and log collection.
+- **Phase 5 – Monitoring Integration:** Deploy Prometheus and Grafana, and Verify Metrics Collection.
 - **Phase 6 – Testing and Finalization:** Test connectivity, redundancy, security, and performance, then complete the project documentation.
 
 After the internship, the model can be extended to explore configuration automation, advanced alerting, centralized configuration management, and additional cloud security mechanisms.
@@ -200,10 +197,7 @@ The [AWS Pricing Calculator](https://calculator.aws/) can be used to estimate co
 - **Amazon EBS:** Costs for storage volumes attached to EC2 instances.
 - **AWS Site-to-Site VPN:** VPN connection charges and applicable data transfer costs.
 - **Amazon VPC:** Core components such as VPCs, subnets, and route tables generally do not incur separate charges; related resources may incur additional fees.
-- **Amazon CloudWatch:** Charges may apply when usage exceeds the applicable free usage allowances for metrics, logs, or alarms.
 - **Prometheus and Grafana:** The software can run on EC2, but the underlying compute and storage resources still incur costs.
-- **ELK Stack:** CPU, memory, disk capacity, and log storage costs must be considered when deploying on EC2.
-- **EVE-NG and Virtualization Environment:** Existing personal computer resources are used; electricity and hardware costs may be considered where applicable.
 
 ### Cost Optimization Strategies
 
@@ -251,7 +245,6 @@ For the monitoring system, Prometheus, Grafana, and ELK configurations should be
 - Test two VPN tunnels and routing failover when a failure occurs.
 - Deploy EC2 instances for applications or required services.
 - Build monitoring dashboards for server resources using Prometheus and Grafana.
-- Integrate the ELK Stack for log collection, searching, and analysis when sufficient resources are available.
 - Complete network diagrams, IP addressing tables, VPN configurations, security rules, and testing procedures.
 
 ### Long-Term Value

@@ -30,7 +30,7 @@ pre: " <b> 1.1. </b> "
 - Gained an overview of cloud computing and the role of AWS in implementing IT infrastructure.
 - **Successfully created an AWS account** for learning, practical exercises, and the implementation of the Hybrid Cloud project.
 - Became familiar with the AWS Management Console and learned how to search for and access AWS services.
-- Acquired basic knowledge of Regions, Availability Zones, Amazon EC2, Amazon EBS, Amazon VPC, and Security Groups.
+
 - Gained an initial understanding of the roles of AWS services in the Hybrid Cloud project:
   - Amazon VPC provides a private networking environment on AWS.
   - Amazon EC2 provides servers for deploying services.

@@ -34,7 +34,7 @@ chapter: false
 1.  [Worklog](1-Worklog/)
 2.  [Proposal](2-Proposal/)
 3.  [Các bài blogs đã đăng](3-BlogsPosted/)
-4.  [Các events đã tham gia](4-EventParticipated/)
+4.  [Các mini-meetup đã tham gia](4-Mini-Meetup/)
 5.  [Workshop](5-Workshop/)
 6.  [Tự đánh giá](6-Self-evaluation/)
 7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)

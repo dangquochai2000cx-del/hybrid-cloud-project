@@ -57,6 +57,3 @@ Việc hiểu rõ mối liên hệ giữa EC2, VPC, Subnet, Route Table, Interne
 
 ![ảnh 1](/images/3-BlogsPosted/3.1.png)
 
-[Tên hiển thị của liên kết](https://example.com)
-
-...Hướng dẫn...

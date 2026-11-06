@@ -27,7 +27,7 @@ pre: " <b> 1.6. </b> "
 ### Week 6 Results:
 
 - Checked and finalized the network information required to implement a Site-to-Site VPN connection between the simulated enterprise network and AWS.
-- Learned and performed the configuration of the Customer Gateway, VPN connection, and IPsec parameters according to the design.
+- Learn about and configure the Customer Gateway, VPN connection, and IPsec parameters according to the designed architecture.
 - Understood how to check VPN tunnel status and identify the parameters required for troubleshooting connectivity issues.
 - Configured or reviewed routing between the enterprise internal network and the AWS VPC.
 - Tested connectivity and network traffic paths using appropriate tools.

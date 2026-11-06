@@ -7,6 +7,15 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
+### Mục tiêu Tuần 4:
+
+- Tìm hiểu về Amazon EC2 và vai trò của dịch vụ này trong việc triển khai máy chủ cho hệ thống Hybrid Cloud.
+- Tìm hiểu các loại phiên bản EC2 (Instance Types), Amazon Machine Images (AMIs) và dịch vụ lưu trữ Amazon EBS.
+- Khởi tạo và cấu hình một EC2 Instance trong VPC đã được tạo ở Tuần 3.
+- Cấu hình Security Groups để kiểm soát lưu lượng truy cập vào và ra, đồng thời bảo vệ EC2 Instance.
+- Tìm hiểu cách kết nối đến EC2 Instance thông qua SSH và thực hiện các bước kiểm tra hệ thống cơ bản.
+- Tìm hiểu các thao tác quản lý EC2 Instance cơ bản nhằm kiểm soát và tối ưu chi phí sử dụng AWS.
+
 ### Các công việc cần triển khai trong tuần này:
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |

@@ -27,11 +27,16 @@ pre: " <b> 1.4. </b> "
 
 ### Week 4 Results:
 
-- Understood the basic concepts of Amazon EC2, instance types, AMIs, and EBS storage.
-- Learned how to select an appropriate EC2 configuration for the Hybrid Cloud project.
-- Launched an EC2 instance in the VPC created in Week 3 and learned how to check its status and IP address.
-- Configured a Security Group with appropriate inbound and outbound rules to control network access.
-- Understood how to restrict SSH access to an authorized IP address and allow HTTP traffic when required.
-- Learned how to connect to an EC2 instance via SSH and perform basic system and network checks.
-- Understood basic EC2 instance management operations, including stopping and starting instances to help control AWS costs.
-- Prepared the EC2 environment for the next stage of the project: configuring a Site-to-Site VPN connection between the enterprise network and AWS.
+- Understanding the role of Amazon EC2 in providing server resources for a Hybrid Cloud system.
+- Understand the basic components when initializing an EC2 instance:
+  - **AMI:** Provides the initial operating system and software configuration for the instance.
+  - **Instance Type:** Specifies computing resources such as CPU and memory.
+  - **Amazon EBS:** Provides block-based storage capacity for instances.
+  - **Key Pair:** Supports authentication when connecting to a server via SSH.
+- Create and configure EC2 instances according to practical needs.
+- Understand how to create and apply Security Groups to control network traffic to and from your server.
+- Understand the role of inbound and outbound rules in protecting AWS resources.
+- Understand how to connect to a Linux server via SSH using key pair.
+- Learn how to check EC2 status, IP address, and basic configuration information.
+- Recognizing the importance of limiting SSH access sources, opening only necessary service ports, and managing the EC2 lifecycle to control costs.
+- Completed the basic server setup and security steps, laying the groundwork for configuring AWS Site-to-Site VPN and Virtual Private Gateway in week 5.
