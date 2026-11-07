@@ -1,7 +1,7 @@
 
 ---
 title: "Triển khai hệ thống giám sát tập trung Prometheus và Grafana và dịch vụ sao lưu Amazon S3"
-date: 2026-10-30
+date: 2026-11-01
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "

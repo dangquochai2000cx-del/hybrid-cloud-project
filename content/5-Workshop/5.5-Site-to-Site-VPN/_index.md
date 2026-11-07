@@ -1,7 +1,7 @@
 
 ---
 title: "Site-to-Site VPN Configuration for Multi-Branch Enterprise Networks"
-date: 2026-10-30
+date: 2026-10-31
 weight: 5
 chapter: false
 pre: " <b> 5.5. </b> "

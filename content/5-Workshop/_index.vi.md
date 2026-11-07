@@ -1,6 +1,6 @@
 ---
 title: "Workshop"
-date: 2026-10-27
+date: 2026-11-01
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
@@ -34,5 +34,5 @@ Các nội dung chính bao gồm:
 4. [Triển khai máy chủ EC2 và cấu hình Security Groups](5.4-EC2-Security-Groups/)
 5. [Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh](5.5-Site-to-Site-VPN/)
 6. [Cấu hình định tuyến và cơ chế dự phòng VPN](5.6-VPN-Routing-Failover/)
-7. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana](5.7-Centralized-Monitoring/)
+7. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana và dịch vụ sao lưu Amazon S3 ](5.7-Centralized-Monitoring/)
 8. [Kiểm tra hệ thống Hybrid Cloud và dọn dẹp tài nguyên AWS](5.8-System-Testing-Cleanup/)

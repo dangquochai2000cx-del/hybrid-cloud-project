@@ -1,7 +1,7 @@
 
 ---
 title: "Workshop"
-date: 2026-10-27
+date: 2026-11-01
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
@@ -37,5 +37,5 @@ Through this workshop, we will build a Hybrid Cloud network infrastructure, esta
 4. [Amazon EC2 Deployment and Security Group Configuration](5.4-EC2-Security-Groups/)
 5. [Site-to-Site VPN Configuration for Multi-Branch Enterprise Networks](5.5-Site-to-Site-VPN/)
 6. [Routing Configuration and VPN Failover Mechanisms](5.6-VPN-Routing-Failover/)
-7. [Centralized Monitoring with Prometheus and Grafana](5.7-Centralized-Monitoring/)
+7. [Deploy a centralized monitoring system using Prometheus and Grafana, along with an Amazon S3 backup service.](5.7-Centralized-Monitoring/)
 8. [Hybrid Cloud System Testing and AWS Resource Cleanup](5.8-System-Testing-Cleanup/)

@@ -1,7 +1,7 @@
 
 ---
-title: "Centralized Monitoring Deployment with Prometheus and Grafana"
-date: 2026-10-30
+title: "Deploy a centralized monitoring system using Prometheus and Grafana, along with an Amazon S3 backup service."
+date: 2026-11-01
 weight: 7
 chapter: false
 pre: " <b> 5.7. </b> "

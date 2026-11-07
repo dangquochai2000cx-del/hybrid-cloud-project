@@ -1,7 +1,7 @@
 
 ---
 title: "Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh"
-date: 2026-10-30
+date: 2026-10-31
 weight: 5
 chapter: false
 pre: " <b> 5.5. </b> "
