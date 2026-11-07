@@ -23,7 +23,8 @@ pre: " <b> 1. </b> "
 
 **Tuần 7:** [Triển khai máy chủ Web trên Amazon EC2 bằng Nginx](1.7-week7/)
 
-**Tuần 8:** [cài đặt Prometheus và node exporter để giám sát EC2](1.8-week8/)
+**Tuần 8:** [cài đặt Prometheus và node exporter để giám sát EC2, tích hợp Grafana và sao lưu cấu hình lên AWS S3](1.8-week8/)
+
 
 **Tuần 9:** [Tích hợp Grafana và xây dựng dashboard giám sát tài nguyên AWS](1.9-week9/)
 

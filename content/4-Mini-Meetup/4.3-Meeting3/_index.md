@@ -1,7 +1,7 @@
 
 ---
 title: "Meeting 3"
-date: 2026-09-05 
+date: 2026-10-25 
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
@@ -9,75 +9,122 @@ pre: " <b> 4.3. </b> "
 
 # Investigation Series – Learn, Build, Share, Grow
 
-## 1. Event Objectives
+## 1. Event Objectives**
 
-The Investigation Series meetup was organized to connect participants interested in Cloud Computing, Artificial Intelligence (AI), AI Agents, and Agentic Operations. The event provided an opportunity for participants to exchange knowledge, explore new technologies, and prepare for the upcoming PROVE IT challenge.
+FCAJ Mini Meetup – From Learning to Building, held on October 25, 2026, was a knowledge-sharing event organized by the First Cloud AI Journey community. The event focused on the topic Cloud Quest – An Interactive AWS Learning Platform for Vietnamese Learners, helping participants gain insights into how acquired knowledge can be transformed into a technology product with practical value.
 
-The main objectives of the meetup were to:
+Through the presentation by Nguyễn Minh Toàn, participants had the opportunity to learn about the research and development journey of Cloud Quest, from the initial idea to the process of building an interactive learning platform with various components.
 
-- Connect participants and help them find teammates for the PROVE IT challenge.
-- Introduce knowledge and practical perspectives on Cloud, AI, AI Agents, and Agentic Operations.
-- Provide opportunities to practice and explore Cloud and AI Agent technologies.
-- Encourage collaboration, knowledge sharing, and continuous learning within the technology community.
+The main objectives of the event included:
 
-## 2. Main Activities
+- Understanding the idea and development goals of the Cloud Quest project.
+- Exploring how to build an interactive AWS learning platform that is more accessible to Vietnamese learners.
+- Learning about the development of interactive 3D models, simulated labs, quizzes, and flashcards.
+- Understanding how to transform acquired knowledge into a technology project with practical value.
+- Encouraging a proactive learning mindset, hands-on practice, product development, and knowledge sharing within the community.
 
-### 2.1. Meet & Team Up
+## 2. Speaker and Presentation Topic
 
-Participants had the opportunity to meet other members joining the PROVE IT challenge and form teams to work together.
+- **Nguyễn Minh Toàn – FCAJ Member | PTIT:** Cloud Quest – An Interactive AWS Learning Platform for Vietnamese Learners.
 
-For those who had not found a team, the meetup was also a chance to connect with new people, exchange ideas, and find potential teammates to start the challenge together.
+## 3. Key Highlights
 
-### 2.2. Listen & Learn
+### 3.1. Overview of the Cloud Quest Project
 
-The meetup featured keynotes and community sharing sessions covering topics related to:
+Cloud Quest is a personal project researched and developed by Nguyễn Minh Toàn with the goal of helping learners approach AWS knowledge in a more visual and understandable way.
 
-- Cloud Computing
-- Artificial Intelligence (AI)
-- AI Agents
-- Agentic Operations
+Instead of relying solely on theoretical documentation, the project aims to combine various interactive learning methods to help learners acquire knowledge and better visualize concepts related to cloud computing.
 
-These sessions helped participants gain a broader understanding of emerging technologies and their potential applications in practical projects.
+Some of the project's main objectives include:
 
-### 2.3. Practice & Explore
+- Building a platform that helps learners approach AWS knowledge visually.
+- Creating an interactive learning environment through 3D models.
+- Integrating simulated labs to support hands-on learning.
+- Incorporating quizzes and flashcards to reinforce knowledge after learning.
+- Making AWS more accessible and easier to understand for Vietnamese learners.
 
-Participants had opportunities to take part in practical activities and explore Cloud and AI Agent technologies.
+The project demonstrates that technology learning does not necessarily have to be limited to documentation and theory. It can also be expanded through educational products developed by learners themselves.
 
-These activities encouraged hands-on learning and helped participants prepare the knowledge and skills needed for the upcoming PROVE IT challenge.
+### 3.2. Research and Development Process of Cloud Quest
 
-## 3. Knowledge and Skills Gained
+One of the highlights of the presentation was the journey of developing Cloud Quest from an initial idea into a project with multiple interactive components.
 
-Through the meetup, participants could develop and strengthen several areas of knowledge and skills:
+This process demonstrates the combination of technical knowledge, research capabilities, and product development skills.
 
-- **Cloud Computing:** Broaden their understanding of cloud technologies and their practical applications.
-- **Artificial Intelligence:** Learn about AI Agents and Agentic Operations as emerging technology topics.
-- **Teamwork and Communication:** Connect with other participants, exchange ideas, and explore opportunities for collaboration.
-- **Practical Learning:** Gain exposure to hands-on activities and prepare for future technology challenges.
-- **Continuous Learning:** Understand the importance of keeping up with new technologies and applying knowledge to real-world problems.
+The notable components involved in building the project include:
 
-## 4. Application to My Internship Project
+- **Interactive 3D Models:** Creating a visual environment that helps learners explore AWS concepts through 3D models.
+- **Simulated Labs:** Developing simulated learning activities to help learners visualize and understand how AWS services work.
+- **Quizzes:** Integrating multiple-choice questions to help learners evaluate their understanding and reinforce their knowledge.
+- **Flashcards:** Using digital flashcards to support the review and memorization of important concepts and knowledge.
+- **Learning Content Integration:** Combining these components into a structured and interactive learning platform.
 
-My internship project focuses on designing and implementing a Hybrid Cloud system that connects enterprise networks across multiple branches using Site-to-Site VPN, integrated with centralized monitoring.
+Through the development process of Cloud Quest, it becomes clear that building a technology product requires more than theoretical knowledge. Developers need to identify problems, research solutions, build features, and continuously improve their products.
 
-The knowledge and perspectives gained from this meetup may support my future learning and project development in several ways:
+### 3.3. From Learning to Building Real-World Products
 
-- **Cloud Computing:** Reinforce my understanding of cloud infrastructure and its role in connecting enterprise networks.
-- **AI and Automation:** Explore how AI Agents could potentially support monitoring, troubleshooting, or operational automation in the future.
-- **Technology Research:** Identify emerging technologies that may complement cloud infrastructure and centralized monitoring solutions.
-- **Collaboration:** Apply the teamwork and knowledge-sharing mindset when working on technical tasks and project documentation.
+The topic From Learning to Building emphasizes the importance of transforming acquired knowledge into products with practical value.
 
-Although the meetup introduced topics beyond the current scope of my internship project, it provided useful ideas for further study and future development.
+In technology learning, understanding fundamental knowledge is essential. However, the ability to apply that knowledge to solve problems and develop products also plays a very important role.
 
-## 5. Personal Experience
+Some valuable lessons from the Cloud Quest development journey include:
 
-The Investigation Series meetup offered an opportunity to connect with people who share an interest in Cloud and AI technologies. The combination of networking, knowledge-sharing sessions, and practical exploration encouraged participants to learn from one another and discover new areas of interest.
+- **Proactive Research:** Going beyond existing knowledge by actively exploring and researching new ideas.
+- **Learning Through Practice:** Applying acquired knowledge to develop specific features and functionalities.
+- **Product Development Mindset:** Identifying objectives, target users, and the value that a product aims to deliver.
+- **Continuous Improvement:** Gradually developing, testing, and improving the product throughout the implementation process.
+- **Knowledge Sharing:** Bringing research results and developed products to the community to encourage learning and collaboration.
 
-The meetup also highlighted the value of teamwork and community collaboration, especially when preparing for a technical challenge such as PROVE IT.
+These lessons demonstrate a proactive learning mindset, in which learners should not simply acquire knowledge but also know how to apply it and create value from what they have learned.
 
-## 6. Conclusion and Lessons Learned
+## 4. Knowledge and Skills Acquired
 
-The Investigation Series meetup provided an opportunity to explore topics related to Cloud Computing, AI, AI Agents, and Agentic Operations while connecting with the technology community.
+### 4.1. Technical Knowledge
 
-The key lessons from the event were the importance of continuous learning, practical experimentation, teamwork, and knowledge sharing. These lessons are valuable for my ongoing internship and for developing the technical skills needed to work in cloud infrastructure and network engineering.
+- **Cloud Computing:** Gaining a better understanding of how to build a learning platform that supports access to AWS knowledge.
+- **Product Development:** Understanding the basic stages of transforming an idea into a developed and completed personal project.
+- **Interactive 3D Models:** Learning about the potential application of 3D models in visualizing technical concepts.
+- **Practical Simulations:** Understanding the role of simulated labs in helping learners acquire knowledge through hands-on practice.
+- **Learning Support Tools:** Exploring how quizzes and flashcards can be used to reinforce and memorize knowledge more effectively.
 
+### 4.2. Personal Development Skills
 
+- Improving proactive thinking when researching and exploring new technologies.
+- Learning how to transform ideas into products with specific functions and objectives.
+- Recognizing the importance of combining theoretical knowledge with practical experience.
+- Developing problem-solving skills throughout the process of building and improving a project.
+- Understanding the value of sharing experiences and personal projects with the technology community.
+
+## 5. Application to My Internship Project
+
+My internship project is **"Design and Implementation of a Hybrid Cloud System Connecting a Multi-Branch Enterprise Network Using Site-to-Site VPN Integrated with a Centralized Monitoring Solution"**.
+
+Although Cloud Quest focuses on developing an AWS learning platform, the knowledge and experience shared during the meetup can still be applied to my research and development process in several ways:
+
+- **Proactive AWS Research:** Continuing to explore AWS services, cloud architecture, and system deployment through a combination of documentation and hands-on practice.
+- **Hands-on System Development:** Applying acquired knowledge to deploy practical components such as VPC, EC2, Site-to-Site VPN, and monitoring solutions.
+- **System Simulation:** Using EVE-NG to build a multi-branch enterprise network model, test connectivity, and evaluate the operation of the Hybrid Cloud system.
+- **Building a Practical Product:** Approaching the internship project not merely as a theoretical research topic but as a product that needs to be designed, deployed, tested, and improved.
+- **Sharing Results:** Documenting the deployment process, configurations, and lessons learned to create technical guides and share knowledge with the community.
+
+These lessons motivate me to actively research, practice, and improve my Hybrid Cloud system rather than simply stopping at understanding cloud computing concepts.
+
+## 6. Experience Participating in the Event
+
+Participating in FCAJ Mini Meetup – From Learning to Building on October 25, 2026, was an opportunity for me to gain practical insights into the process of developing a technology project from an initial idea into a completed product.
+
+Through Nguyễn Minh Toàn's presentation about Cloud Quest, I gained a better understanding that learning AWS should not be limited to reading documentation or completing existing labs. It can also be expanded into personal projects that bring value to other learners.
+
+In particular, combining interactive 3D models, simulated labs, quizzes, and flashcards within a single platform demonstrates creativity in approaching and delivering technical knowledge.
+
+Besides the technical content, what impressed me was the proactive research and product development mindset demonstrated by a member of the FCAJ community. This also motivates me to continue developing my internship project, gaining practical experience, and gradually improving my professional skills.
+
+## 7. Conclusion and Lessons Learned
+
+Through FCAJ Mini Meetup – From Learning to Building on October 25, 2026, I realized that technology learning and research should be closely connected with practical experience and the ability to create real-world products.
+
+Nguyễn Minh Toàn's Cloud Quest project is an example of how knowledge can be transformed into a valuable product through research, creativity, and persistent development. The combination of interactive 3D models, simulated labs, quizzes, and flashcards also introduces a new approach to learning and acquiring AWS knowledge.
+
+The most important lesson I learned from this meetup is that I should not stop at learning and exploring knowledge. Instead, I need to actively apply what I have learned to build, test, and improve practical products.
+
+This is also the spirit that the FCAJ community aims to promote: **Not just learning, but also practicing, building, and sharing what we have accomplished with the community.**

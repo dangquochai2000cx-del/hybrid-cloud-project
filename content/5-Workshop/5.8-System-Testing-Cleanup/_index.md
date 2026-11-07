@@ -207,7 +207,39 @@ Confirm that the graphs are receiving updated data from Prometheus.
 
 ![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
-#### 7. Clean Up Unnecessary AWS Resources
+#### 7. Verify the Backup on Amazon S3
+
+Verify that the Prometheus and Grafana configuration backup has been successfully stored on Amazon S3.
+
+Run the following command:
+
+```bash
+aws s3 ls s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/
+```
+
+Confirm that the file `monitoring-config-backup.tar.gz` appears in the list.
+
+Next, check the backup file details:
+
+```bash
+aws s3api head-object \
+--bucket hybrid-cloud-monitoring-backup-qhai \
+--key monitoring-backup/monitoring-config-backup.tar.gz
+```
+
+Check the following information:
+
+- Backup file size.
+- File upload timestamp.
+- AES-256 encryption method.
+
+Confirm that the backup file has been successfully stored on Amazon S3 and can be retrieved when needed.
+
+**Figure 5.8.8: Verifying the Backup File on Amazon S3**
+
+![Amazon S3 Backup](/images/5-Workshop/5.8-System-Testing-Cleanup/s3-monitoring-backup.png)
+
+#### 8. Clean Up Unnecessary AWS Resources
 
 **EC2 Instance**
 
@@ -236,8 +268,14 @@ If the instance is no longer needed:
 4. Select **Delete VPN connection**.
 5. Type delete and select Delete to confirm deletion.
 
+**Bucket**
+1. Open Amazon S3.
+2. Select **General purpose buckets**.
+3. Select the bucket you want to delete.
+4. Select **delete** to delete the bucket.
 
-#### 8. Final System Evaluation
+
+#### 9. Final System Evaluation
 
 After completing the tests, evaluate the overall operation of the Hybrid Cloud system.
 
@@ -257,10 +295,12 @@ The results should be recorded with screenshots and test evidence for the projec
 
 #### Conclusion
 
-In this final section, we verified the operation of the Hybrid Cloud system connecting the multi-branch enterprise network simulated in EVE-NG with the AWS cloud environment.
+In this final section, we have tested the operation of the Hybrid Cloud system connecting a multi-branch enterprise network simulated on EVE-NG with the AWS cloud computing environment.
 
-The tests covered network connectivity, Site-to-Site VPN operation, routing and failover, EC2 web server availability, and centralized monitoring using Prometheus, Node Exporter, and Grafana.
+The tests included network connectivity, Site-to-Site VPN operation, routing and failover mechanisms, EC2 Web Server functionality, and the centralized monitoring system using Prometheus, Node Exporter, and Grafana.
 
-We also reviewed AWS resource usage and identified resources that could be cleaned up to reduce unnecessary costs.
+In addition, we implemented Amazon S3 to back up and store the configuration files of the monitoring system, while verifying the ability to retrieve backup data when needed.
 
-Through this workshop, we completed the design, deployment, monitoring, and evaluation of a Hybrid Cloud solution for connecting multi-branch enterprise networks to AWS.
+We also reviewed AWS resources and identified resources that could be cleaned up to minimize unnecessary costs.
+
+Through this workshop, we have completed the process of designing, deploying, monitoring, backing up, and evaluating the Hybrid Cloud solution connecting a multi-branch enterprise network with AWS.

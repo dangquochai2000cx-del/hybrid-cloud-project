@@ -1,6 +1,6 @@
 
 ---
-title: "Triển khai hệ thống giám sát tập trung Prometheus và Grafana"
+title: "Triển khai hệ thống giám sát tập trung Prometheus và Grafana và dịch vụ sao lưu Amazon S3"
 date: 2026-10-30
 weight: 7
 chapter: false
@@ -9,7 +9,7 @@ pre: " <b> 5.7. </b> "
 
 #### Tổng quan
 
-Trong phần này, chúng ta sẽ triển khai giải pháp giám sát tập trung nhằm theo dõi hiệu suất và mức độ sử dụng tài nguyên của máy chủ Cloud trong hệ thống Hybrid Cloud.
+Trong phần này, chúng ta sẽ triển khai giải pháp giám sát tập trung nhằm theo dõi hiệu suất và mức độ sử dụng tài nguyên của máy chủ Cloud đồng thời sao lưu cấu hình hệ thống giám sát lên Amazon S3 trong hệ thống Hybrid Cloud.
 
 Hệ thống giám sát được triển khai trên máy chủ EC2 sử dụng Ubuntu 24.04 và bao gồm ba thành phần chính:
 
@@ -18,6 +18,13 @@ Hệ thống giám sát được triển khai trên máy chủ EC2 sử dụng U
 - **Grafana:** Trực quan hóa dữ liệu giám sát thông qua Dashboard và biểu đồ.
 
 Các thành phần phối hợp với nhau giúp quản trị viên theo dõi hiệu suất máy chủ, phân tích xu hướng sử dụng tài nguyên và phát hiện các vấn đề tiềm ẩn của hạ tầng.
+
+Dich vụ sao lưu Amazon S3 được sử dụng để lưu trữ các bản sao lưu cấu hình của hệ thống giám sát. Khi máy chủ EC2 gặp sự cố hoặc cần triển khai lại, quản trị viên có thể tải các bản sao lưu từ S3 để khôi phục cấu hình.
+Trong mô hình này sử dụng:
+
+- **Amazon EC2:** Tạo và gửi file sao lưu lên S3.
+- **Amazon S3:** Lưu trữ file sao lưu cấu hình Prometheus, Node Exporter và Grafana.
+- **IAM Role:** Cấp quyền truy cập S3 cho EC2 mà không cần lưu Access Key và Secret Key trên máy chủ.
 
 #### 1. Chuẩn bị môi trường giám sát
 
@@ -483,12 +490,192 @@ Sau khi kiểm tra, xác nhận Prometheus vẫn hiển thị cả hai monitorin
 **Hình 5.7.13: Theo dõi Disk trên Grafana**
 
 ![Giám sát Disk trên Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/disk.png)
+
+### 10 tạo aws S3
+Truy cập AWS Management Console và thực hiện:
+
+1. Tìm kiếm dịch vụ **S3**.
+2. Chọn **Create bucket**.
+3. Nhập tên Bucket duy nhất trên toàn AWS
+4. Chọn AWS Region: **US East (N. Virginia) – us-east-1**, cùng Region với EC2.
+5. Giữ tùy chọn **Block all public access** được bật.
+6. Giữ các thiết lập mặc định còn lại và nhấn **Create bucket**.
+
+Bucket được sử dụng riêng để lưu trữ các bản sao lưu, không cần cấp quyền truy cập công khai.
+
+**Hình 5.7.14: Tạo bucket**
+
+![tạo bucket](/images/5-Workshop/5.7-Centralized-Monitoring/create-bucket.png)
+
+### 11. Tạo IAM Policy cho phép EC2 ghi dữ liệu lên S3
+
+Để EC2 có thể tải file sao lưu lên Bucket, cần tạo IAM Policy với quyền truy cập giới hạn.
+
+Truy cập **IAM → Policies → Create policy → JSON** và thêm vào nội dung.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::hybrid-cloud-monitoring-backup-qhai",
+        "arn:aws:s3:::hybrid-cloud-monitoring-backup-qhai/*"
+      ]
+    }
+  ]
+}
+```
+
+Đặt tên Policy, ví dụ: `EC2-Monitoring-S3-Backup-Policy`, sau đó tạo Policy.
+
+**Hình 5.7.15: Tạo IAM-Policy**
+
+![Tạo IAM-Policy](/images/5-Workshop/5.7-Centralized-Monitoring/IAM-Policy.png)
+
+### 12. Gắn IAM Role vào máy chủ EC2
+
+1. Truy cập **IAM → Roles → Create role**.
+2. Chọn **AWS service**.
+3. Chọn **EC2** làm Use case.
+4. Gắn Policy `EC2-Monitoring-S3-Backup-Policy` vừa tạo.
+5. Đặt tên Role, ví dụ: `EC2-Monitoring-S3-Backup-Role`.
+6. Hoàn tất quá trình tạo Role.
+7. Truy cập **EC2 → Instances** và chọn máy chủ đang chạy Prometheus, Grafana.
+8. Chọn **Actions → Security → Modify IAM role**.
+9. Chọn Role `EC2-Monitoring-S3-Backup-Role` và cập nhật.
+
+IAM Role cho phép EC2 nhận thông tin xác thực tạm thời để truy cập S3. Không cần tạo hoặc lưu Access Key và Secret Key trên máy chủ.
+
+**Hình 5.7.16: Tạo IAM-role**
+
+![Tạo IAM-role](/images/5-Workshop/5.7-Centralized-Monitoring/iam-role.png)
+
+### 13. Cài đặt AWS CLI trên EC2
+Kết nối SSH đến máy chủ EC2 và cài đặt AWS CLI:
+```bash
+sudo apt update
+sudo apt install -y awscli
+```
+
+Kiểm tra phiên bản:
+```bash
+aws --version
+```
+
+Kiểm tra quyền truy cập AWS từ IAM Role:
+```bash
+aws sts get-caller-identity
+```
+**Hình 5.7.17: Cài đặt AWS CLI trên EC2**
+
+![Cài đặt AWS CLI trên EC2](/images/5-Workshop/5.7-Centralized-Monitoring/aws-cli-ec2.png)
+
+Nếu lệnh trả về thông tin ARN của IAM Role đã gắn vào EC2, quá trình xác thực đã hoạt động.
+
+### 14. Tạo file sao lưu cấu hình giám sát
+
+Tạo thư mục lưu trữ tạm thời cho bản sao lưu:
+
+```bash
+mkdir -p ~/monitoring-backup
+```
+
+Đóng gói các file cấu hình Prometheus, Node Exporter và Grafana:
+
+```bash
+  sudo tar -czvf ~/monitoring-backup/monitoring-config-backup.tar.gz \
+  -C / \
+  etc/prometheus \
+  etc/default/prometheus \
+  usr/lib/systemd/system/prometheus.service \
+  etc/systemd/system/node_exporter.service \
+  etc/grafana \
+  etc/default/grafana-server \
+  usr/lib/systemd/system/grafana-server.service
+```
+
+Phân quyền để tài khoản Ubuntu có thể tải file sao lưu:
+
+```bash
+sudo chown ubuntu:ubuntu ~/monitoring-backup/monitoring-config-backup.tar.gz
+```
+
+Kiểm tra file sao lưu:
+
+```bash
+ls -lh ~/monitoring-backup/
+```
+
+**Hình 5.7.18: Tạo file sao lưu thành công**
+
+![file sao lưu](/images/5-Workshop/5.7-Centralized-Monitoring/file-backup.png)
+
+### 15. Tải file sao lưu lên Amazon S3**
+
+
+```bash
+aws s3 cp ~/monitoring-backup/monitoring-config-backup.tar.gz \
+  s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/monitoring-config-backup.tar.gz \
+  --sse AES256
+```
+
+Tham số `--sse AES256` yêu cầu S3 mã hóa dữ liệu phía máy chủ bằng SSE-S3.
+
+Kiểm tra file đã được tải lên Bucket:
+
+```bash
+aws s3 ls s3://hybrid-cloud-monitoring-backup-qhai/monitoring-logs/
+
+```
+**Hình 5.7.19: tải file lên aws S3 thành công.**
+
+![file upload s3](/images/5-Workshop/5.7-Centralized-Monitoring/upload-s3.png)
+
+### 16. Kiểm tra khả năng khôi phục file sao lưu
+
+Thử tải file sao lưu từ S3 về một thư mục khác trên EC2.
+Tạo thư mục để tải file sao lưu:
+```bash
+mkdir -p ~/monitoring-restore-test
+```
+
+```bash
+aws s3 cp \
+  s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/monitoring-config-backup.tar.gz \
+  ~/monitoring-restore-test/monitoring-config-backup.tar.gz
+```
+
+Kiểm tra file đã tải về:
+
+```bash
+ls -lh ~/monitoring-restore-test/
+```
+
+Kiểm tra danh sách nội dung bên trong file nén:
+
+```bash
+tar -tzf ~/monitoring-restore-test/monitoring-config-backup.tar.gz
+```
+
+Nếu lệnh hiển thị các thư mục và file cấu hình đã sao lưu, có thể xác nhận quá trình tải lên và tải xuống dữ liệu từ Amazon S3 hoạt động thành công.
+
+**Hình 5.7.20: File sao lưu cấu hình hệ thống giám sát trên Amazon S3**
+
+![Monitoring Backup on Amazon S3](/images/5-Workshop/5.7-Centralized-Monitoring/monitoring-backup.png)
+
+
 #### Kết luận
 
-Trong phần này, chúng ta đã triển khai hệ thống giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana trên máy chủ AWS EC2.
+Trong phần này, chúng ta đã triển khai hệ thống giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana trên máy chủ AWS EC2, đồng thời sử dụng Amazon S3 để lưu trữ các bản sao lưu cấu hình.
 
 Node Exporter thu thập các thông số của máy chủ Linux, Prometheus lưu trữ và xử lý dữ liệu giám sát, còn Grafana trực quan hóa dữ liệu thông qua các Dashboard.
 
-Giải pháp giám sát giúp quản trị viên theo dõi mức độ sử dụng tài nguyên máy chủ, phát hiện hiệu suất bất thường và đánh giá trạng thái hoạt động của hạ tầng Cloud.
+Giải pháp giám sát giúp quản trị viên theo dõi mức độ sử dụng tài nguyên máy chủ, phát hiện hiệu suất bất thường và đánh giá trạng thái hoạt động của hạ tầng Cloud. Amazon S3 bổ sung khả năng lưu trữ bản sao lưu cấu hình, hỗ trợ quá trình khôi phục hệ thống khi cần thiết.
 
 Trong phần tiếp theo, chúng ta sẽ tiến hành kiểm tra toàn bộ hệ thống Hybrid Cloud và dọn dẹp các tài nguyên AWS.

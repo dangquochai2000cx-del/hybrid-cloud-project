@@ -104,7 +104,7 @@ Amazon VPC provides a private IP address space. Subnets are organized according 
 
 **Monitoring System**
 
-Prometheus collects metrics from compatible exporters or monitoring endpoints. Grafana displays CPU usage, memory utilization, disk capacity, service status, and available network metrics. The ELK Stack centralizes and analyzes logs from servers and devices capable of exporting compatible log data.
+Prometheus collects metrics from compatible exporters or monitoring endpoints. Grafana displays CPU usage, memory utilization, disk capacity, service status, and available network metrics.
 
 **Security Layer**
 
@@ -234,7 +234,7 @@ The final budget should be validated using the AWS Pricing Calculator and actual
 
 If one VPN tunnel fails, the system will be tested to determine whether traffic can move to the remaining tunnel according to the configured routing mechanism. If the VPN cannot be restored, troubleshooting will proceed through each layer, including WAN connectivity, IPsec status, internal routing, and AWS route tables.
 
-For the monitoring system, Prometheus, Grafana, and ELK configurations should be preserved to support recovery after failures. Network and AWS configurations can be documented or stored as infrastructure code to facilitate redeployment when necessary.
+regarding the monitoring system, Prometheus and Grafana configurations should be backed up to enable post-incident recovery. Network configurations and AWS resources can be maintained via documentation or Infrastructure as Code (IaC) to facilitate redeployment as necessary
 
 ## 8. Expected Outcomes
 

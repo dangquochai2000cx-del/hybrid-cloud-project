@@ -1,7 +1,7 @@
 
 ---
 title: "Bản đề xuất"
-date: 2024-11-01
+date: 2026-11-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -101,7 +101,7 @@ Amazon VPC cung cấp không gian địa chỉ IP riêng. Các subnet được p
 
 **Hệ thống giám sát**
 
-Prometheus thu thập chỉ số từ các exporter hoặc endpoint tương thích. Grafana hiển thị CPU, RAM, dung lượng ổ đĩa, trạng thái dịch vụ và các chỉ số mạng có thể thu thập được. ELK Stack hỗ trợ tổng hợp và phân tích nhật ký từ các máy chủ hoặc thiết bị có khả năng xuất log phù hợp.
+Prometheus thu thập chỉ số từ các exporter hoặc endpoint tương thích. Grafana hiển thị CPU, RAM, dung lượng ổ đĩa, trạng thái dịch vụ và các chỉ số mạng có thể thu thập được. 
 
 **Lớp bảo mật**
 
@@ -231,7 +231,7 @@ Chi phí cuối cùng cần được xác nhận từ AWS Pricing Calculator và
 
 Khi một đường hầm VPN gặp sự cố, hệ thống được kiểm tra khả năng chuyển lưu lượng sang đường hầm còn lại theo cơ chế định tuyến đã cấu hình. Nếu VPN không thể khôi phục, có thể kiểm tra từng lớp từ kết nối WAN, trạng thái IPsec, định tuyến nội bộ đến route table AWS.
 
-Đối với hệ thống giám sát, cần lưu giữ cấu hình Prometheus, Grafana và ELK để có thể khôi phục sau sự cố. Các cấu hình mạng và tài nguyên AWS có thể được lưu lại dưới dạng tài liệu hoặc mã hạ tầng nhằm hỗ trợ triển khai lại khi cần.
+Đối với hệ thống giám sát, cần lưu giữ cấu hình Prometheus, Grafana để có thể khôi phục sau sự cố. Các cấu hình mạng và tài nguyên AWS có thể được lưu lại dưới dạng tài liệu hoặc mã hạ tầng (iac) nhằm hỗ trợ triển khai lại khi cần.
 
 ## 8. Kết quả kỳ vọng
 

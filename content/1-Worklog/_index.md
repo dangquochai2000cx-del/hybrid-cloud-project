@@ -22,7 +22,7 @@ pre: " <b> 1. </b> "
 
 **Week 7:** [Deploying a Web Server on Amazon EC2 Using Nginx](1.7-week7/)
 
-**Week 8:** [Installing Prometheus and Node Exporter to Monitor EC2 Instances](1.8-week8/)
+**Week 8:** [install Prometheus and Node Exporter to monitor EC2, deploy Grafana, and back up monitoring configurations to AWS S3](1.8-week8/)
 
 **Week 9:** [Integrating Grafana and Building Dashboards to Monitor AWS Infrastructure](1.9-week9/)
 

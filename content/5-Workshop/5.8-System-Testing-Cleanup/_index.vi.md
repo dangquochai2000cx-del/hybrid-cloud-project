@@ -210,8 +210,39 @@ Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prom
 
 ![Grafana Monitoring Dashboard](/images/5-Workshop/5.8-System-Testing-Cleanup/grafana-dashboard.png)
 
+#### 7. Kiểm tra kết quả sao lưu trên Amazon S3
 
-#### 7. Dọn dẹp các tài nguyên AWS không cần thiết
+Kiểm tra file sao lưu cấu hình Prometheus và Grafana đã được lưu trữ thành công trên Amazon S3.
+
+Thực hiện câu lệnh:
+
+```bash
+aws s3 ls s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/
+```
+
+Xác nhận file `monitoring-config-backup.tar.gz` xuất hiện trong danh sách.
+
+Tiếp theo, kiểm tra thông tin chi tiết của file backup:
+
+```bash
+aws s3api head-object \
+--bucket hybrid-cloud-monitoring-backup-qhai \
+--key monitoring-backup/monitoring-config-backup.tar.gz
+```
+
+Kiểm tra các thông tin:
+
+- Dung lượng file sao lưu.
+- Thời gian tải file lên S3.
+- Phương thức mã hóa AES-256.
+
+Xác nhận file backup được lưu trữ thành công trên Amazon S3 và có thể truy xuất khi cần thiết.
+
+**Hình 5.8.8: Kiểm tra file sao lưu trên Amazon S3**
+
+![Amazon S3 Backup](/images/5-Workshop/5.8-System-Testing-Cleanup/s3-monitoring-backup.png)
+
+#### 8. Dọn dẹp các tài nguyên AWS không cần thiết
 
 
 **EC2 Instance**
@@ -238,8 +269,13 @@ Xác nhận các biểu đồ nhận được dữ liệu cập nhật từ Prom
 4. Chọn **Delete VPN connection**.
 5. Nhập vào chữ 'delete' và chọn delete để xóa.
 
+**Bucket**
+1. Mở Amazon S3.
+2. Chọn **general purpose bukets**.
+3. Chọn buket cần xóa.
+4. Chọn **delete** để xóa.
 
-#### 8. Đánh giá tổng thể hệ thống
+#### 9. Đánh giá tổng thể hệ thống
 
 Sau khi hoàn thành các bài kiểm tra, tiến hành đánh giá hoạt động tổng thể của hệ thống Hybrid Cloud.
 
@@ -261,6 +297,8 @@ Trong phần cuối cùng này, chúng ta đã kiểm tra hoạt động của h
 
 Các bài kiểm tra bao gồm khả năng kết nối mạng, hoạt động của Site-to-Site VPN, định tuyến và chuyển đổi dự phòng, khả năng hoạt động của Web Server EC2 và hệ thống giám sát tập trung sử dụng Prometheus, Node Exporter và Grafana.
 
+Bên cạnh đó, chúng ta đã triển khai Amazon S3 để sao lưu và lưu trữ các tệp cấu hình của hệ thống giám sát, đồng thời kiểm tra khả năng truy xuất dữ liệu sao lưu khi cần thiết.
+
 Đồng thời, chúng ta đã rà soát tài nguyên AWS và xác định những tài nguyên có thể dọn dẹp nhằm hạn chế chi phí không cần thiết.
 
-Thông qua workshop này, chúng ta đã hoàn thành quá trình thiết kế, triển khai, giám sát và đánh giá giải pháp Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh với AWS.
+Thông qua workshop này, chúng ta đã hoàn thành quá trình thiết kế, triển khai, giám sát, sao lưu và đánh giá giải pháp Hybrid Cloud kết nối mạng doanh nghiệp đa chi nhánh với AWS.

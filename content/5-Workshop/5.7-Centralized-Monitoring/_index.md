@@ -487,12 +487,174 @@ After the tests, verify that both monitoring targets are still displayed as UP i
 ![Disk monitoring on Grafana](/images/5-Workshop/5.7-Centralized-Monitoring/disk.png)
 
 
+### 10. Create AWS S3 Bucket
+Access the AWS Management Console and perform the following steps:
+
+1. Search for the S3 service.
+2. Click **Create bucket**.
+3. Enter a globally unique Bucket name across AWS.
+4. Select the AWS Region: **US East (N. Virginia) – us-east-1**, the same region as your EC2 instance.
+5. Keep Block all public access enabled.
+6. Keep the remaining settings as default and **click Create bucket**.
+
+The bucket is used exclusively for storing backups and does not require public access permissions.
+
+**Image 5.7.14: Create bucket**
+
+![create bucket](/images/5-Workshop/5.7-Centralized-Monitoring/create-bucket.png)
+
+
+### 11. Create IAM Policy to Allow EC2 to Write Data to S3
+To allow EC2 to upload backup files to the bucket, create an IAM Policy with restricted access permissions.
+
+Go to IAM → Policies → Create policy → JSON and add the following content:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::hybrid-cloud-monitoring-backup-qhai",
+        "arn:aws:s3:::hybrid-cloud-monitoring-backup-qhai/*"
+      ]
+    }
+  ]
+}
+```
+
+Name the policy, for example: EC2-Monitoring-S3-Backup-Policy, then create the policy.
+
+**Hình 5.7.15: Create IAM-Policy**
+
+![Create IAM-Policy](/images/5-Workshop/5.7-Centralized-Monitoring/IAM-Policy.png)
+
+### 12. Attach IAM Role to EC2 Instance
+
+1. Go to IAM → Roles → Create role.
+2. Select AWS service.
+3. Choose EC2 as the use case.
+4. Attach the policy EC2-Monitoring-S3-Backup-Policy you just created.
+5. Name the role, for example: EC2-Monitoring-S3-Backup-Role.
+6. Complete the role creation process.
+7. Go to EC2 → Instances and select the server running Prometheus and Grafana.
+8. Choose Actions → Security → Modify IAM role.
+9. Select the EC2-Monitoring-S3-Backup-Role role and update it.
+
+The IAM Role allows EC2 to receive temporary credentials to access S3. There is no need to create or store Access Keys and Secret Keys on the server.
+
+**Image 5.7.16: Create IAM Role**
+
+![Create IAM-role](/images/5-Workshop/5.7-Centralized-Monitoring/iam-role.png)
+
+### 13. Install AWS CLI on EC2
+Connect via SSH to the EC2 server and install the AWS CLI:
+```bash
+sudo apt update
+sudo apt install -y awscli
+```
+Check the version:
+```bash
+aws --version
+```
+
+Verify AWS access rights from the IAM Role:
+```bash
+aws sts get-caller-identity
+```
+**Image 5.7.17: Install AWS CLI on EC2**
+![Install AWS CLI on EC2](/images/5-Workshop/5.7-Centralized-Monitoring/aws-cli-ec2.png)
+
+If the command returns the ARN information of the IAM Role attached to EC2, authentication is working correctly.
+
+### 14. Create a Backup File of Monitoring Configurations
+Create a temporary storage directory for the backup:
+
+```bash
+mkdir -p ~/monitoring-backup
+```
+Archive the Prometheus, Node Exporter, and Grafana configuration files:
+```bash
+  sudo tar -czvf ~/monitoring-backup/monitoring-config-backup.tar.gz \
+  -C / \
+  etc/prometheus \
+  etc/default/prometheus \
+  usr/lib/systemd/system/prometheus.service \
+  etc/systemd/system/node_exporter.service \
+  etc/grafana \
+  etc/default/grafana-server \
+  usr/lib/systemd/system/grafana-server.service
+```
+Set permissions so the ubuntu user can access the backup file:
+```bash
+sudo chown ubuntu:ubuntu ~/monitoring-backup/monitoring-config-backup.tar.gz
+```
+Verify the backup file:
+```bash
+ls -lh ~/monitoring-backup/
+```
+Image 5.7.18: Successful Backup File Creation
+
+![File Backup ](/images/5-Workshop/5.7-Centralized-Monitoring/file-backup.png)
+
+### 15. Upload Backup File to Amazon S3
+
+```bash
+aws s3 cp ~/monitoring-backup/monitoring-config-backup.tar.gz \
+  s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/monitoring-config-backup.tar.gz \
+  --sse AES256
+```
+The parameter --sse AES256 instructs S3 to encrypt the data on the server side using SSE-S3.
+
+Verify that the file has been uploaded to the bucket:
+
+```bash
+aws s3 ls s3://hybrid-cloud-monitoring-backup-qhai/monitoring-logs/
+
+```
+Image 5.7.19: Successful Upload to Amazon S3
+
+![file upload s3](/images/5-Workshop/5.7-Centralized-Monitoring/upload-s3.png)
+
+### 16. Test Backup File Recovery Capability
+Try downloading the backup file from S3 to a different directory on EC2.
+Create a directory to download the backup file:
+```bash
+mkdir -p ~/monitoring-restore-test
+```
+
+```bash
+aws s3 cp \
+  s3://hybrid-cloud-monitoring-backup-qhai/monitoring-backup/monitoring-config-backup.tar.gz \
+  ~/monitoring-restore-test/monitoring-config-backup.tar.gz
+```
+Check the downloaded file:
+```bash
+ls -lh ~/monitoring-restore-test/
+```
+Check the list of contents inside the archive file:
+
+```bash
+tar -tzf ~/monitoring-restore-test/monitoring-config-backup.tar.gz
+```
+
+If the command displays the backed-up directories and configuration files, it confirms that uploading and downloading data from Amazon S3 works successfully.
+
+Image 5.7.20: Monitoring System Configuration Backup on Amazon S3
+
+![Monitoring Backup on Amazon S3](/images/5-Workshop/5.7-Centralized-Monitoring/monitoring-backup.png)
+
 #### Conclusion
 
-In this section, we deployed a centralized monitoring solution using Prometheus, Node Exporter, and Grafana on an AWS EC2 instance.
+In this section, we deployed a centralized monitoring system using Prometheus, Node Exporter, and Grafana on an AWS EC2 server, while leveraging Amazon S3 to store configuration backups.
 
-Node Exporter collects Linux server metrics, Prometheus stores and processes the metrics, and Grafana visualizes the monitoring data through dashboards.
+Node Exporter collects Linux server metrics, Prometheus stores and processes monitoring data, and Grafana visualizes the data through dashboards.
 
-The monitoring solution helps administrators observe server resource utilization, identify abnormal performance, and evaluate the operational status of the cloud infrastructure.
+The monitoring solution helps administrators track server resource utilization, detect abnormal performance, and evaluate cloud infrastructure health. Amazon S3 adds configuration backup storage capabilities, supporting system recovery when needed.
 
-In the next section, we will test the Hybrid Cloud system and clean up AWS resources.
+In the next section, we will proceed to test the entire Hybrid Cloud system and clean up AWS resources.
