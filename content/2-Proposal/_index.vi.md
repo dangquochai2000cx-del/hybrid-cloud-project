@@ -40,6 +40,7 @@ Giải pháp gồm các thành phần chính:
 - **Máy chủ cloud:** Sử dụng Amazon EC2 để triển khai máy chủ dịch vụ, máy chủ web hoặc các thành phần giám sát cần thiết.
 - **Định tuyến và dự phòng:** Cấu hình định tuyến giữa các mạng nội bộ và VPC; sử dụng hai đường hầm VPN và cơ chế chuyển đổi đường đi khi kết nối chính gặp sự cố.
 - **Giám sát tập trung:** Sử dụng Prometheus và Grafana để theo dõi các chỉ số hệ thống.
+- **Lưu trữ và sao lưu:** Sử dụng Amazon S3 để lưu trữ các tệp sao lưu cấu hình hệ thống, dữ liệu giám sát và các tài nguyên cần thiết, hỗ trợ bảo vệ dữ liệu và khôi phục khi xảy ra sự cố.
 - **Bảo mật:** Áp dụng các quy tắc firewall, Security Group, Network ACL khi phù hợp, cùng với chính sách định tuyến và phân quyền truy cập nhằm hạn chế lưu lượng không cần thiết.
 
 Mô hình được triển khai trong môi trường lab để kiểm thử khả năng kết nối, trao đổi dữ liệu, truy cập dịch vụ cloud, giám sát và xử lý sự cố.
@@ -77,13 +78,19 @@ Luồng kết nối chính được thiết kế như sau:
 - **EVE-NG:** Mô phỏng hạ tầng mạng doanh nghiệp, router, switch, firewall và nhiều mạng LAN.
 - **Cisco IOS và Cisco ASA:** Cấu hình định tuyến, firewall, NAT và các chính sách kiểm soát lưu lượng.
 - **Amazon VPC:** Xây dựng mạng riêng trên AWS, bao gồm các subnet và bảng định tuyến.
+- **Amazon VPC Subnets:** Phân chia VPC thành các mạng con để tổ chức và triển khai tài nguyên cloud.
+- **Internet Gateway (IGW):** Cung cấp kết nối giữa VPC và Internet.
 - **AWS Site-to-Site VPN:** Thiết lập kết nối IPsec giữa mạng doanh nghiệp và AWS.
 - **Virtual Private Gateway:** Cổng kết nối VPN phía AWS, gắn với VPC.
+- **Customer Gateway:** Đại diện cho thiết bị VPN phía mạng doanh nghiệp, phục vụ thiết lập kết nối Site-to-Site VPN.
 - **Amazon EC2:** Triển khai máy chủ ứng dụng và các thành phần giám sát.
 - **Amazon VPC Route Tables:** Quản lý đường đi của lưu lượng giữa các subnet và mạng kết nối VPN.
+- **Security Groups:** Kiểm soát lưu lượng mạng ra vào các máy chủ EC2 thông qua các quy tắc bảo mật.
+- **AWS IAM:** Quản lý người dùng và quyền truy cập vào các dịch vụ, tài nguyên trên AWS.
 - **Prometheus:** Thu thập các chỉ số hiệu năng và trạng thái của máy chủ, dịch vụ được cấu hình giám sát.
 - **Grafana:** Trực quan hóa số liệu trên dashboard và hỗ trợ cấu hình cảnh báo.
 - **AWS CloudWatch:** Theo dõi các chỉ số và nhật ký của những dịch vụ AWS được hỗ trợ.
+- **Amazon S3:** Lưu trữ các tệp sao lưu cấu hình hệ thống, dữ liệu giám sát và các tài nguyên cần thiết, hỗ trợ bảo vệ dữ liệu và khôi phục khi xảy ra sự cố.
 
 ### Thiết kế thành phần
 
@@ -99,9 +106,9 @@ AWS Site-to-Site VPN cung cấp các đường hầm IPsec để truyền dữ l
 
 Amazon VPC cung cấp không gian địa chỉ IP riêng. Các subnet được phân chia theo chức năng và chính sách truy cập. Amazon EC2 được sử dụng để triển khai máy chủ web hoặc máy chủ giám sát tùy theo giai đoạn thực hiện.
 
-**Hệ thống giám sát**
+**Hệ thống giám sát và lưu trữ**
 
-Prometheus thu thập chỉ số từ các exporter hoặc endpoint tương thích. Grafana hiển thị CPU, RAM, dung lượng ổ đĩa, trạng thái dịch vụ và các chỉ số mạng có thể thu thập được. 
+Prometheus thu thập chỉ số từ các exporter hoặc endpoint tương thích. Grafana hiển thị CPU, RAM, dung lượng ổ đĩa, trạng thái dịch vụ và các chỉ số mạng có thể thu thập được. Amazon S3 được sử dụng để lưu trữ các tệp sao lưu cấu hình Prometheus, Grafana và các dữ liệu giám sát cần thiết, hỗ trợ bảo vệ dữ liệu và khôi phục hệ thống khi xảy ra sự cố.
 
 **Lớp bảo mật**
 
@@ -128,11 +135,12 @@ Dự án được chia thành bốn giai đoạn chính.
 - Cấu hình router để thiết lập đường hầm IPsec.
 - Kiểm tra trạng thái tunnel, khả năng ping các địa chỉ đầu cuối VPN và kết nối giữa các mạng được phép.
 
-**Giai đoạn 3: Triển khai máy chủ và giải pháp giám sát**
+**Giai đoạn 3: Triển khai máy chủ, giải pháp giám sát, hệ thống lưu trữ**
 
 - Triển khai EC2 phục vụ ứng dụng web hoặc các dịch vụ cần thiết.
 - Cấu hình Prometheus để thu thập số liệu từ các endpoint giám sát.
 - Triển khai Grafana và xây dựng dashboard theo dõi tài nguyên hệ thống.
+- Triển khai Amazon S3 để lưu trữ các tệp sao lưu cấu hình hệ thống và dữ liệu giám sát cần thiết.
 - Kiểm tra kết nối quản trị và luồng dữ liệu giám sát qua VPN theo kiến trúc đã thiết kế.
 
 **Giai đoạn 4: Kiểm thử, tối ưu và hoàn thiện tài liệu**
@@ -167,6 +175,7 @@ Dự án được chia thành bốn giai đoạn chính.
 - Cài đặt Prometheus để thu thập số liệu từ các máy chủ hoặc exporter tương thích.
 - Sử dụng Grafana để xây dựng dashboard và cấu hình cảnh báo.
 - Đánh giá tài nguyên CPU, RAM, dung lượng ổ đĩa và lưu lượng mạng.
+- Sử dụng Amazon S3 để lưu trữ các tệp sao lưu dữ liệu cấu hình Prometheus, Grafana.
 - Giới hạn quyền truy cập vào các giao diện quản trị và giám sát.
 
 ## 5. Lộ trình và mốc triển khai
@@ -177,7 +186,7 @@ Dự án được triển khai theo các mốc công việc chính trong thời 
 - **Giai đoạn 2 – Xây dựng hạ tầng mạng:** Triển khai mô hình trên EVE-NG, cấu hình router, firewall và kiểm tra khả năng kết nối nội bộ.
 - **Giai đoạn 3 – Triển khai AWS VPN:** Tạo VPC, subnet, Virtual Private Gateway và VPN Connection; cấu hình tunnel và định tuyến giữa hai phía.
 - **Giai đoạn 4 – Triển khai máy chủ cloud:** Tạo EC2 và kiểm tra khả năng truy cập dịch vụ từ các mạng được phép.
-- **Giai đoạn 5 – Tích hợp giám sát:** Triển khai Prometheus, Grafana, kiểm tra việc thu thập các chỉ số 
+- **Giai đoạn 5 – Tích hợp giám sát:** Triển khai Prometheus, Grafana, Amazon s3 kiểm tra việc thu thập và lưu trữ các chỉ số 
 - **Giai đoạn 6 – Kiểm thử và hoàn thiện:** Kiểm tra kết nối, dự phòng, bảo mật, hiệu năng và hoàn thiện báo cáo.
 
 Sau giai đoạn thực tập, mô hình có thể tiếp tục được mở rộng để nghiên cứu thêm về tự động hóa cấu hình, cảnh báo nâng cao, quản lý cấu hình tập trung và các cơ chế bảo mật cloud.
@@ -195,6 +204,7 @@ Có thể tham khảo công cụ [AWS Pricing Calculator](https://calculator.aws
 - **AWS Site-to-Site VPN:** Chi phí sử dụng kết nối VPN và các khoản phí truyền dữ liệu liên quan.
 - **Amazon VPC:** Các thành phần mạng cơ bản như VPC, subnet và route table thường không phát sinh phí riêng; các tài nguyên liên quan có thể phát sinh phí.
 - **Prometheus và Grafana:** Phần mềm có thể triển khai trên EC2, nhưng tài nguyên máy chủ và lưu trữ vẫn phát sinh chi phí.
+- **Amazon S3:** Chi phí lưu trữ dữ liệu, số lượng yêu cầu PUT/GET, truy xuất dữ liệu và truyền dữ liệu ra ngoài AWS.
 
 ### Biện pháp tối ưu chi phí
 
@@ -242,6 +252,7 @@ Khi một đường hầm VPN gặp sự cố, hệ thống được kiểm tra 
 - Kiểm thử hoạt động của hai đường hầm VPN và khả năng chuyển đổi tuyến khi xảy ra sự cố.
 - Triển khai máy chủ EC2 phục vụ ứng dụng hoặc dịch vụ cần thiết.
 - Xây dựng dashboard giám sát tài nguyên máy chủ bằng Prometheus và Grafana.
+- Sử dụng Amazon S3 để lưu trữ các tệp sao lưu cấu hình hệ thống và dữ liệu cần thiết, hỗ trợ bảo vệ dữ liệu và khôi phục khi xảy ra sự cố.
 - Hoàn thiện sơ đồ mạng, bảng địa chỉ IP, cấu hình VPN, quy tắc bảo mật và quy trình kiểm thử.
 
 ### Giá trị dài hạn

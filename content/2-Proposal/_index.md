@@ -42,6 +42,7 @@ The proposed solution consists of the following components:
 - **Cloud Servers:** Amazon EC2 instances host web applications, network services, or monitoring components as required.
 - **Routing and Redundancy:** Routing is configured between internal networks and the VPC. Two VPN tunnels and appropriate failover mechanisms are used to improve connectivity resilience.
 - **Centralized Monitoring:** Prometheus and Grafana monitor system metrics.
+- **Storage and backup:** Use Amazon S3 to store system configuration backups, monitoring data, and other essential resources, facilitating data protection and recovery in the event of an incident.
 - **Security:** Firewall rules, Security Groups, Network ACLs where appropriate, routing policies, and access controls restrict unnecessary traffic.
 
 The model is implemented in a lab environment to test network connectivity, data exchange, cloud service access, monitoring, and troubleshooting procedures.
@@ -77,16 +78,22 @@ The main connectivity flow is as follows:
 
 ### AWS Services and Technologies
 
-- **EVE-NG:** Simulates the enterprise network infrastructure, including routers, switches, firewalls, and multiple LANs.
-- **Cisco IOS and Cisco ASA:** Configure routing, firewall policies, NAT, and traffic control.
-- **Amazon VPC:** Provides a private network environment on AWS, including subnets and route tables.
-- **AWS Site-to-Site VPN:** Establishes IPsec connectivity between the enterprise network and AWS.
-- **Virtual Private Gateway:** Provides the AWS-side VPN endpoint attached to the VPC.
-- **Amazon EC2:** Hosts application servers and monitoring components.
-- **Amazon VPC Route Tables:** Control traffic routing between subnets and enterprise networks connected through the VPN.
-- **Prometheus:** Collects performance metrics and status information from configured servers and services.
+- **EVE-NG:** Simulates the enterprise network infrastructure, including routers, switches, firewalls, and multiple LAN networks.
+- **Cisco IOS and Cisco ASA:** Configure routing, firewalls, NAT, and traffic control policies.
+- **Amazon VPC:** Builds a private network on AWS, including subnets and route tables.
+- **Amazon VPC Subnets:** Divide the VPC into smaller networks to organize and deploy cloud resources.
+- **Internet Gateway (IGW):** Provides connectivity between the VPC and the Internet.
+- **AWS Site-to-Site VPN:** Establishes an IPsec connection between the enterprise network and AWS.
+- **Virtual Private Gateway:** Acts as the AWS-side VPN endpoint and is attached to the VPC.
+- **Customer Gateway:** Represents the VPN device on the enterprise network side and is used to establish a Site-to-Site VPN connection.
+- **Amazon EC2:** Deploys application servers and monitoring components.
+- **Amazon VPC Route Tables:** Manage traffic routing between subnets and networks connected through the VPN.
+- **Security Groups:** Control inbound and outbound traffic to EC2 instances through security rules.
+- **AWS IAM (Identity and Access Management):** Manages users and access permissions for AWS services and resources.
+- **Prometheus:** Collects performance metrics and status information from monitored servers and services.
 - **Grafana:** Visualizes metrics through dashboards and supports alert configuration.
 - **AWS CloudWatch:** Monitors metrics and logs from supported AWS services.
+- **Amazon S3:** Stores system configuration backups, monitoring data, and other necessary files, supporting data protection and recovery in case of failures.
 
 ### Component Design
 
@@ -102,9 +109,9 @@ AWS Site-to-Site VPN provides IPsec tunnels for secure data transmission between
 
 Amazon VPC provides a private IP address space. Subnets are organized according to their functions and access policies. Amazon EC2 instances host web services or monitoring components, depending on the implementation phase.
 
-**Monitoring System**
+**Monitoring and storage system**
 
-Prometheus collects metrics from compatible exporters or monitoring endpoints. Grafana displays CPU usage, memory utilization, disk capacity, service status, and available network metrics.
+Prometheus collects metrics from exporters or compatible endpoints. Grafana visualizes various metrics, including CPU, RAM, disk space, service status, and network data. Amazon S3 is used to store backup files for Prometheus and Grafana configurations, as well as essential monitoring data, facilitating data protection and system recovery in the event of an incident.
 
 **Security Layer**
 
@@ -123,7 +130,7 @@ The project is divided into four main phases.
 - Design the EVE-NG network topology, identifying LANs, edge routers, firewalls, and AWS network components.
 - Develop the IP addressing plan, routing tables, and redundancy strategy.
 
-**Phase 2: Infrastructure Setup and VPN Configuration**
+**Phase 2: Deployment of servers, monitoring solutions, and storage systems**
 
 - Deploy network devices and configure IP addresses in EVE-NG.
 - Configure internal routing, default routes, and necessary NAT policies.
@@ -136,6 +143,7 @@ The project is divided into four main phases.
 - Deploy EC2 instances for web applications or other required services.
 - Configure Prometheus to collect metrics from monitoring endpoints.
 - Deploy Grafana and build dashboards for system resource monitoring.
+- Deploy Amazon S3 to store necessary system configuration backup files and monitoring data
 - Verify administrative connectivity and monitoring traffic flows through the VPN according to the architecture.
 
 **Phase 4: Testing, Optimization, and Documentation**
@@ -165,11 +173,12 @@ The project is divided into four main phases.
 - Deploy EC2 instances according to actual requirements and budget constraints.
 - Configure Security Groups to allow only the necessary service ports.
 
-**Monitoring System**
+**Monitoring and storage System**
 
 - Install Prometheus to collect metrics from servers or compatible exporters.
 - Use Grafana to build dashboards and configure alerts.
 - Monitor CPU, memory, disk capacity, and network utilization.
+- Use Amazon S3 to store backup files for Prometheus and Grafana configuration data.
 - Restrict access to administrative interfaces and monitoring dashboards.
 
 ## 5. Implementation Timeline and Milestones
@@ -180,7 +189,7 @@ The project follows a series of milestones during the internship period from Aug
 - **Phase 2 – Network Infrastructure Setup:** Build the EVE-NG topology, configure routers and firewalls, and verify internal connectivity.
 - **Phase 3 – AWS VPN Deployment:** Create the VPC, subnets, Virtual Private Gateway, and VPN connection; configure tunnels and routing between both environments.
 - **Phase 4 – Cloud Server Deployment:** Launch EC2 instances and verify service access from permitted networks.
-- **Phase 5 – Monitoring Integration:** Deploy Prometheus and Grafana, and Verify Metrics Collection.
+- **Phase 5 – Monitoring Integration:** Deploy Prometheus, Grafana, and Amazon S3 to verify the collection and storage of metrics.
 - **Phase 6 – Testing and Finalization:** Test connectivity, redundancy, security, and performance, then complete the project documentation.
 
 After the internship, the model can be extended to explore configuration automation, advanced alerting, centralized configuration management, and additional cloud security mechanisms.
@@ -198,6 +207,7 @@ The [AWS Pricing Calculator](https://calculator.aws/) can be used to estimate co
 - **AWS Site-to-Site VPN:** VPN connection charges and applicable data transfer costs.
 - **Amazon VPC:** Core components such as VPCs, subnets, and route tables generally do not incur separate charges; related resources may incur additional fees.
 - **Prometheus and Grafana:** The software can run on EC2, but the underlying compute and storage resources still incur costs.
+- **Amazon S3:** Costs for data storage, the number of PUT/GET requests, data retrieval, and data transfer out of AWS.
 
 ### Cost Optimization Strategies
 
@@ -245,6 +255,7 @@ regarding the monitoring system, Prometheus and Grafana configurations should be
 - Test two VPN tunnels and routing failover when a failure occurs.
 - Deploy EC2 instances for applications or required services.
 - Build monitoring dashboards for server resources using Prometheus and Grafana.
+- Use Amazon S3 to store system configuration backups and essential data, supporting data protection and recovery in the event of an incident.
 - Complete network diagrams, IP addressing tables, VPN configurations, security rules, and testing procedures.
 
 ### Long-Term Value
