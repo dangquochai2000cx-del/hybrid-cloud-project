@@ -7,7 +7,7 @@ pre: " <b> 3. </b> "
 ---
 
 
-During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
+During my internship, I participated in various programs—each one a memorable experience filled with new, engaging, and valuable knowledge, along with wonderful gifts and truly fantastic moments.
 
 ### [Meetting 1](3.1-Meeting1/)  
 &emsp;**Event Name:** meeting 15/08/2026

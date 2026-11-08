@@ -8,7 +8,7 @@ pre: " <b> 3. </b> "
 
 
 
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
+Trong thời gian thực tập, tôi đã tham gia nhiều chương trình khác nhau—mỗi chương trình đều là một trải nghiệm đáng nhớ, mang đến những kiến ​​thức mới mẻ, thú vị và đầy giá trị, cùng với đó là những món quà tuyệt vời và những khoảnh khắc thực sự đáng giá.
 
 ### [Meetting 1](3.1-Meeting1/)
 &emsp;**Tên sự kiện:** Gặp mặt ngày 15/08/2026
