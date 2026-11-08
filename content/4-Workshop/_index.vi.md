@@ -25,6 +25,7 @@ Các nội dung chính bao gồm:
 - **Cấu hình VPN Site-to-Site:** Thiết lập các đường hầm VPN IPsec kết nối hạ tầng On-premises với AWS.
 - **Cấu hình định tuyến và dự phòng:** Thiết lập định tuyến giữa các mạng nội bộ, kiểm tra kết nối và đánh giá khả năng chuyển đổi khi đường truyền gặp sự cố.
 - **Triển khai giám sát tập trung:** Cài đặt Prometheus, Node Exporter và Grafana để theo dõi tài nguyên máy chủ.
+- **Lưu trữ và sao lưu dữ liệu:** Sử dụng Amazon S3 để lưu trữ các tệp sao lưu cấu hình hệ thống giám sát và dữ liệu cần thiết, hỗ trợ bảo vệ và khôi phục dữ liệu khi xảy ra sự cố.
 - **Kiểm tra và đánh giá hệ thống:** Kiểm tra kết nối mạng, trạng thái VPN, khả năng dự phòng và hoạt động của hệ thống giám sát.
 ### Nội dung
 

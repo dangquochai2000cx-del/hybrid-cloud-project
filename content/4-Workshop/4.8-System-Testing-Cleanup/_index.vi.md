@@ -28,6 +28,7 @@ Hệ thống bao gồm:
 - **VPN Connections:** Cung cấp kết nối được mã hóa giữa mạng doanh nghiệp và AWS.
 - **EC2 Instance:** Máy chủ triển khai Web Server và các thành phần giám sát.
 - **Hệ thống giám sát:** Sử dụng Prometheus, Node Exporter và Grafana để theo dõi hiệu suất máy chủ.
+- **Hệ thống lưu trữ** Amazon S3 Lưu trữ các tệp sao lưu cấu hình hệ thống giám sát
 
 
 ### 2. Kiểm tra khả năng kết nối mạng

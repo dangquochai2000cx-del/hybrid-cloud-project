@@ -28,7 +28,7 @@ The system consists of:
 - **VPN connections:** Provide encrypted connectivity between the enterprise network and AWS.
 - **EC2 instance:** Hosts the web server and monitoring components.
 - **Monitoring system:** Uses Prometheus, Node Exporter, and Grafana to monitor server performance.
-
+- **Storage system:** Amazon S3 – stores backup files for monitoring system configurations
 
 ### 2. Test Network Connectivity
 

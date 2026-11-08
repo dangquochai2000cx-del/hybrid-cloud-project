@@ -27,6 +27,7 @@ Through this workshop, we will build a Hybrid Cloud network infrastructure, esta
 - **Site-to-Site VPN:** Establish IPsec VPN tunnels between the on-premises network and AWS.
 - **Routing and Failover:** Configure routes, test connectivity, and verify VPN redundancy.
 - **Centralized Monitoring:** Deploy Prometheus, Node Exporter, and Grafana.
+- **Data storage and backup:** Use Amazon S3 to store configuration backup files for the monitoring system as well as other essential data, facilitating data protection and recovery in the event of an incident.
 - **System Testing:** Validate connectivity, VPN operation, failover, and monitoring.
 
 ### Contents
