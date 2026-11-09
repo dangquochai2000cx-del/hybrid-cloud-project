@@ -34,6 +34,6 @@ Các nội dung chính bao gồm:
 3. [Thiết kế và triển khai hạ tầng mạng AWS](4.3-AWS-Network-Infrastructure/)
 4. [Triển khai máy chủ EC2 và cấu hình Security Groups](4.4-EC2-Security-Groups/)
 5. [Cấu hình VPN Site-to-Site kết nối mạng doanh nghiệp đa chi nhánh](4.5-Site-to-Site-VPN/)
-6. [Cấu hình định tuyến và cơ chế dự phòng VPN](5.6-VPN-Routing-Failover/)
-7. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana và dịch vụ sao lưu Amazon S3 ](4.7-Centralized-Monitoring/)
+6. [Cấu hình định tuyến và cơ chế dự phòng VPN](4.6-VPN-Routing-Failover/)
+7. [Triển khai hệ thống giám sát tập trung Prometheus và Grafana và dịch vụ sao lưu Amazon S3](4.7-Centralized-Monitoring/)
 8. [Kiểm tra hệ thống Hybrid Cloud và dọn dẹp tài nguyên AWS](4.8-System-Testing-Cleanup/)
