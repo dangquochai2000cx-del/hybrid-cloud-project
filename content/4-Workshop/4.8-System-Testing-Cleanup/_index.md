@@ -63,7 +63,7 @@ If connectivity fails, review the following:
 
 **Image 4.8.1: Test Connectivity from the Enterprise Network to AWS**
 
-![Network Connectivity Test](/images/4-Workshop/4.8-System-Testing-Cleanup/network-connectivity.png)
+![Network Connectivity Test](images/4-Workshop/4.8-System-Testing-Cleanup/network-connectivity.png)
 
 ### 3. Verify Site-to-Site VPN Connections
 
